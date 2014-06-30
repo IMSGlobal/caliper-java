@@ -5,6 +5,8 @@ import java.util.List;
 
 public class BaseProfile {
     private final String id;
+    private String type;
+    private String action;
     private String parentId;
     private String referrerId;
     private String title;
@@ -13,9 +15,12 @@ public class BaseProfile {
     private boolean isGradable;
     private boolean isAssignable;
     private boolean isShareable;
+    private String status;
 
     public static abstract class Builder<T extends Builder<T>> {
         private String id;
+        private String type;
+        private String action;
         private String parentId;
         private String referrerId;
         private String title;
@@ -24,6 +29,7 @@ public class BaseProfile {
         private boolean isAssignable = false;
         private boolean isGradable = false;
         private boolean isShareable = false;
+        private String status;
 
         protected abstract T self();
 
@@ -33,6 +39,24 @@ public class BaseProfile {
          */
         public T id(String id) {
             this.id = id;
+            return self();
+        }
+
+        /**
+         * @param type
+         * @return type
+         */
+        public T type(String type) {
+            this.type = type;
+            return self();
+        }
+
+        /**
+         * @param action
+         * @return action.
+         */
+        public T action(String action) {
+            this.action = action;
             return self();
         }
 
@@ -112,6 +136,15 @@ public class BaseProfile {
         }
 
         /**
+         * @param status
+         * @return current status of activity.
+         */
+        public T status(String status) {
+            this.status = status;
+            return self();
+        }
+
+        /**
          * Client invokes a build method sans parameters in order to create an immutable metric profile object.
          * @return a new instance of BaseProfile.
          */
@@ -137,6 +170,8 @@ public class BaseProfile {
      */
     protected BaseProfile(Builder<?> builder) {
         this.id = builder.id;
+        this.type = builder.type;
+        this.action = builder.action;
         this.parentId = builder.parentId;
         this.referrerId = builder.referrerId;
         this.title = builder.title;
@@ -145,5 +180,6 @@ public class BaseProfile {
         this.isAssignable = builder.isAssignable;
         this.isGradable = builder.isGradable;
         this.isShareable = builder.isShareable;
+        this.status = builder.status;
     }
 }
