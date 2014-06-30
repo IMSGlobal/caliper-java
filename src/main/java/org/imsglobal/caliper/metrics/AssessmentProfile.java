@@ -1,5 +1,8 @@
 package org.imsglobal.caliper.metrics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AssessmentProfile extends BaseProfile {
     private int maxAttemptsAllowed;
     private int attemptCount;
@@ -7,8 +10,8 @@ public class AssessmentProfile extends BaseProfile {
     private int submissionCount;
     private int maxTimeAllowed;
     private int timeTaken;
+    private List<String> assets = new ArrayList<String>();
     //private String outcome;
-    //private AssessmentItems assessmentItems;
 
     public static abstract class Builder<T extends Builder<T>> extends BaseProfile.Builder<T>  {
         private int maxAttemptsAllowed;
@@ -17,8 +20,8 @@ public class AssessmentProfile extends BaseProfile {
         private int submissionCount;
         private int maxTimeAllowed;
         private int timeTaken;
+        private List<String> assets = new ArrayList<String>();
         //private String outcome;
-        //private AssessmentItems assessmentItems;
 
         /**
          * @param maxAttemptsAllowed
@@ -76,6 +79,15 @@ public class AssessmentProfile extends BaseProfile {
         }
 
         /**
+         * @param assets
+         * @return URI list of item assets:, hint, model answer, etc.
+         */
+        public T assets(List<String> assets) {
+            this.assets = assets;
+            return self();
+        }
+
+        /**
          * Client invokes the build method sans parameters in order to create an immutable profile object.
          * @return a new instance of AssessmentProfile.
          */
@@ -107,5 +119,6 @@ public class AssessmentProfile extends BaseProfile {
         this.submissionCount = builder.submissionCount;
         this.maxTimeAllowed = builder.maxTimeAllowed;
         this.timeTaken = builder.timeTaken;
+        this.assets = builder.assets;
     }
 }
