@@ -12,6 +12,96 @@ public class MediaProfile extends BaseProfile {
     private int sizeY;
     private boolean isEmbedded;
 
+    /**
+     * @param builder apply builder object properties to the profile object.
+     */
+    protected MediaProfile(Builder<?> builder) {
+        super(builder);
+        this.mediaFrame = builder.mediaFrame;
+        this.mediaTimestamp = builder.mediaTimestamp;
+        this.mediaTargetFrame = builder.mediaTargetFrame;
+        this.mediaTargetTimestamp = builder.mediaTargetTimestamp;
+        this.mediaLength = builder.mediaLength;
+        this.resolutionX = builder.resolutionX;
+        this.resolutionY = builder.resolutionY;
+        this.sizeX = builder.sizeX;
+        this.sizeY = builder.sizeY;
+        this.isEmbedded = builder.isEmbedded;
+    }
+
+    /**
+     * @return media frame.
+     */
+    public int getMediaFrame() {
+        return mediaFrame;
+    }
+
+    /**
+     * @return media timestamp.
+     */
+    public long getMediaTimestamp() {
+        return mediaTimestamp;
+    }
+
+    /**
+     * @return media target frame.
+     */
+    public int getMediaTargetFrame() {
+        return mediaTargetFrame;
+    }
+
+    /**
+     * @return media target timestamp
+     */
+    public long getMediaTargetTimestamp() {
+        return mediaTargetTimestamp;
+    }
+
+    /**
+     * @return media length.
+     */
+    public int getMediaLength() {
+        return mediaLength;
+    }
+
+    /**
+     * @return number of horizontal pixels.
+     */
+    public int getResolutionX() {
+        return resolutionX;
+    }
+
+    /**
+     * @return number of vertical pixels.
+     */
+    public int getResolutionY() {
+        return resolutionY;
+    }
+
+    /**
+     * @return number of horizontal pixels.
+     */
+    public int getSizeX() {
+        return sizeX;
+    }
+
+    /**
+     * @return number of vertical pixels.
+     */
+    public int getSizeY() {
+        return sizeY;
+    }
+
+    /**
+     * @return boolean value indicating whether or not media object is embedded.
+     */
+    public boolean getIsEmbedded() {
+        return isEmbedded;
+    }
+
+    /**
+     * @param <T> builder
+     */
     public static abstract class Builder<T extends Builder<T>> extends BaseProfile.Builder<T>  {
         private int mediaFrame;
         private long mediaTimestamp;
@@ -123,6 +213,9 @@ public class MediaProfile extends BaseProfile {
         }
     }
 
+    /**
+     *
+     */
     private static class Builder2 extends Builder<Builder2> {
         @Override
         protected Builder2 self() {
@@ -130,25 +223,10 @@ public class MediaProfile extends BaseProfile {
         }
     }
 
+    /**
+     * @return a new instance of the builder.
+     */
     public static Builder<?> builder() {
         return new Builder2();
-    }
-
-    /**
-     * Copy parameter settings from the builder to the profile object.
-     * @param builder
-     */
-    protected MediaProfile(Builder<?> builder) {
-        super(builder);
-        this.mediaFrame = builder.mediaFrame;
-        this.mediaTimestamp = builder.mediaTimestamp;
-        this.mediaTargetFrame = builder.mediaTargetFrame;
-        this.mediaTargetTimestamp = builder.mediaTargetTimestamp;
-        this.mediaLength = builder.mediaLength;
-        this.resolutionX = builder.resolutionX;
-        this.resolutionY = builder.resolutionY;
-        this.sizeX = builder.sizeX;
-        this.sizeY = builder.sizeY;
-        this.isEmbedded = builder.isEmbedded;
     }
 }

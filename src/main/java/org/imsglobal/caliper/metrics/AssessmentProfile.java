@@ -4,42 +4,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AssessmentProfile extends BaseProfile {
-    private int maxAttemptsAllowed;
-    private int attemptCount;
     private int maxSubmissionsAllowed;
     private int submissionCount;
     private int maxTimeAllowed;
     private int timeTaken;
     private List<String> assets = new ArrayList<String>();
-    //private String outcome;
 
+    /**
+     * @param builder apply builder object properties to the profile object.
+     */
+    protected AssessmentProfile(Builder<?> builder) {
+        super(builder);
+        this.maxSubmissionsAllowed = builder.maxSubmissionsAllowed;
+        this.submissionCount = builder.submissionCount;
+        this.maxTimeAllowed = builder.maxTimeAllowed;
+        this.timeTaken = builder.timeTaken;
+        this.assets = builder.assets;
+    }
+
+    /**
+     * @return maximum number of submissions allowed.
+     */
+    public int getMaxSubmissionsAllowed() {
+        return maxSubmissionsAllowed;
+    }
+
+    /**
+     * @return current submission count.
+     */
+    public int getSubmissionCount() {
+        return submissionCount;
+    }
+
+    /**
+     * @return maximum time allowed for the assessment.
+     */
+    public int getMaxTimeAllowed() {
+        return maxTimeAllowed;
+    }
+
+    /**
+     * @return time taken.
+     */
+    public int getTimeTaken() {
+        return timeTaken;
+    }
+
+    /**
+     * @return list of asset references associated with the assessment.
+     */
+    public List<String> getAssets() {
+        return assets;
+    }
+
+    /**
+     *
+     * @param <T> builder
+     */
     public static abstract class Builder<T extends Builder<T>> extends BaseProfile.Builder<T>  {
-        private int maxAttemptsAllowed;
-        private int attemptCount;
         private int maxSubmissionsAllowed;
         private int submissionCount;
         private int maxTimeAllowed;
         private int timeTaken;
         private List<String> assets = new ArrayList<String>();
-        //private String outcome;
-
-        /**
-         * @param maxAttemptsAllowed
-         * @return Assessment setting specifying the maximum number of allowed attempts.
-         */
-        public T maxAttemptsAllowed(int maxAttemptsAllowed) {
-            this.maxAttemptsAllowed = maxAttemptsAllowed;
-            return self();
-        }
-
-        /**
-         * @param attemptCount
-         * @return current number of attempts.
-         */
-        public T attemptCount(int attemptCount) {
-            this.attemptCount = attemptCount;
-            return self();
-        }
 
         /**
          * @param maxSubmissionsAllowed
@@ -88,14 +115,17 @@ public class AssessmentProfile extends BaseProfile {
         }
 
         /**
-         * Client invokes the build method sans parameters in order to create an immutable profile object.
-         * @return a new instance of AssessmentProfile.
+         * Client invokes build method sans parameters in order to create an immutable profile object.
+         * @return a new instance of the AssessmentProfile.
          */
         public AssessmentProfile build() {
             return new AssessmentProfile(this);
         }
     }
 
+    /**
+     *
+     */
     private static class Builder2 extends Builder<Builder2> {
         @Override
         protected Builder2 self() {
@@ -103,22 +133,11 @@ public class AssessmentProfile extends BaseProfile {
         }
     }
 
+    /**
+     *
+     * @return a new instance of the builder.
+     */
     public static Builder<?> builder() {
         return new Builder2();
-    }
-
-    /**
-     * Copy parameter settings from the builder to the profile object.
-     * @param builder
-     */
-    protected AssessmentProfile(Builder<?> builder) {
-        super(builder);
-        this.maxAttemptsAllowed = builder.maxAttemptsAllowed;
-        this.attemptCount = builder.attemptCount;
-        this.maxSubmissionsAllowed = builder.maxSubmissionsAllowed;
-        this.submissionCount = builder.submissionCount;
-        this.maxTimeAllowed = builder.maxTimeAllowed;
-        this.timeTaken = builder.timeTaken;
-        this.assets = builder.assets;
     }
 }
