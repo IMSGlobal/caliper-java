@@ -100,6 +100,7 @@ public class MediaProfile extends BaseProfile {
     }
 
     /**
+     * Initialize default parameter values in the builder (not in the outer profile class).
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends BaseProfile.Builder<T>  {
@@ -112,7 +113,7 @@ public class MediaProfile extends BaseProfile {
         private int resolutionY;
         private int sizeX;
         private int sizeY;
-        private boolean isEmbedded;
+        private boolean isEmbedded = false;
 
         /**
          * @param mediaFrame
@@ -224,6 +225,7 @@ public class MediaProfile extends BaseProfile {
     }
 
     /**
+     * Static factory
      * @return a new instance of the builder.
      */
     public static Builder<?> builder() {

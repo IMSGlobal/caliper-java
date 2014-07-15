@@ -120,6 +120,7 @@ public class BaseProfile {
     }
 
     /**
+     * Initialize default parameter values in the builder (not in the outer profile class).
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> {
@@ -269,6 +270,7 @@ public class BaseProfile {
     }
 
     /**
+     * Static factory
      * @return a new instance of the builder.
      */
     public static Builder<?> builder() {

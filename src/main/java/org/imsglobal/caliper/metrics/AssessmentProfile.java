@@ -58,7 +58,7 @@ public class AssessmentProfile extends BaseProfile {
     }
 
     /**
-     *
+     * Initialize default parameter values in the builder (not in the outer profile class).
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends BaseProfile.Builder<T>  {
@@ -134,7 +134,7 @@ public class AssessmentProfile extends BaseProfile {
     }
 
     /**
-     *
+     * Static factory
      * @return a new instance of the builder.
      */
     public static Builder<?> builder() {
