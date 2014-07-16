@@ -5,34 +5,22 @@ import java.util.List;
 
 public class BaseProfile {
     private final String id;
-    private final String type;
+    private String partOf;
+    private List<String> objectType = new ArrayList<String>();
     private final String action;
-    private String parentId;
-    private String referrerId;
-    private String title;
     private List<String> learningObjectives = new ArrayList<String>();
     private List<String> topics = new ArrayList<String>();
-    private boolean isGradable;
-    private boolean isAssignable;
-    private boolean isShareable;
-    private String status;
 
     /**
      * @param builder apply builder object properties to the profile object.
      */
     protected BaseProfile(Builder<?> builder) {
         this.id = builder.id;
-        this.type = builder.type;
+        this.partOf = builder.partOf;
+        this.objectType = builder.objectType;
         this.action = builder.action;
-        this.parentId = builder.parentId;
-        this.referrerId = builder.referrerId;
-        this.title = builder.title;
         this.learningObjectives = builder.learningObjectives;
         this.topics = builder.topics;
-        this.isAssignable = builder.isAssignable;
-        this.isGradable = builder.isGradable;
-        this.isShareable = builder.isShareable;
-        this.status = builder.status;
     }
 
     /**
@@ -43,10 +31,17 @@ public class BaseProfile {
     }
 
     /**
-     * @return type.
+     * @return parent identifier.
      */
-    public String getType() {
-        return type;
+    public String getPartOf() {
+        return partOf;
+    }
+
+    /**
+     * @return objectType.
+     */
+    public List<String> getObjectType() {
+        return objectType;
     }
 
     /**
@@ -54,27 +49,6 @@ public class BaseProfile {
      */
     public String getAction() {
         return action;
-    }
-
-    /**
-     * @return parent identifier.
-     */
-    public String getParentId() {
-        return parentId;
-    }
-
-    /**
-     * @return referrer.
-     */
-    public String getReferrerId() {
-        return referrerId;
-    }
-
-    /**
-     * @return title.
-     */
-    public String getTitle() {
-        return title;
     }
 
     /**
@@ -92,50 +66,16 @@ public class BaseProfile {
     }
 
     /**
-     * @return gradable.
-     */
-    public boolean getIsGradable() {
-        return isGradable;
-    }
-
-    /**
-     * @return isAssignable.
-     */
-    public boolean getIsAssignable() {
-        return isAssignable;
-    }
-
-    /**
-     * @return isShareable.
-     */
-    public boolean getIsShareable() {
-        return isShareable;
-    }
-
-    /**
-     * @return status.
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
      * Initialize default parameter values in the builder (not in the outer profile class).
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> {
         private String id;
-        private String type;
+        private String partOf;
+        private List<String> objectType;
         private String action;
-        private String parentId;
-        private String referrerId;
-        private String title;
         private List<String> learningObjectives = new ArrayList<String>();
         private List<String> topics = new ArrayList<String>();
-        private boolean isAssignable = false;
-        private boolean isGradable = false;
-        private boolean isShareable = false;
-        private String status;
 
         protected abstract T self();
 
@@ -149,11 +89,20 @@ public class BaseProfile {
         }
 
         /**
-         * @param type
-         * @return type
+         * @param partOf
+         * @return parent learning activity.
          */
-        public T type(String type) {
-            this.type = type;
+        public T partOf(String partOf) {
+            this.partOf = partOf;
+            return self();
+        }
+
+        /**
+         * @param objectType
+         * @return objectType
+         */
+        public T objectType(List<String> objectType) {
+            this.objectType = objectType;
             return self();
         }
 
@@ -163,33 +112,6 @@ public class BaseProfile {
          */
         public T action(String action) {
             this.action = action;
-            return self();
-        }
-
-        /**
-         * @param parentId
-         * @return parent learning activity.
-         */
-        public T parentId(String parentId) {
-            this.parentId = parentId;
-            return self();
-        }
-
-        /**
-         * @param referrerId
-         * @return source/provider of learning activity.
-         */
-        public T referrerId(String referrerId) {
-            this.referrerId = referrerId;
-            return self();
-        }
-
-        /**
-         * @param title
-         * @return title or label.
-         */
-        public T title(String title) {
-            this.title = title;
             return self();
         }
 
@@ -208,45 +130,6 @@ public class BaseProfile {
          */
         public T topics(List<String> topics) {
             this.topics = topics;
-            return self();
-        }
-
-        /**
-         *
-         * @param isAssignable
-         * @return the activity is/is not assignable.
-         */
-        public T isAssignable(boolean isAssignable) {
-            this.isAssignable = isAssignable;
-            return self();
-        }
-
-        /**
-         *
-         * @param isGradable
-         * @return the activity is/is not gradable.
-         */
-        public T isGradable(boolean isGradable) {
-            this.isGradable = isGradable;
-            return self();
-        }
-
-        /**
-         *
-         * @param isShareable
-         * @return the activity is/is not shareable.
-         */
-        public T isShareable(boolean isShareable) {
-            this.isShareable = isShareable;
-            return self();
-        }
-
-        /**
-         * @param status
-         * @return current status of activity.
-         */
-        public T status(String status) {
-            this.status = status;
             return self();
         }
 
