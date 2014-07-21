@@ -4,30 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseProfile {
-    private final String id;
+    private String name;
     private String partOf;
+    private String about;
     private List<String> objectType = new ArrayList<String>();
     private final String action;
-    private List<String> learningObjectives = new ArrayList<String>();
-    private List<String> topics = new ArrayList<String>();
+    private List<String> alignedLearningObjectives = new ArrayList<String>();
+    private List<String> keyword = new ArrayList<String>();
+    private String inLanguage;
 
     /**
      * @param builder apply builder object properties to the profile object.
      */
     protected BaseProfile(Builder<?> builder) {
-        this.id = builder.id;
+        this.name = builder.name;
         this.partOf = builder.partOf;
+        this.about = builder.about;
         this.objectType = builder.objectType;
         this.action = builder.action;
-        this.learningObjectives = builder.learningObjectives;
-        this.topics = builder.topics;
+        this.alignedLearningObjectives = builder.alignedLearningObjectives;
+        this.keyword = builder.keyword;
+        this.inLanguage = builder.inLanguage;
     }
 
     /**
-     * @return identifier.
+     * @return name.
      */
-    public String getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -35,6 +39,13 @@ public class BaseProfile {
      */
     public String getPartOf() {
         return partOf;
+    }
+
+    /**
+     * @return the subject matter of the content.
+     */
+    public String about() {
+        return about;
     }
 
     /**
@@ -54,15 +65,22 @@ public class BaseProfile {
     /**
      * @return learning objectives.
      */
-    public List<String> getLearningObjectives() {
-        return learningObjectives;
+    public List<String> getalignedLearningObjectives() {
+        return alignedLearningObjectives;
     }
 
     /**
      * @return topics.
      */
-    public List<String> getTopics() {
-        return topics;
+    public List<String> getKeyword() {
+        return keyword;
+    }
+
+    /**
+     * @return language code of the content per the IETF BCP 47 standard.
+     */
+    public String getInLanguage() {
+        return inLanguage;
     }
 
     /**
@@ -70,21 +88,23 @@ public class BaseProfile {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> {
-        private String id;
+        private String name;
         private String partOf;
+        private String about;
         private List<String> objectType;
         private String action;
-        private List<String> learningObjectives = new ArrayList<String>();
-        private List<String> topics = new ArrayList<String>();
+        private List<String> alignedLearningObjectives = new ArrayList<String>();
+        private List<String> keyword = new ArrayList<String>();
+        private String inLanguage;
 
         protected abstract T self();
 
         /**
-         * @param id
-         * @return identifier.
+         * @param name
+         * @return learning activity name.
          */
-        public T id(String id) {
-            this.id = id;
+        public T name(String name) {
+            this.name = name;
             return self();
         }
 
@@ -94,6 +114,15 @@ public class BaseProfile {
          */
         public T partOf(String partOf) {
             this.partOf = partOf;
+            return self();
+        }
+
+        /**
+         * @param about
+         * @return the subject matter of the content.
+         */
+        public T about(String about) {
+            this.about = about;
             return self();
         }
 
@@ -116,25 +145,34 @@ public class BaseProfile {
         }
 
         /**
-         * @param learningObjectives
+         * @param alignedLearningObjectives
          * @return list of learning objectives associated with the profile.
          */
-        public T learningObjectives(List<String> learningObjectives) {
-            this.learningObjectives = learningObjectives;
+        public T alignedLearningObjectives(List<String> alignedLearningObjectives) {
+            this.alignedLearningObjectives = alignedLearningObjectives;
             return self();
         }
 
         /**
-         * @param topics
-         * @return list of learning objectives associated with the profile.
+         * @param keyword
+         * @return keywords or tags used to describe content.
          */
-        public T topics(List<String> topics) {
-            this.topics = topics;
+        public T keyword(List<String> keyword) {
+            this.keyword = keyword;
             return self();
         }
 
         /**
-         * Client invokes build method sans parameters in order to create an immutable metric profile object.
+         * @param inLanguage
+         * @return language code of the content per the IETF BCP 47 standard.
+         */
+        public T inLanguage(String inLanguage) {
+            this.inLanguage = inLanguage;
+            return self();
+        }
+
+        /**
+         * Client invokes build method in order to create an immutable metric profile object.
          * @return a new instance of the BaseProfile.
          */
         public BaseProfile build() {

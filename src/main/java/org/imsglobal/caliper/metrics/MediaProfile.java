@@ -206,7 +206,7 @@ public class MediaProfile extends BaseProfile {
         }
 
         /**
-         * Client invokes the build method sans parameters in order to create an immutable profile object.
+         * Client invokes the build method in order to create an immutable profile object.
          * @return a new instance of MediaProfile.
          */
         public MediaProfile build() {

@@ -115,7 +115,7 @@ public class AssessmentProfile extends BaseProfile {
         }
 
         /**
-         * Client invokes build method sans parameters in order to create an immutable profile object.
+         * Client invokes build method in order to create an immutable profile object.
          * @return a new instance of the AssessmentProfile.
          */
         public AssessmentProfile build() {
