@@ -10,7 +10,7 @@ import org.imsglobal.caliper.entities.schemadotorg.Thing;
  * Direct sub-types can include - Highlight, Attachment, etc. - all of
  * which are specified in the Caliper Annotation Metric Profile
  */
-public class Annotation extends CaliperEntity implements Thing {
+public abstract class Annotation extends CaliperEntity implements Thing {
 
     public enum Type {
         ANNOTATION("http://purl.imsglobal.org/caliper/v1/Annotation"),
@@ -100,14 +100,6 @@ public class Annotation extends CaliperEntity implements Thing {
             this.target = target;
             return self();
         }
-
-        /**
-         * Client invokes build method in order to create an immutable object.
-         * @return a new instance of Annotation.
-         */
-        public Annotation build() {
-            return new Annotation(this);
-        }
     }
 
     /**
@@ -118,13 +110,5 @@ public class Annotation extends CaliperEntity implements Thing {
         protected Builder2 self() {
             return this;
         }
-    }
-
-    /**
-     * Static factory method.
-     * @return a new instance of the builder.
-     */
-    public static Builder<?> builder() {
-        return new Builder2();
     }
 }
