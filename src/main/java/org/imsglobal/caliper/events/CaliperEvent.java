@@ -22,7 +22,7 @@ import org.imsglobal.caliper.entities.lis.LISOrganization;
         "startedAtTime",
         "endedAtTime",
         "duration"})
-public class CaliperEvent {
+public abstract class CaliperEvent {
 
     public enum Context {
         ANNOTATION("http://purl.imsglobal.org/ctx/caliper/v1/AnnotationEvent"),
@@ -395,14 +395,6 @@ public class CaliperEvent {
             this.duration = duration;
             return self();
         }
-
-        /**
-         * Client invokes build method in order to create an immutable CaliperEvent object.
-         * @return a new instance of CaliperEvent.
-         */
-        public CaliperEvent build() {
-            return new CaliperEvent(this);
-        }
     }
 
     /**
@@ -413,13 +405,5 @@ public class CaliperEvent {
         protected Builder2 self() {
             return this;
         }
-    }
-
-    /**
-     * Static factory method.
-     * @return a new instance of the builder.
-     */
-    public static Builder<?> builder() {
-        return new Builder2();
     }
 }
