@@ -12,22 +12,24 @@ import java.nio.charset.Charset;
 
 public class ConformanceUtils {
 
+    public static String srvr = "http://localhost:1080/";
+
     // inspired by com.yammer.dropwizard.testing.JsonHelpers
     private static final ObjectMapper MAPPER = new ObjectMapperFactory().build();
 
     // inspired by com.yammer.dropwizard.testing.FixtureHelpers
-    public static String fixture(String url, Charset charset) throws IOException {
+    private static String fixture(String url, Charset charset) throws IOException {
         return Resources.toString(new URL(url), charset).trim();
     }
 
     // inspired by com.yammer.dropwizard.testing.FixtureHelpers
-    public static String fixture(String url) throws IOException {
+    private static String fixture(String url) throws IOException {
         return fixture(url, Charsets.UTF_8);
     }
 
     // inspired by com.yammer.dropwizard.testing.JsonHelpers
     public static String jsonFixture(String filename) throws IOException {
-        String url = "http://localhost:1080/" + filename;
+        String url = ConformanceUtils.srvr + filename;
         return MAPPER.writeValueAsString(MAPPER.readValue(fixture(url), JsonNode.class));
     }
 
