@@ -134,7 +134,8 @@
         "extensions": {},
         "dateCreated": "2015-08-01T06:00:00.000Z",
         "dateModified": null
-      }
+      },
+      "federatedSession": "https://learning-platform.some-university.edu/federatedSession/123456789"
     }
   ]
 }

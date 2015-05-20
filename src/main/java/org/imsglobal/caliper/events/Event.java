@@ -18,14 +18,18 @@
 
 package org.imsglobal.caliper.events;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.Generatable;
 import org.imsglobal.caliper.entities.Targetable;
 import org.imsglobal.caliper.entities.foaf.Agent;
 import org.imsglobal.caliper.entities.schemadotorg.SoftwareApplication;
+import org.imsglobal.caliper.entities.session.FederatedSession;
 import org.imsglobal.caliper.entities.w3c.Membership;
 import org.imsglobal.caliper.entities.w3c.Organization;
 import org.imsglobal.caliper.validators.EventValidator;
@@ -49,7 +53,8 @@ import javax.annotation.Nullable;
     "duration",
     "edApp",
     "group",
-    "membership" })
+    "membership",
+    "federatedSession "})
 public abstract class Event {
 
     @JsonProperty("@context")
@@ -91,6 +96,9 @@ public abstract class Event {
     @JsonProperty("membership")
     private final Membership membership;
 
+    @JsonProperty("federatedSession")
+    private final FederatedSession federatedSession;
+
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(Event.class);
 
@@ -123,6 +131,7 @@ public abstract class Event {
         this.edApp = builder.edApp;
         this.group = builder.group;
         this.membership = builder.membership;
+        this.federatedSession = builder.federatedSession;
     }
 
     /**
@@ -248,6 +257,23 @@ public abstract class Event {
     }
 
     /**
+     * Federated Session object, part of the LTI launch context.  Optional.
+     * @return the federated session
+     */
+
+    /**
+     * Federated Session object, part of the LTI launch context.  Optional.  Serialization of
+     * FederatedSession is limited to the identifying URI only.
+     * @return the federated session
+     */
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "@id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @Nullable
+    public FederatedSession getFederatedSession() {
+        return federatedSession;
+    }
+
+    /**
      * Builder class provides a fluid interface for setting object properties.
      * @param <T> builder.
      */
@@ -265,6 +291,7 @@ public abstract class Event {
         private SoftwareApplication edApp;
         private Organization group;
         private Membership membership;
+        private FederatedSession federatedSession;
 
         protected abstract T self();
 
@@ -390,6 +417,15 @@ public abstract class Event {
          */
         public T membership(Membership membership) {
             this.membership = membership;
+            return self();
+        }
+
+        /**
+         * @param federatedSession
+         * @return builder.
+         */
+        public T federatedSession(FederatedSession federatedSession) {
+            this.federatedSession = federatedSession;
             return self();
         }
     }
