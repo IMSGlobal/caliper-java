@@ -18,9 +18,12 @@
 
 package org.imsglobal.caliper.events;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.Generatable;
 import org.imsglobal.caliper.entities.Targetable;
@@ -257,6 +260,14 @@ public abstract class Event {
      * Federated Session object, part of the LTI launch context.  Optional.
      * @return the federated session
      */
+
+    /**
+     * Federated Session object, part of the LTI launch context.  Optional.  Serialization of
+     * FederatedSession is limited to the identifying URI only.
+     * @return the federated session
+     */
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "@id")
+    @JsonIdentityReference(alwaysAsId = true)
     @Nullable
     public FederatedSession getFederatedSession() {
         return federatedSession;

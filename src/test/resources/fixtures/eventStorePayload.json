@@ -135,27 +135,7 @@
         "dateCreated": "2015-08-01T06:00:00.000Z",
         "dateModified": null
       },
-      "federatedSession": {
-        "@id": "https://learning-platform.some-university.edu/federatedSession/123456789",
-        "@type": "http://purl.imsglobal.org/caliper/v1/lti/FederatedSession",
-        "name": null,
-        "description": null,
-        "extensions": {},
-        "dateCreated": "2015-08-01T06:00:00.000Z",
-        "dateModified": null,
-        "actor": {
-          "@id": "https://some-university.edu/user/554433",
-          "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
-          "name": null,
-          "description": null,
-          "extensions": {},
-          "dateCreated": "2015-08-01T06:00:00.000Z",
-          "dateModified": "2015-09-02T11:30:00.000Z"
-        },
-        "startedAtTime": "2015-09-15T10:15:00.000Z",
-        "endedAtTime": null,
-        "duration": null
-      }
+      "federatedSession": "https://learning-platform.some-university.edu/federatedSession/123456789"
     }
   ]
 }
