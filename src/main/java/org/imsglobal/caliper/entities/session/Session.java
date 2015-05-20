@@ -183,7 +183,7 @@ public class Session extends Entity implements org.imsglobal.caliper.entities.Ge
 
         /**
          * Client invokes build method in order to create an immutable object.
-         * @return a new instance of WebPage.
+         * @return a new instance of Session.
          */
         public Session build() {
             return new Session(this);

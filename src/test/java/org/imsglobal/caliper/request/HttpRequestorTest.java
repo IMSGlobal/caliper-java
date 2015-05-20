@@ -34,6 +34,7 @@ import org.imsglobal.caliper.entities.reading.EpubSubChapter;
 import org.imsglobal.caliper.entities.reading.EpubVolume;
 import org.imsglobal.caliper.entities.reading.Frame;
 import org.imsglobal.caliper.entities.reading.WebPage;
+import org.imsglobal.caliper.entities.session.FederatedSession;
 import org.imsglobal.caliper.events.Event;
 import org.imsglobal.caliper.events.NavigationEvent;
 import org.joda.time.DateTime;
@@ -53,6 +54,7 @@ public class HttpRequestorTest {
 
     private Sensor<String> sensor ;
     private HttpRequestor<Event> httpRequestor = new HttpRequestor<>(TestUtils.getTestingOptions());
+    private FederatedSession federatedSession;
     private LearningContext learningContext;
     private Person actor;
     private EpubVolume object;
@@ -75,15 +77,23 @@ public class HttpRequestorTest {
         client.setOptions(TestUtils.getTestingOptions());
         sensor.registerClient(client.getId(), client);
 
+        // Build actor
+        actor = TestAgentEntities.buildStudent554433();
+
+        // Create a FederatedSession with URI identifier provided by an LTI Tool Consumer.
+        federatedSession = FederatedSession.builder()
+            .id("https://learning-platform.some-university.edu/federatedSession/123456789")
+            .actor(actor)
+            .dateCreated(dateCreated)
+            .startedAtTime(dateStarted)
+            .build();
+
         // Build the Learning Context
         learningContext = LearningContext.builder()
             .edApp(TestAgentEntities.buildReadiumViewerApp())
             .group(TestLisEntities.buildGroup())
             .membership(TestLisEntities.buildMembership())
             .build();
-
-        // Build actor
-        actor = TestAgentEntities.buildStudent554433();
 
         // Build object
         object = TestEpubEntities.buildEpubVolume43();
@@ -153,6 +163,7 @@ public class HttpRequestorTest {
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())
+            .federatedSession(federatedSession)
             .build();
     }
 }

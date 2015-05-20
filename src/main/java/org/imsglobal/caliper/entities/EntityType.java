@@ -28,6 +28,7 @@ public enum EntityType implements Type {
     COURSE_SECTION("http://purl.imsglobal.org/caliper/v1/lis/CourseSection"),
     DIGITAL_RESOURCE("http://purl.imsglobal.org/caliper/v1/DigitalResource"),
     ENTITY("http://purl.imsglobal.org/caliper/v1/Entity"),
+    FEDERATED_SESSION("http://purl.imsglobal.org/caliper/v1/lti/FederatedSession"),
     GENERATED("http://purl.imsglobal.org/caliper/v1/Generated"),
     GROUP("http://purl.imsglobal.org/caliper/v1/lis/Group"),
     LEARNING_OBJECTIVE("http://purl.imsglobal.org/caliper/v1/LearningObjective"),
