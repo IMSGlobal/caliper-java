@@ -84,7 +84,7 @@ public class AssessmentEventTest {
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
         assertEquals("Test if Assessment event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperAssessmentEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.ALWAYS));
+            jsonFixture("fixtures/caliperAssessmentEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
     }
 
     @Test(expected=IllegalArgumentException.class)

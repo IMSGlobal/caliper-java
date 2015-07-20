@@ -5,9 +5,6 @@
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/user/554433",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
-    "name": null,
-    "description": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z"
   },
@@ -17,56 +14,35 @@
     "@id": "https://example.com/viewer/book/34843#epubcfi(/4/3/2)",
     "@type": "http://purl.imsglobal.org/caliper/v1/Frame",
     "name": "Key Figures: Lord North",
-    "description": null,
-    "objectType": [],
-    "alignedLearningObjective": [],
-    "keywords": [],
     "isPartOf": {
       "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
       "@id": "https://example.com/viewer/book/34843#epubcfi(/4/3)",
       "@type": "http://www.idpf.org/epub/vocab/structure/#volume",
       "name": "The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)",
-      "description": null,
-      "objectType": [],
-      "alignedLearningObjective": [],
-      "keywords": [],
-      "isPartOf": null,
-      "extensions": {},
       "dateCreated": "2015-08-01T06:00:00.000Z",
       "dateModified": "2015-09-02T11:30:00.000Z",
-      "datePublished": null,
       "version": "2nd ed."
     },
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z",
-    "datePublished": null,
     "version": "2nd ed.",
     "index": 2
   },
-  "target": null,
   "generated": {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/bookmarks/00001",
     "@type": "http://purl.imsglobal.org/caliper/v1/BookmarkAnnotation",
-    "name": null,
-    "description": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z",
     "annotated": "https://example.com/viewer/book/34843#epubcfi(/4/3/2)",
     "bookmarkNotes": "The Intolerable Acts (1774)--bad idea Lord North"
   },
   "startedAtTime": "2015-09-15T10:15:00.000Z",
-  "endedAtTime": null,
-  "duration": null,
   "edApp": {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.com/viewer",
     "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
     "name": "ePub",
-    "description": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z"
   },
@@ -75,15 +51,12 @@
     "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001/group/001",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Group",
     "name": "Discussion Group 001",
-    "description": null,
     "subOrganizationOf": {
       "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
       "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001",
       "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseSection",
       "courseNumber": "POL101",
       "name": "American Revolution 101",
-      "description": null,
-      "category": null,
       "academicSession": "Fall-2015",
       "subOrganizationOf": {
         "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
@@ -91,20 +64,14 @@
         "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseOffering",
         "courseNumber": "POL101",
         "name": "Political Science 101: The American Revolution",
-        "description": null,
         "academicSession": "Fall-2015",
-        "subOrganizationOf": null,
-        "extensions": {},
         "dateCreated": "2015-08-01T06:00:00.000Z",
         "dateModified": "2015-09-02T11:30:00.000Z"
       },
-      "extensions": {},
       "dateCreated": "2015-08-01T06:00:00.000Z",
       "dateModified": "2015-09-02T11:30:00.000Z"
     },
-    "extensions": {},
-    "dateCreated": "2015-08-01T06:00:00.000Z",
-    "dateModified": null
+    "dateCreated": "2015-08-01T06:00:00.000Z"
   },
   "membership": {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
@@ -116,9 +83,6 @@
     "organization": "https://example.edu/politicalScience/2015/american-revolution-101/section/001",
     "roles": ["http://purl.imsglobal.org/vocab/lis/v2/membership#Learner"],
     "status": "http://purl.imsglobal.org/vocab/lis/v2/status#Active",
-    "extensions": {},
-    "dateCreated": "2015-08-01T06:00:00.000Z",
-    "dateModified": null
-  },
-  "federatedSession": null
+    "dateCreated": "2015-08-01T06:00:00.000Z"
+  }
 }
