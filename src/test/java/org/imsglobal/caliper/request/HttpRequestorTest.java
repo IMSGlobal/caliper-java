@@ -133,7 +133,7 @@ public class HttpRequestorTest {
         Envelope<Event> envelope = httpRequestor.createEnvelope(sensor, DateTime.now(), data);
 
         // Serialize envelope, excluding null properties, empty objects and empty arrays
-        String json = httpRequestor.serializeEnvelope(envelope, JsonInclude.Include.ALWAYS);
+        String json = httpRequestor.serializeEnvelope(envelope, JsonInclude.Include.NON_EMPTY);
 
         // Swap out sendTime=DateTime.now() in favor of fixture value (or test will most assuredly fail).
         Pattern pattern = Pattern.compile("\"sendTime\":\"[^\"]*\"");
@@ -150,7 +150,7 @@ public class HttpRequestorTest {
         Envelope<Event> envelope = httpRequestor.createEnvelope(sensor, DateTime.now(), data);
 
         // Serialize envelope; include null properties, empty objects and empty arrays
-        String json = httpRequestor.serializeEnvelope(envelope, JsonInclude.Include.ALWAYS);
+        String json = httpRequestor.serializeEnvelope(envelope, JsonInclude.Include.NON_EMPTY);
 
         // Create an HTTP StringEntity payload with the envelope JSON.
         StringEntity payload = httpRequestor.generatePayload(json, ContentType.APPLICATION_JSON);
