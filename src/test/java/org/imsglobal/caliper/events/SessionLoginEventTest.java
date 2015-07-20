@@ -102,7 +102,7 @@ public class SessionLoginEventTest {
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
         assertEquals("Test if loggedIn event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperSessionLoginEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.ALWAYS));
+            jsonFixture("fixtures/caliperSessionLoginEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
     }
 
     @Test(expected=IllegalArgumentException.class)

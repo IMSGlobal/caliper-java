@@ -23,7 +23,7 @@ public enum Defaults {
     CONNECTION_REQUEST_TIMEOUT("10000"),
     CONNECTION_TIMEOUT("10000"),
     SOCKET_TIMEOUT("10000"),
-    JSON_INCLUDE("ALWAYS");
+    JSON_INCLUDE("NON_EMPTY");
 
     private final String value;
 

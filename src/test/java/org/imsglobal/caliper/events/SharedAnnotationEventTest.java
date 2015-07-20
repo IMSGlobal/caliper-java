@@ -113,7 +113,7 @@ public class SharedAnnotationEventTest {
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
         assertEquals("Test if Shared Annotation event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperSharedAnnotationEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.ALWAYS));
+            jsonFixture("fixtures/caliperSharedAnnotationEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
     }
 
     @Test(expected=IllegalArgumentException.class)

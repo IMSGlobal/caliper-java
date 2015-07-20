@@ -96,7 +96,7 @@ public class BookmarkAnnotationEventTest {
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
         assertEquals("Test if Bookmark Annotation event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperBookmarkAnnotationEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.ALWAYS));
+            jsonFixture("fixtures/caliperBookmarkAnnotationEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
     }
 
     @Test(expected=IllegalArgumentException.class)

@@ -5,9 +5,6 @@
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/user/554433",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
-    "name": null,
-    "description": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z"
   },
@@ -17,26 +14,16 @@
     "@id": "https://example.com/super-media-tool/video/1225",
     "@type": "http://purl.imsglobal.org/caliper/v1/VideoObject",
     "name": "American Revolution - Key Figures Video",
-    "description": null,
-    "objectType": [],
     "alignedLearningObjective": [
       {
         "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
         "@id": "https://example.edu/american-revolution-101/personalities/learn",
         "@type": "http://purl.imsglobal.org/caliper/v1/LearningObjective",
-        "name": null,
-        "description": null,
-        "extensions": {},
-        "dateCreated": "2015-08-01T06:00:00.000Z",
-        "dateModified": null
+        "dateCreated": "2015-08-01T06:00:00.000Z"
       }
     ],
-    "keywords": [],
-    "isPartOf": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z",
-    "datePublished": null,
     "version": "1.0",
     "duration": 1420
   },
@@ -44,30 +31,16 @@
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.com/super-media-tool/video/1225",
     "@type": "http://purl.imsglobal.org/caliper/v1/MediaLocation",
-    "name": null,
-    "description": null,
-    "objectType": [],
-    "alignedLearningObjective": [],
-    "keywords": [],
-    "isPartOf": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
-    "dateModified": null,
-    "datePublished": null,
     "version": "1.0",
     "currentTime": 710
   },
-  "generated": null,
   "startedAtTime": "2015-09-15T10:15:00.000Z",
-  "endedAtTime": null,
-  "duration": null,
   "edApp": {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.com/super-media-tool",
     "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
     "name": "Super Media Tool",
-    "description": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z"
   },
@@ -76,15 +49,12 @@
     "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001/group/001",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Group",
     "name": "Discussion Group 001",
-    "description": null,
     "subOrganizationOf": {
       "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
       "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001",
       "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseSection",
       "courseNumber": "POL101",
       "name": "American Revolution 101",
-      "description": null,
-      "category": null,
       "academicSession": "Fall-2015",
       "subOrganizationOf": {
         "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
@@ -92,20 +62,14 @@
         "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseOffering",
         "courseNumber": "POL101",
         "name": "Political Science 101: The American Revolution",
-        "description": null,
         "academicSession": "Fall-2015",
-        "subOrganizationOf": null,
-        "extensions": {},
         "dateCreated": "2015-08-01T06:00:00.000Z",
         "dateModified": "2015-09-02T11:30:00.000Z"
       },
-      "extensions": {},
       "dateCreated": "2015-08-01T06:00:00.000Z",
       "dateModified": "2015-09-02T11:30:00.000Z"
     },
-    "extensions": {},
-    "dateCreated": "2015-08-01T06:00:00.000Z",
-    "dateModified": null
+    "dateCreated": "2015-08-01T06:00:00.000Z"
   },
   "membership": {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
@@ -117,9 +81,6 @@
     "organization": "https://example.edu/politicalScience/2015/american-revolution-101/section/001",
     "roles": ["http://purl.imsglobal.org/vocab/lis/v2/membership#Learner"],
     "status": "http://purl.imsglobal.org/vocab/lis/v2/status#Active",
-    "extensions": {},
-    "dateCreated": "2015-08-01T06:00:00.000Z",
-    "dateModified": null
-  },
-  "federatedSession": null
+    "dateCreated": "2015-08-01T06:00:00.000Z"
+  }
 }
