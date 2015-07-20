@@ -6,8 +6,6 @@
     "@id": "https://example.com/viewer",
     "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
     "name": "ePub",
-    "description": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z"
   },
@@ -17,17 +15,12 @@
     "@id": "https://example.com/viewer/session-123456789",
     "@type": "http://purl.imsglobal.org/caliper/v1/Session",
     "name": "session-123456789",
-    "description": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z",
     "actor": {
       "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
       "@id": "https://example.edu/user/554433",
       "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
-      "name": null,
-      "description": null,
-      "extensions": {},
       "dateCreated": "2015-08-01T06:00:00.000Z",
       "dateModified": "2015-09-02T11:30:00.000Z"
     },
@@ -35,8 +28,6 @@
     "endedAtTime": "2015-09-15T11:05:00.000Z",
     "duration": "PT3000S"
   },
-  "target": null,
-  "generated": null,
   "startedAtTime": "2015-09-15T10:15:00.000Z",
   "endedAtTime": "2015-09-15T11:05:00.000Z",
   "duration": "PT3000S",
@@ -45,8 +36,6 @@
     "@id": "https://example.com/viewer",
     "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
     "name": "ePub",
-    "description": null,
-    "extensions": {},
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z"
   },
@@ -55,15 +44,12 @@
     "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001/group/001",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Group",
     "name": "Discussion Group 001",
-    "description": null,
     "subOrganizationOf": {
       "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
       "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001",
       "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseSection",
       "courseNumber": "POL101",
       "name": "American Revolution 101",
-      "description": null,
-      "category": null,
       "academicSession": "Fall-2015",
       "subOrganizationOf": {
         "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
@@ -71,21 +57,13 @@
         "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseOffering",
         "courseNumber": "POL101",
         "name": "Political Science 101: The American Revolution",
-        "description": null,
         "academicSession": "Fall-2015",
-        "subOrganizationOf": null,
-        "extensions": {},
         "dateCreated": "2015-08-01T06:00:00.000Z",
         "dateModified": "2015-09-02T11:30:00.000Z"
       },
-      "extensions": {},
       "dateCreated": "2015-08-01T06:00:00.000Z",
       "dateModified": "2015-09-02T11:30:00.000Z"
     },
-    "extensions": {},
-    "dateCreated": "2015-08-01T06:00:00.000Z",
-    "dateModified": null
-  },
-  "membership": null,
-  "federatedSession": null
+    "dateCreated": "2015-08-01T06:00:00.000Z"
+  }
 }
