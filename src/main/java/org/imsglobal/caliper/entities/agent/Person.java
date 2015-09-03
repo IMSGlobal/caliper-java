@@ -32,7 +32,6 @@ import javax.annotation.Nonnull;
     "@type",
     "name",
     "description",
-    "roles",
     "extensions",
     "dateCreated",
     "dateModified" })
