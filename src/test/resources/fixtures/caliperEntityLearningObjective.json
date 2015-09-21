@@ -1,0 +1,6 @@
+{
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+  "@id": "https://example.edu/american-revolution-101/personalities/learn",
+  "@type": "http://purl.imsglobal.org/caliper/v1/LearningObjective",
+  "dateCreated": "2015-08-01T06:00:00.000Z"
+}

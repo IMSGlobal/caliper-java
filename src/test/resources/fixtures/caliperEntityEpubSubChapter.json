@@ -1,0 +1,17 @@
+{
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+  "@id": "https://example.com/viewer/book/34843#epubcfi(/4/3/1)",
+  "@type": "http://www.idpf.org/epub/vocab/structure/#subchapter",
+  "dateCreated": "2015-08-01T06:00:00.000Z",
+  "dateModified": "2015-09-02T11:30:00.000Z",
+  "isPartOf": {
+    "@id": "https://example.com/viewer/book/34843#epubcfi(/4/3)",
+    "@type": "http://www.idpf.org/epub/vocab/structure/#volume",
+    "dateCreated": "2015-08-01T06:00:00.000Z",
+    "dateModified": "2015-09-02T11:30:00.000Z",
+    "name": "The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)",
+    "version": "2nd ed."
+  },
+  "name": "Key Figures: George Washington",
+  "version": "2nd ed."
+}

@@ -1,0 +1,10 @@
+{
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+  "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678",
+  "@type": "http://purl.imsglobal.org/caliper/v1/Attempt",
+  "actor": "https://example.edu/user/554433",
+  "assignable": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
+  "count": 1,
+  "dateCreated": "2015-08-01T06:00:00.000Z",
+  "startedAtTime": "2015-09-15T10:15:00.000Z"
+}

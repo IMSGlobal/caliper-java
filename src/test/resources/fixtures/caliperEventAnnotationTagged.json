@@ -1,63 +1,61 @@
 {
   "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-  "@type": "http://purl.imsglobal.org/caliper/v1/AssignableEvent",
+  "@type": "http://purl.imsglobal.org/caliper/v1/AnnotationEvent",
   "actor": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/user/554433",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z"
   },
-  "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Activated",
+  "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Tagged",
   "object": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-    "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
-    "@type": "http://purl.imsglobal.org/caliper/v1/Assessment",
-    "name": "American Revolution - Key Figures Assessment",
+    "@id": "https://example.com/viewer/book/34843#epubcfi(/4/3/4)",
+    "@type": "http://purl.imsglobal.org/caliper/v1/Frame",
+    "name": "The Stamp Act Crisis",
+    "isPartOf": {
+      "@id": "https://example.com/viewer/book/34843#epubcfi(/4/3)",
+      "@type": "http://www.idpf.org/epub/vocab/structure/#volume",
+      "name": "The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)",
+      "dateCreated": "2015-08-01T06:00:00.000Z",
+      "dateModified": "2015-09-02T11:30:00.000Z",
+      "version": "2nd ed."
+    },
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z",
-    "datePublished": "2015-08-15T09:30:00.000Z",
-    "version": "1.0",
-    "dateToActivate": "2015-08-16T05:00:00.000Z",
-    "dateToShow": "2015-08-16T05:00:00.000Z",
-    "dateToStartOn": "2015-08-16T05:00:00.000Z",
-    "dateToSubmit": "2015-09-28T11:59:59.000Z",
-    "maxAttempts": 2,
-    "maxSubmits": 2,
-    "maxScore": 3.0
+    "version": "2nd ed.",
+    "index": 4
   },
   "generated": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-    "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678",
-    "@type": "http://purl.imsglobal.org/caliper/v1/Attempt",
+    "@id": "https://example.edu/tags/7654",
+    "@type": "http://purl.imsglobal.org/caliper/v1/TagAnnotation",
     "dateCreated": "2015-08-01T06:00:00.000Z",
-    "assignable": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
-    "actor": "https://example.edu/user/554433",
-    "count": 1,
-    "startedAtTime": "2015-09-15T10:15:00.000Z"
+    "dateModified": "2015-09-02T11:30:00.000Z",
+    "annotated": "https://example.com/viewer/book/34843#epubcfi(/4/3/4)",
+    "tags": [
+      "to-read",
+      "1765",
+      "shared-with-project-team"
+    ]
   },
-  "startedAtTime": "2015-09-15T10:15:00.000Z",
+  "eventTime": "2015-09-15T10:15:00.000Z",
   "edApp": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-    "@id": "https://example.com/super-assessment-tool",
+    "@id": "https://example.com/viewer",
     "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
-    "name": "Super Assessment Tool",
-    "dateCreated": "2015-08-01T06:00:00.000Z"
+    "name": "ePub",
+    "dateCreated": "2015-08-01T06:00:00.000Z",
+    "dateModified": "2015-09-02T11:30:00.000Z"
   },
   "group": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001/group/001",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Group",
     "name": "Discussion Group 001",
     "subOrganizationOf": {
-      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
       "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001",
       "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseSection",
       "courseNumber": "POL101",
       "name": "American Revolution 101",
       "academicSession": "Fall-2015",
       "subOrganizationOf": {
-        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
         "@id": "https://example.edu/politicalScience/2015/american-revolution-101",
         "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseOffering",
         "courseNumber": "POL101",
@@ -72,7 +70,6 @@
     "dateCreated": "2015-08-01T06:00:00.000Z"
   },
   "membership": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/politicalScience/2015/american-revolution-101/roster/554433",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Membership",
     "name": "American Revolution 101",

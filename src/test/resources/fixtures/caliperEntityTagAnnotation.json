@@ -1,0 +1,11 @@
+{
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+  "@id": "https://example.edu/tags/7654",
+  "@type": "http://purl.imsglobal.org/caliper/v1/TagAnnotation",
+  "annotated": "https://example.com/viewer/book/34843#epubcfi(/4/3/4)",
+  "dateCreated": "2015-08-01T06:00:00.000Z",
+  "dateModified": "2015-09-02T11:30:00.000Z",
+  "tags": ["to-read",
+           "1765",
+           "shared-with-project-team"]
+}

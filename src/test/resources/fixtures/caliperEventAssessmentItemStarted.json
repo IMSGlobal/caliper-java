@@ -1,63 +1,66 @@
 {
   "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-  "@type": "http://purl.imsglobal.org/caliper/v1/MediaEvent",
+  "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent",
   "actor": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/user/554433",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
     "dateCreated": "2015-08-01T06:00:00.000Z",
     "dateModified": "2015-09-02T11:30:00.000Z"
   },
-  "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Paused",
+  "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Started",
   "object": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-    "@id": "https://example.com/super-media-tool/video/1225",
-    "@type": "http://purl.imsglobal.org/caliper/v1/VideoObject",
-    "name": "American Revolution - Key Figures Video",
-    "alignedLearningObjective": [
-      {
-        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-        "@id": "https://example.edu/american-revolution-101/personalities/learn",
-        "@type": "http://purl.imsglobal.org/caliper/v1/LearningObjective",
-        "dateCreated": "2015-08-01T06:00:00.000Z"
-      }
-    ],
-    "dateCreated": "2015-08-01T06:00:00.000Z",
-    "dateModified": "2015-09-02T11:30:00.000Z",
+    "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001",
+    "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItem",
+    "name": "Assessment Item 1",
+    "isPartOf": {
+      "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
+      "@type": "http://purl.imsglobal.org/caliper/v1/Assessment",
+      "name": "American Revolution - Key Figures Assessment",
+      "dateCreated": "2015-08-01T06:00:00.000Z",
+      "dateModified": "2015-09-02T11:30:00.000Z",
+      "datePublished": "2015-08-15T09:30:00.000Z",
+      "version": "1.0",
+      "dateToActivate": "2015-08-16T05:00:00.000Z",
+      "dateToShow": "2015-08-16T05:00:00.000Z",
+      "dateToStartOn": "2015-08-16T05:00:00.000Z",
+      "dateToSubmit": "2015-09-28T11:59:59.000Z",
+      "maxAttempts": 2,
+      "maxSubmits": 2,
+      "maxScore": 3.0
+    },
     "version": "1.0",
-    "duration": 1420
+    "maxAttempts": 2,
+    "maxSubmits": 2,
+    "maxScore": 1.0,
+    "isTimeDependent": false
   },
-  "target": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-    "@id": "https://example.com/super-media-tool/video/1225",
-    "@type": "http://purl.imsglobal.org/caliper/v1/MediaLocation",
+  "generated": {
+    "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/attempt/789",
+    "@type": "http://purl.imsglobal.org/caliper/v1/Attempt",
     "dateCreated": "2015-08-01T06:00:00.000Z",
-    "version": "1.0",
-    "currentTime": 710
+    "assignable": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
+    "actor": "https://example.edu/user/554433",
+    "count": 1,
+    "startedAtTime": "2015-09-15T10:15:00.000Z"
   },
-  "startedAtTime": "2015-09-15T10:15:00.000Z",
+  "eventTime": "2015-09-15T10:15:00.000Z",
   "edApp": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-    "@id": "https://example.com/super-media-tool",
+    "@id": "https://example.com/super-assessment-tool",
     "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
-    "name": "Super Media Tool",
-    "dateCreated": "2015-08-01T06:00:00.000Z",
-    "dateModified": "2015-09-02T11:30:00.000Z"
+    "name": "Super Assessment Tool",
+    "dateCreated": "2015-08-01T06:00:00.000Z"
   },
   "group": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001/group/001",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Group",
     "name": "Discussion Group 001",
     "subOrganizationOf": {
-      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
       "@id": "https://example.edu/politicalScience/2015/american-revolution-101/section/001",
       "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseSection",
       "courseNumber": "POL101",
       "name": "American Revolution 101",
       "academicSession": "Fall-2015",
       "subOrganizationOf": {
-        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
         "@id": "https://example.edu/politicalScience/2015/american-revolution-101",
         "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseOffering",
         "courseNumber": "POL101",
@@ -72,7 +75,6 @@
     "dateCreated": "2015-08-01T06:00:00.000Z"
   },
   "membership": {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@id": "https://example.edu/politicalScience/2015/american-revolution-101/roster/554433",
     "@type": "http://purl.imsglobal.org/caliper/v1/lis/Membership",
     "name": "American Revolution 101",

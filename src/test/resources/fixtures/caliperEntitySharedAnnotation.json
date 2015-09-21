@@ -1,0 +1,22 @@
+{
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+  "@id": "https://example.edu/shared/9999",
+  "@type": "http://purl.imsglobal.org/caliper/v1/SharedAnnotation",
+  "annotated": "https://example.com/viewer/book/34843#epubcfi(/4/3/3)",
+  "dateCreated": "2015-08-01T06:00:00.000Z",
+  "dateModified": "2015-09-02T11:30:00.000Z",
+  "withAgents": [
+    {
+      "@id": "https://example.edu/user/657585",
+      "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
+      "dateCreated": "2015-08-01T06:00:00.000Z",
+      "dateModified": "2015-09-02T11:30:00.000Z"
+    },
+    {
+      "@id": "https://example.edu/user/667788",
+      "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
+      "dateCreated": "2015-08-01T06:00:00.000Z",
+      "dateModified": "2015-09-02T11:30:00.000Z"
+    }
+  ]
+}
