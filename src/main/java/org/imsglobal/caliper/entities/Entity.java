@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import org.imsglobal.caliper.context.Context;
@@ -34,15 +33,6 @@ import java.util.Map;
 /**
  * The base Caliper Entity.  Analogous to a schema.org Thing.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "extensions",
-    "dateCreated",
-    "dateModified" })
 public abstract class Entity implements Thing {
 
     @JsonProperty("@context")

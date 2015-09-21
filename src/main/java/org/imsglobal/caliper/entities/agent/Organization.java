@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.agent;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.validators.EntityValidator;
@@ -32,17 +31,6 @@ import javax.annotation.Nullable;
  * The group has some common purpose or reason for existence which goes beyond the set of people belonging to it
  * and can act as an Agent. Organizations are often decomposable into hierarchical structures.
  */
-
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "subOrganizationOf",
-    "extensions",
-    "dateCreated",
-    "dateModified" })
 public class Organization extends Entity implements org.imsglobal.caliper.entities.foaf.Agent,
                                                     org.imsglobal.caliper.entities.w3c.Organization {
 

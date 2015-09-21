@@ -21,7 +21,6 @@ package org.imsglobal.caliper.entities.lis;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -46,20 +45,6 @@ import java.util.List;
     Status.DELETED,
     Status.INACTIVE
 })
-
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "member",
-    "organization",
-    "roles",
-    "status",
-    "extensions",
-    "dateCreated",
-    "dateModified" })
 public class Membership extends Entity implements org.imsglobal.caliper.entities.w3c.Membership {
 
     @JsonProperty("@type")

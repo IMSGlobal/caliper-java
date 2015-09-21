@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.context.Context;
@@ -41,21 +40,6 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@JsonPropertyOrder({
-    "@context",
-    "@type",
-    "actor",
-    "action",
-    "object",
-    "target",
-    "generated",
-    "startedAtTime",
-    "endedAtTime",
-    "duration",
-    "edApp",
-    "group",
-    "membership",
-    "federatedSession "})
 public abstract class Event {
 
     @JsonProperty("@context")
@@ -79,14 +63,8 @@ public abstract class Event {
     @JsonProperty("generated")
     private final Generatable generated;
 
-    @JsonProperty("startedAtTime")
-    private final DateTime startedAtTime;
-
-    @JsonProperty("endedAtTime")
-    private final DateTime endedAtTime;
-
-    @JsonProperty("duration")
-    private final String duration;
+    @JsonProperty("eventTime")
+    private final DateTime eventTime;
 
     @JsonProperty("edApp")
     private final SoftwareApplication edApp;
@@ -114,10 +92,6 @@ public abstract class Event {
     protected Event(Builder<?> builder) {
 
         EventValidator.checkContext(builder.context, Context.CONTEXT);
-        // EventValidator.checkType(builder.type, Type.EVENT);
-        // EventValidator.checkAction(builder.action, Event.class);
-        EventValidator.checkStartTime(builder.startedAtTime, builder.endedAtTime);
-        EventValidator.checkDuration(builder.duration);
 
         this.context = builder.context;
         this.type = builder.type;
@@ -126,9 +100,7 @@ public abstract class Event {
         this.object = builder.object;
         this.target = builder.target;
         this.generated = builder.generated;
-        this.startedAtTime = builder.startedAtTime;
-        this.endedAtTime = builder.endedAtTime;
-        this.duration = builder.duration;
+        this.eventTime = builder.eventTime;
         this.edApp = builder.edApp;
         this.group = builder.group;
         this.membership = builder.membership;
@@ -200,34 +172,11 @@ public abstract class Event {
 
     /**
      * Required.
-     * @return the startedAt time
+     * @return the event time
      */
     @Nonnull
-    public DateTime getStartedAtTime() {
-        return startedAtTime;
-    }
-
-    /**
-     * Optional.
-     * @return endedAt time
-     */
-    @Nullable
-    public DateTime getEndedAtTime() {
-        return endedAtTime;
-    }
-
-    /**
-     * Optional. An xsd:duration (http://books.xmlschemata.org/relaxng/ch19-77073.html)
-     * The format is expected to be PnYnMnDTnHnMnS
-     * Valid values include PT1004199059S, PT130S, PT2M10S, P1DT2S, -P1Y, or P1Y2M3DT5H20M30.123S.
-     * The following values are invalid: 1Y (leading P is missing), P1S (T separator is missing),
-     * P-1Y (all parts must be positive), P1M2Y (parts order is significant and Y must precede M),
-     * or P1Y-1M (all parts must be positive).
-     * @return the duration
-     */
-    @Nullable
-    public String getDuration() {
-        return duration;
+    public DateTime getEventTime() {
+        return eventTime;
     }
 
     /**
@@ -280,9 +229,7 @@ public abstract class Event {
         private Object object;
         private Targetable target;
         private Generatable generated;
-        private DateTime startedAtTime;
-        private DateTime endedAtTime;
-        private String duration;
+        private DateTime eventTime;
         private SoftwareApplication edApp;
         private Organization group;
         private Membership membership;
@@ -362,29 +309,11 @@ public abstract class Event {
         }
 
         /**
-         * @param startedAtTime
+         * @param eventTime
          * @return builder.
          */
-        public T startedAtTime(DateTime startedAtTime) {
-            this.startedAtTime = startedAtTime;
-            return self();
-        }
-
-        /**
-         * @param endedAtTime
-         * @return builder.
-         */
-        public T endedAtTime(DateTime endedAtTime) {
-            this.endedAtTime = endedAtTime;
-            return self();
-        }
-
-        /**
-         * @param duration
-         * @return builder.
-         */
-        public T duration(String duration) {
-            this.duration = duration;
+        public T eventTime(DateTime eventTime) {
+            this.eventTime = eventTime;
             return self();
         }
 

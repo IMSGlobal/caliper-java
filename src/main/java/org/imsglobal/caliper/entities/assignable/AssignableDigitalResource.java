@@ -32,28 +32,6 @@ import javax.annotation.Nullable;
 /**
  * Assignable Digital Resource
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "objectType",
-    "alignedLearningObjective",
-    "keywords",
-    "isPartOf",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "datePublished",
-    "version",
-    "dateToActivate",
-    "dateToShow",
-    "dateToStartOn",
-    "dateToSubmit",
-    "maxAttempts",
-    "maxSubmits",
-    "maxScore" })
 public class AssignableDigitalResource extends DigitalResource implements org.imsglobal.caliper.entities.assignable.Assignable {
 
     @JsonProperty("@type")

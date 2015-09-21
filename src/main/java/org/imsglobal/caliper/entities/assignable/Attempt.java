@@ -21,7 +21,6 @@ package org.imsglobal.caliper.entities.assignable;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.imsglobal.caliper.entities.DigitalResource;
 import org.imsglobal.caliper.entities.Entity;
@@ -38,21 +37,6 @@ import javax.annotation.Nullable;
  * Representation of an Attempt. Attempts are generated as part of or
  * are the object of an interaction represented by an AssignableEvent.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "assignable",
-    "actor",
-    "count",
-    "startedAtTime",
-    "endedAtTime",
-    "duration" })
 public class Attempt extends Entity implements Generatable {
 
     @JsonProperty("@type")

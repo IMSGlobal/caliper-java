@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.imsglobal.caliper.validators.EntityValidator;
@@ -32,22 +31,6 @@ import java.util.List;
  *  Represents a response that identifies text from a presented paragraph or list.
  *  The response is the identified string or a mapping to a logical identifier;
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "assignable",
-    "actor",
-    "attempt",
-    "values",
-    "startedAtTime",
-    "endedAtTime",
-    "duration" })
 public class SelectTextResponse extends Response {
 
     @JsonProperty("@type")

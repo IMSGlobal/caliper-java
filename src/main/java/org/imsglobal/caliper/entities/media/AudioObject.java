@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.media;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.validators.EntityValidator;
 
 import javax.annotation.Nonnull;
@@ -28,24 +27,6 @@ import javax.annotation.Nullable;
 /**
  * An audio object embedded in a web page.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "objectType",
-    "alignedLearningObjective",
-    "keywords",
-    "isPartOf",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "duration",
-    "volumeMin",
-    "volumeMax",
-    "volumeLevel",
-    "muted" })
 public class AudioObject extends MediaObject implements org.imsglobal.caliper.entities.schemadotorg.AudioObject {
 
     @JsonProperty("@type")

@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.lis;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.validators.EntityValidator;
 
@@ -36,19 +35,6 @@ import javax.annotation.Nullable;
  * A Caliper CourseSection provides a subset of the CourseSection properties specified in the
  * IMS LTI 2.0 specification, which in turn, draws inspiration from the IMS LIS 1.0 specification.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "courseNumber",
-    "name",
-    "description",
-    "category",
-    "academicSession",
-    "subOrganizationOf",
-    "extensions",
-    "dateCreated",
-    "dateModified" })
 public class CourseSection extends CourseOffering {
 
     @JsonProperty("@type")

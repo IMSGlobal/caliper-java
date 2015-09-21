@@ -31,28 +31,7 @@ import java.util.List;
 /**
  * Caliper representation of an Assessment.  Part of the Assessment Metric Profile
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "objectType",
-    "alignedLearningObjective",
-    "keywords",
-    "isPartOf",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "datePublished",
-    "version",
-    "dateToActivate",
-    "dateToShow",
-    "dateToStartOn",
-    "dateToSubmit",
-    "maxAttempts",
-    "maxSubmits",
-    "maxScore"})
+
 public class Assessment extends AssignableDigitalResource {
 
     @JsonProperty("@type")

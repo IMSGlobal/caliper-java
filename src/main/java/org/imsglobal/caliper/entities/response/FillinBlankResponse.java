@@ -32,22 +32,6 @@ import java.util.List;
  * Represents response text or integer/decimal/scientific numbers that completes a question
  * designed with one or more "fill in the blank" option prompts.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "assignable",
-    "actor",
-    "attempt",
-    "values",
-    "startedAtTime",
-    "endedAtTime",
-    "duration" })
 public class FillinBlankResponse extends Response {
 
     @JsonProperty("@type")

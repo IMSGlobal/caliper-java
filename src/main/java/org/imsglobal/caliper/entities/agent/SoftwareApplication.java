@@ -19,23 +19,12 @@
 package org.imsglobal.caliper.entities.agent;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.validators.EntityValidator;
 
 import javax.annotation.Nonnull;
 
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "roles",
-    "extensions",
-    "dateCreated",
-    "dateModified" })
 public class SoftwareApplication extends Entity implements org.imsglobal.caliper.entities.foaf.Agent,
                                                            org.imsglobal.caliper.entities.schemadotorg.SoftwareApplication {
 

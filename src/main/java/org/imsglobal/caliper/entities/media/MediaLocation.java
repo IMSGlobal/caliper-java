@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.media;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.entities.DigitalResource;
 import org.imsglobal.caliper.entities.DigitalResourceType;
 import org.imsglobal.caliper.entities.Targetable;
@@ -28,22 +27,6 @@ import org.imsglobal.caliper.validators.EntityValidator;
 /**
  * Media Location
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "objectType",
-    "alignedLearningObjective",
-    "keywords",
-    "isPartOf",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "datePublished",
-    "version",
-    "currentTime" })
 public class MediaLocation extends DigitalResource implements Targetable {
 
     @JsonProperty("@type")

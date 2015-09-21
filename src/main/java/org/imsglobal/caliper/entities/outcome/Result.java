@@ -21,7 +21,6 @@ package org.imsglobal.caliper.entities.outcome;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.imsglobal.caliper.entities.DigitalResource;
 import org.imsglobal.caliper.entities.Entity;
@@ -37,25 +36,6 @@ import javax.annotation.Nullable;
  * Representation of a Result. Result's are generated as
  * part of an interaction represented by an OutcomeEvent.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "assignable",
-    "actor",
-    "normalScore",
-    "penaltyScore",
-    "extraCreditScore",
-    "totalScore",
-    "curvedTotalScore",
-    "curveFactor",
-    "comment",
-    "scoredBy" })
 public class Result extends Entity implements Generatable {
 
     @JsonProperty("@type")

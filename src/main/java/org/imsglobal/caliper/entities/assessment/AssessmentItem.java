@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.assessment;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.entities.assignable.AssignableDigitalResource;
 import org.imsglobal.caliper.entities.assignable.AssignableDigitalResourceType;
 import org.imsglobal.caliper.validators.EntityValidator;
@@ -29,29 +28,6 @@ import javax.annotation.Nonnull;
 /**
  * Caliper representation of an Assessment Item.  Part of the Assessment Metric Profile.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "objectType",
-    "alignedLearningObjective",
-    "keywords",
-    "isPartOf",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "datePublished",
-    "version",
-    "dateToActivate",
-    "dateToShow",
-    "dateToStartOn",
-    "dateToSubmit",
-    "maxAttempts",
-    "maxSubmits",
-    "maxScore",
-    "isTimeDependent" })
 public class AssessmentItem extends AssignableDigitalResource {
 
     @JsonProperty("@type")

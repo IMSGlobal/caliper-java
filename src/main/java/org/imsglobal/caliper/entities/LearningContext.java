@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.entities.agent.SoftwareApplication;
 import org.imsglobal.caliper.entities.session.Session;
 import org.imsglobal.caliper.entities.w3c.Membership;
@@ -27,7 +26,6 @@ import org.imsglobal.caliper.entities.w3c.Organization;
 
 import javax.annotation.Nullable;
 
-@JsonPropertyOrder({ "edApp", "group", "membership"})
 public class LearningContext {
 
     @JsonProperty("edApp")

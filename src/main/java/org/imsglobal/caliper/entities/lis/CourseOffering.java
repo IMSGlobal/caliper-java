@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.lis;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.entities.w3c.Organization;
@@ -33,18 +32,6 @@ import javax.annotation.Nullable;
  * CourseOffering provides a subset of the CourseOffering properties specified in the IMS LTI 2.0
  * specification, which in turn, draws inspiration from the IMS LIS 1.0 specification.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "courseNumber",
-    "name",
-    "description",
-    "academicSession",
-    "subOrganizationOf",
-    "extensions",
-    "dateCreated",
-    "dateModified"})
 public class CourseOffering extends Entity implements Course {
 
     @JsonProperty("@type")

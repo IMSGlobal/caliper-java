@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.session;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.entities.agent.Person;
@@ -30,19 +29,6 @@ import org.joda.time.DateTime;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "actor",
-    "startedAtTime",
-    "endedAtTime",
-    "duration" })
 public class Session extends Entity implements org.imsglobal.caliper.entities.Generatable,
                                                org.imsglobal.caliper.entities.Targetable {
     @JsonProperty("@type")

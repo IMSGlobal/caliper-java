@@ -32,22 +32,6 @@ import java.util.List;
  * Representation of a response to a multiple choice question that permits one or more
  * options to be selected.
  */
-@JsonPropertyOrder({
-    "@context",
-    "@id",
-    "@type",
-    "name",
-    "description",
-    "extensions",
-    "dateCreated",
-    "dateModified",
-    "assignable",
-    "actor",
-    "attempt",
-    "values",
-    "startedAtTime",
-    "endedAtTime",
-    "duration" })
 public class MultipleResponseResponse extends Response {
 
     @JsonProperty("@type")

@@ -18,17 +18,12 @@ package org.imsglobal.caliper.payload;
  */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.imsglobal.caliper.Sensor;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
-@JsonPropertyOrder({
-    "sensor",
-    "sendTime",
-    "data" })
 public class Envelope<T> {
 
     @JsonProperty("sensor")

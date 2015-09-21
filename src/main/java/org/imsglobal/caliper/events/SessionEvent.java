@@ -70,11 +70,9 @@ public class SessionEvent extends Event {
             EventValidator.checkActorType(getActor(), Person.class);
             EventValidator.checkObjectType(getObject(), SoftwareApplication.class);
             EventValidator.checkTargetType(getTarget(), Session.class);
-            EventValidator.checkEndTime(getStartedAtTime(), getEndedAtTime());
         } else if (builder.action == Action.TIMED_OUT) {
             EventValidator.checkActorType(getActor(), SoftwareApplication.class);
             EventValidator.checkObjectType(getObject(), Session.class);
-            EventValidator.checkEndTime(getStartedAtTime(), getEndedAtTime());
         } else {
             EventValidator.checkAction(builder.action, SessionEvent.class);
         }
