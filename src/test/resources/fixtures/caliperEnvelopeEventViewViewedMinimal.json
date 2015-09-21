@@ -1,0 +1,18 @@
+{
+  "sensor": "https://example.edu/sensor/001",
+  "sendTime": "2015-09-15T11:05:01.000Z",
+  "data": [
+    {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+      "@type": "http://purl.imsglobal.org/caliper/v1/Event",             
+      "actor": {
+        "@id": "https://example.edu/user/554433",
+        "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person" },
+      "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Viewed",
+      "eventTime": "2015-09-15T10:15:00.000Z",
+      "object": {
+        "@id": "https://example.com/viewer/book/34843#epubcfi(/4/3)",
+        "@type": "http://www.idpf.org/epub/vocab/structure/#volume" }
+    }
+  ]
+}

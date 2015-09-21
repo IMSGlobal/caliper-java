@@ -1,0 +1,13 @@
+{
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+  "@id": "https://example.edu/highlights/12345",
+  "@type": "http://purl.imsglobal.org/caliper/v1/HighlightAnnotation",
+  "annotated": "https://example.com/viewer/book/34843#epubcfi(/4/3/1)",
+  "dateCreated": "2015-08-01T06:00:00.000Z",
+  "dateModified": "2015-09-02T11:30:00.000Z",
+  "selection": {
+    "end": "489",
+    "start": "455"
+  },
+  "selectionText": "Life, Liberty and the pursuit of Happiness"
+}

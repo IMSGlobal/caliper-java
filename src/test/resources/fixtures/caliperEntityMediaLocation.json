@@ -1,0 +1,8 @@
+{
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+  "@id": "https://example.com/super-media-tool/video/1225",
+  "@type": "http://purl.imsglobal.org/caliper/v1/MediaLocation",
+  "currentTime": 710,
+  "dateCreated": "2015-08-01T06:00:00.000Z",
+  "version": "1.0"
+}

@@ -1,0 +1,22 @@
+{
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+  "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result",
+  "@type": "http://purl.imsglobal.org/caliper/v1/Result",
+  "actor": "https://example.edu/user/554433",
+  "assignable": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
+  "comment": "Well done.",
+  "curveFactor": 0.0,
+  "curvedTotalScore": 3.0,
+  "dateCreated": "2015-08-01T06:00:00.000Z",
+  "extraCreditScore": 0.0,
+  "normalScore": 3.0,
+  "penaltyScore": 0.0,
+  "scoredBy": {
+    "@id": "https://example.com/viewer",
+    "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
+    "dateCreated": "2015-08-01T06:00:00.000Z",
+    "dateModified": "2015-09-02T11:30:00.000Z",
+    "name": "ePub"
+  },
+  "totalScore": 3.0
+}
