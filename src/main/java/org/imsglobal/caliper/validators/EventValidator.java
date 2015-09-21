@@ -26,7 +26,6 @@ import org.imsglobal.caliper.entities.foaf.Agent;
 import org.imsglobal.caliper.events.Event;
 import org.imsglobal.caliper.events.EventType;
 import org.imsglobal.caliper.events.SupportedActions;
-import org.joda.time.DateTime;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -118,34 +117,5 @@ public class EventValidator {
      */
     public static void checkObjectType(Object object, Class<?> type) throws IllegalArgumentException {
         TypeValidator.checkObjectType(object, type);
-    }
-
-    /**
-     * Check start time
-     * @param start
-     * @param end
-     * @throws IllegalArgumentException
-     */
-    public static void checkStartTime(DateTime start, DateTime end) throws IllegalArgumentException {
-        TimeValidator.checkStartTime(start, end);
-    }
-
-    /**
-     * Check end time
-     * @param start
-     * @param end
-     * @throws IllegalArgumentException
-     */
-    public static void checkEndTime(DateTime start, DateTime end) throws IllegalArgumentException {
-        TimeValidator.checkEndTime(start, end);
-    }
-
-    /**
-     * Check duration
-     * @param duration
-     * @throws IllegalArgumentException
-     */
-    public static void checkDuration(String duration) throws IllegalArgumentException {
-        TimeValidator.checkDuration(duration);
     }
 }
