@@ -168,6 +168,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>1.2.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.yammer.dropwizard</groupId>
             <artifactId>dropwizard-testing</artifactId>
             <version>0.6.2</version>
@@ -351,6 +357,7 @@
                                             <exclude>javax.servlet:*</exclude>
                                             <!-- <exclude>org.mongodb:*</exclude> -->
                                             <exclude>com.yammer.dropwizard:*</exclude>
+                                            <exclude>org.skyscreamer.jsonassert:*</exclude>
                                             <exclude>org.springframework.data:*</exclude>
                                             <exclude>org.freemarker:*</exclude>
                                             <exclude>com.sun.jersey.jersey-test-framework:*</exclude>
