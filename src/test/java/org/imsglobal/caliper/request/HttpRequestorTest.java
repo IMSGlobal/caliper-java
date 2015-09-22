@@ -46,6 +46,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +72,7 @@ public class HttpRequestorTest {
     private NavigationEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
-    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
     private List<Event> data = new ArrayList<>();
     // private static final Logger log = LoggerFactory.getLogger(HttpRequestorTest.class);
 
@@ -140,7 +142,8 @@ public class HttpRequestorTest {
         Matcher matcher = pattern.matcher(json);
         json = matcher.replaceFirst("\"sendTime\":\"" + TestDates.getDefaultSendTime() +"\"");
 
-        assertEquals("Test HTTP Requestor payload JSON", jsonFixture("fixtures/eventStorePayload.json"), json);
+        String fixture = jsonFixture("caliperEnvelopeEventSingle.json");
+        JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test
@@ -177,7 +180,7 @@ public class HttpRequestorTest {
             .object(object)
             .target(target)
             .fromResource(fromResource)
-            .startedAtTime(dateStarted)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())

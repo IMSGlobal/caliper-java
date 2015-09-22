@@ -36,9 +36,10 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
-import static org.junit.Assert.assertEquals;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class NavigationEventTest {
@@ -52,7 +53,7 @@ public class NavigationEventTest {
     private NavigationEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
-    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
     // private static final Logger log = LoggerFactory.getLogger(NavigationEventTest.class);
 
     /**
@@ -101,8 +102,9 @@ public class NavigationEventTest {
 
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
-        assertEquals("Test if Navigation event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperNavigationEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
+        String json = JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY);
+        String fixture = jsonFixture("fixtures/caliperEventNavigationNavigatedTo.json");
+        JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -122,7 +124,7 @@ public class NavigationEventTest {
             .object(object)
             .target(target)
             .fromResource(fromResource)
-            .startedAtTime(dateStarted)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())

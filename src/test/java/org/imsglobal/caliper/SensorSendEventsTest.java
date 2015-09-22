@@ -44,7 +44,7 @@ public class SensorSendEventsTest {
     private Frame target;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
-    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
 
     @Test
     public void test() {
@@ -124,7 +124,7 @@ public class SensorSendEventsTest {
             .object(object)
             .target(target)
             .fromResource(fromResource)
-            .startedAtTime(dateStarted)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())

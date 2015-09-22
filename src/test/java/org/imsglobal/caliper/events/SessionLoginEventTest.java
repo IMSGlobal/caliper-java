@@ -19,12 +19,12 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.imsglobal.caliper.actions.Action;
-import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.TestAgentEntities;
 import org.imsglobal.caliper.TestDates;
 import org.imsglobal.caliper.TestEpubEntities;
 import org.imsglobal.caliper.TestLisEntities;
+import org.imsglobal.caliper.actions.Action;
+import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.agent.SoftwareApplication;
 import org.imsglobal.caliper.entities.reading.EpubSubChapter;
@@ -35,9 +35,10 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
-import static org.junit.Assert.assertEquals;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class SessionLoginEventTest {
@@ -52,6 +53,7 @@ public class SessionLoginEventTest {
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
     private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
     // private static final Logger log = LoggerFactory.getLogger(SessionLoginEventTest.class);
 
     /**
@@ -101,8 +103,9 @@ public class SessionLoginEventTest {
 
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
-        assertEquals("Test if loggedIn event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperSessionLoginEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
+        String json = JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY);
+        String fixture = jsonFixture("fixtures/caliperEventSessionLoggedIn.json");
+        JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -122,7 +125,7 @@ public class SessionLoginEventTest {
             .object(learningContext.getEdApp())
             .target(target)
             .generated(generated)
-            .startedAtTime(dateStarted)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())

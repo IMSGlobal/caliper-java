@@ -49,7 +49,7 @@ public class BookmarkAnnotationEventTest {
     private AnnotationEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
-    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
     // private static final Logger log = LoggerFactory.getLogger(BookmarkAnnotationEventTest.class);
 
     /**
@@ -96,7 +96,7 @@ public class BookmarkAnnotationEventTest {
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
         assertEquals("Test if Bookmark Annotation event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperBookmarkAnnotationEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
+            jsonFixture("fixtures/caliperEventAnnotationBookmarked.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -115,7 +115,7 @@ public class BookmarkAnnotationEventTest {
             .action(action)
             .object(object)
             .generated(generated)
-            .startedAtTime(dateStarted)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())

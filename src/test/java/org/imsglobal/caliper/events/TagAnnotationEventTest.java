@@ -20,12 +20,12 @@ package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.collect.Lists;
-import org.imsglobal.caliper.actions.Action;
-import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.TestAgentEntities;
 import org.imsglobal.caliper.TestDates;
 import org.imsglobal.caliper.TestEpubEntities;
 import org.imsglobal.caliper.TestLisEntities;
+import org.imsglobal.caliper.actions.Action;
+import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.annotation.TagAnnotation;
 import org.imsglobal.caliper.entities.reading.EpubSubChapter;
@@ -35,11 +35,12 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import java.util.List;
 
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
-import static org.junit.Assert.assertEquals;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class TagAnnotationEventTest {
@@ -52,7 +53,7 @@ public class TagAnnotationEventTest {
     private AnnotationEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
-    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
     // private static final Logger log = LoggerFactory.getLogger(TagAnnotationEventTest.class);
 
     /**
@@ -106,8 +107,9 @@ public class TagAnnotationEventTest {
 
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
-        assertEquals("Test if Tag Annotation event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperTagAnnotationEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
+        String json = JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY);
+        String fixture = jsonFixture("fixtures/caliperEventAnnotationTagged.json");
+        JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -126,7 +128,7 @@ public class TagAnnotationEventTest {
             .action(action)
             .object(object)
             .generated(generated)
-            .startedAtTime(dateStarted)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())

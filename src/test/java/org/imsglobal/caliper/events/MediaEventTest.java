@@ -19,12 +19,12 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.imsglobal.caliper.actions.Action;
-import org.imsglobal.caliper.entities.LearningContext;
-import org.imsglobal.caliper.entities.LearningObjective;
 import org.imsglobal.caliper.TestAgentEntities;
 import org.imsglobal.caliper.TestDates;
 import org.imsglobal.caliper.TestLisEntities;
+import org.imsglobal.caliper.actions.Action;
+import org.imsglobal.caliper.entities.LearningContext;
+import org.imsglobal.caliper.entities.LearningObjective;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.media.MediaLocation;
 import org.imsglobal.caliper.entities.media.VideoObject;
@@ -33,9 +33,10 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
-import static org.junit.Assert.assertEquals;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class MediaEventTest {
@@ -47,7 +48,7 @@ public class MediaEventTest {
     private MediaLocation target;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
-    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
     // private static final Logger log = LoggerFactory.getLogger(MediaEventTest.class);
 
     /**
@@ -94,8 +95,9 @@ public class MediaEventTest {
 
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
-        assertEquals("Test if Media event is serialized to JSON with expected values",
-            jsonFixture("fixtures/caliperMediaEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
+        String json = JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY);
+        String fixture = jsonFixture("fixtures/caliperEventMediaPausedVideo.json");
+        JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -114,7 +116,7 @@ public class MediaEventTest {
             .action(action)
             .object(object)
             .target(target)
-            .startedAtTime(dateStarted)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())

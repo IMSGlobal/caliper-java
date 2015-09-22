@@ -19,11 +19,11 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.imsglobal.caliper.actions.Action;
-import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.TestAgentEntities;
 import org.imsglobal.caliper.TestDates;
 import org.imsglobal.caliper.TestLisEntities;
+import org.imsglobal.caliper.actions.Action;
+import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.agent.SoftwareApplication;
 import org.imsglobal.caliper.entities.session.Session;
@@ -32,9 +32,10 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
-import static org.junit.Assert.assertEquals;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class SessionLogoutEventTest {
@@ -48,6 +49,7 @@ public class SessionLogoutEventTest {
     private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
     private DateTime dateEnded = TestDates.getDefaultEndedAtTime();
     private String duration = TestDates.getDefaultPeriod();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
     // private static final Logger log = LoggerFactory.getLogger(SessionLogoutEventTest.class);
 
     /**
@@ -94,8 +96,9 @@ public class SessionLogoutEventTest {
 
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
-        assertEquals("Test if loggedOut event is serialized to JSON with expected values",
-                jsonFixture("fixtures/caliperSessionLogoutEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
+        String json = JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY);
+        String fixture = jsonFixture("fixtures/caliperEventSessionLoggedOut.json");
+        JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -114,9 +117,7 @@ public class SessionLogoutEventTest {
             .action(action)
             .object(object)
             .target(target)
-            .startedAtTime(dateStarted)
-            .endedAtTime(dateEnded)
-            .duration(duration)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .membership(learningContext.getMembership())

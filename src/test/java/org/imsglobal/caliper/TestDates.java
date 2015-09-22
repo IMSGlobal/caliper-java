@@ -93,6 +93,14 @@ public class TestDates {
 
     /**
      * September 15, 2015, 10:15:00.000 GMT
+     * @return event time
+     */
+    public static DateTime getDefaultEventTime() {
+        return new DateTime(2015, 9, 15, 10, 15, 0, 0, DateTimeZone.UTC);
+    }
+
+    /**
+     * September 15, 2015, 10:15:00.000 GMT
      * @return started at time
      */
     public static DateTime getDefaultStartedAtTime() {

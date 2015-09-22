@@ -31,9 +31,10 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
-import static org.junit.Assert.assertEquals;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class SessionTimeoutEventTest {
@@ -47,6 +48,7 @@ public class SessionTimeoutEventTest {
     private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
     private DateTime dateEnded = TestDates.getDefaultEndedAtTime();
     private String duration = TestDates.getDefaultPeriod();
+    private DateTime eventTime = TestDates.getDefaultEventTime();
     // private static final Logger log = LoggerFactory.getLogger(SessionLogoutEventTest.class);
 
     /**
@@ -82,8 +84,9 @@ public class SessionTimeoutEventTest {
 
     @Test
     public void caliperEventSerializesToJSON() throws Exception {
-        assertEquals("Test if timedOut event is serialized to JSON with expected values",
-                jsonFixture("fixtures/caliperSessionTimeoutEvent.json"), JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY));
+        String json = JsonMapper.serialize(event, JsonInclude.Include.NON_EMPTY);
+        String fixture = jsonFixture("fixtures/caliperEventSessionTimedOut.json");
+        JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -102,9 +105,7 @@ public class SessionTimeoutEventTest {
             .actor(actor)
             .action(action)
             .object(object)
-            .startedAtTime(dateStarted)
-            .endedAtTime(dateEnded)
-            .duration(duration)
+            .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())
             .build();
