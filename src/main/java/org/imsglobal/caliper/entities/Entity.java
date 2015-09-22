@@ -18,6 +18,7 @@
 
 package org.imsglobal.caliper.entities;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -33,6 +34,7 @@ import java.util.Map;
 /**
  * The base Caliper Entity.  Analogous to a schema.org Thing.
  */
+@JsonFilter("entityFilter")
 public abstract class Entity implements Thing {
 
     @JsonProperty("@context")
