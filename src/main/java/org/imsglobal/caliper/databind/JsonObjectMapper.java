@@ -7,21 +7,24 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-public class JsonObjectMapper extends ObjectMapper {
+public class JsonObjectMapper {
+
+    private static ObjectMapper mapper;
 
     /**
      * Constructor
      */
     private JsonObjectMapper() {
-        super();
+
     }
 
     /**
-     * Factory method that returns a Caliper-friendly Jackson ObjectMapper instance.
+     * Default factory method that returns a Caliper-friendly Jackson ObjectMapper instance.
+     * @param include
      * @return
      */
-    public static JsonObjectMapper create(Include include) {
-        JsonObjectMapper mapper = new JsonObjectMapper();
+    public static ObjectMapper create(Include include) {
+        mapper = new ObjectMapper();
         mapper.setDateFormat(new ISO8601DateFormat());
         mapper.setSerializationInclusion(include);
         mapper.registerModule(new JodaModule());
@@ -31,10 +34,12 @@ public class JsonObjectMapper extends ObjectMapper {
 
     /**
      * Factory method that returns a Caliper-friendly Jackson ObjectMapper instance.
+     * @param include
+     * @param provider
      * @return
      */
-    public static JsonObjectMapper create(Include include, FilterProvider provider) {
-        JsonObjectMapper mapper = create(include);
+    public static ObjectMapper create(Include include, FilterProvider provider) {
+        mapper = create(include);
         mapper.setFilterProvider(provider);
 
         return mapper;

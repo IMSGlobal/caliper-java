@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum JsonFilters {
-    SERIALIZE_ALL("defaultFilter", SimpleBeanPropertyFilter.serializeAll()),
     EXCLUDE_CONTEXT("entityFilter", SimpleBeanPropertyFilter.serializeAllExcept("@context")),
+    SERIALIZE_ALL("defaultFilter", SimpleBeanPropertyFilter.serializeAll()),
     TYPE_COERCE("typeCoerceFilter", SimpleBeanPropertyFilter.filterOutAllExcept("@id"));
 
     private final String id;

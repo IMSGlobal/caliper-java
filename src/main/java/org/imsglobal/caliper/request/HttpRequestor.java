@@ -18,6 +18,9 @@
 
 package org.imsglobal.caliper.request;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -28,6 +31,9 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.imsglobal.caliper.Options;
 import org.imsglobal.caliper.Sensor;
+import org.imsglobal.caliper.databind.JsonFilters;
+import org.imsglobal.caliper.databind.JsonObjectMapper;
+import org.imsglobal.caliper.databind.JsonSimpleFilterProvider;
 import org.imsglobal.caliper.payload.Envelope;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -119,7 +125,11 @@ public class HttpRequestor<T> extends Requestor<T> {
 
             // Create envelope, serialize it as a JSON string.
             Envelope<T> envelope = createEnvelope(sensor, DateTime.now(), data);
-            String json = serializeEnvelope(envelope, options.getJsonInclude());
+
+            // Create mapper
+            SimpleFilterProvider provider = JsonSimpleFilterProvider.create(JsonFilters.EXCLUDE_CONTEXT);
+            ObjectMapper mapper = JsonObjectMapper.create(JsonInclude.Include.NON_EMPTY, provider);
+            String json = mapper.writeValueAsString(envelope);
 
             // Create an HTTP StringEntity payload with the envelope JSON.
             StringEntity payload = generatePayload(json, ContentType.APPLICATION_JSON);

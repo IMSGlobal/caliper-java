@@ -5,21 +5,22 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import java.util.Map;
 
-public class JsonSimpleFilterProvider extends SimpleFilterProvider {
+public class JsonSimpleFilterProvider {
+    private static SimpleFilterProvider provider;
 
     /**
      * Constructor
      */
     private JsonSimpleFilterProvider() {
-        super();
+
     }
 
     /**
-     * Factory method that returns a Caliper-friendly JsonSimpleFilterProvider instance.
-     * @return JsonSimpleFilterProvider
+     * Factory method that returns a Caliper-friendly SimpleFilterProvider instance.
+     * @return SimpleFilterProvider
      */
-    private static JsonSimpleFilterProvider create() {
-        JsonSimpleFilterProvider provider = new JsonSimpleFilterProvider();
+    private static SimpleFilterProvider create() {
+        provider = new SimpleFilterProvider();
         provider.setDefaultFilter(JsonFilters.SERIALIZE_ALL.filter());
         provider.setFailOnUnknownId(true);
 
@@ -31,9 +32,9 @@ public class JsonSimpleFilterProvider extends SimpleFilterProvider {
      * provisioned with a filter.
      * @return JsonSimpleFilterProvider
      */
-    public static JsonSimpleFilterProvider create(String id, SimpleBeanPropertyFilter filter) {
-        JsonSimpleFilterProvider provider = create();
-        provider = (JsonSimpleFilterProvider) provider.addFilter(id, filter);
+    public static SimpleFilterProvider create(String id, SimpleBeanPropertyFilter filter) {
+        provider = create();
+        provider = provider.addFilter(id, filter);
 
         return provider;
     }
@@ -43,9 +44,9 @@ public class JsonSimpleFilterProvider extends SimpleFilterProvider {
      * provisioned with a stock filter.
      * @return JsonSimpleFilterProvider
      */
-    public static JsonSimpleFilterProvider create(JsonFilters filter) {
-        JsonSimpleFilterProvider provider = create();
-        provider = (JsonSimpleFilterProvider) provider.addFilter(filter.id(), filter.filter());
+    public static SimpleFilterProvider create(JsonFilters filter) {
+        provider = create();
+        provider = provider.addFilter(filter.id(), filter.filter());
 
         return provider;
     }
@@ -55,10 +56,10 @@ public class JsonSimpleFilterProvider extends SimpleFilterProvider {
      * provisioned with multiple filters.
      * @return JsonSimpleFilterProvider
      */
-    public static JsonSimpleFilterProvider create(Map<String, SimpleBeanPropertyFilter> filters) {
-        JsonSimpleFilterProvider provider = create();
+    public static SimpleFilterProvider create(Map<String, SimpleBeanPropertyFilter> filters) {
+        provider = create();
         for (Map.Entry<String, SimpleBeanPropertyFilter> entry : filters.entrySet()) {
-            provider = (JsonSimpleFilterProvider) provider.addFilter(entry.getKey(), entry.getValue());
+            provider = provider.addFilter(entry.getKey(), entry.getValue());
         }
 
         return provider;
