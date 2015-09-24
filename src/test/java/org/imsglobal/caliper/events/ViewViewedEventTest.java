@@ -31,8 +31,8 @@ import org.imsglobal.caliper.databind.JsonObjectMapper;
 import org.imsglobal.caliper.databind.JsonSimpleFilterProvider;
 import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
-import org.imsglobal.caliper.entities.annotation.HighlightAnnotation;
 import org.imsglobal.caliper.entities.reading.EpubSubChapter;
+import org.imsglobal.caliper.entities.reading.EpubVolume;
 import org.imsglobal.caliper.entities.reading.Frame;
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -44,18 +44,18 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class HighlightAnnotationEventTest {
+public class ViewViewedEventTest {
 
     private LearningContext learningContext;
     private Person actor;
+    private EpubVolume object;
     private EpubSubChapter ePub;
-    private Frame object;
-    private HighlightAnnotation generated;
-    private AnnotationEvent event;
+    private Frame target;
+    private ViewEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
     private DateTime eventTime = TestDates.getDefaultEventTime();
-    // private static final Logger log = LoggerFactory.getLogger(HighlightAnnotationEventTest.class);
+    // private static final Logger log = LoggerFactory.getLogger(ViewEventTest.class);
 
     /**
      * @throws java.lang.Exception
@@ -73,9 +73,12 @@ public class HighlightAnnotationEventTest {
         // Build actor
         actor = TestAgentEntities.buildStudent554433();
 
-        // Build object frame
+        // Build object
+        object = TestEpubEntities.buildEpubVolume43();
+
+        // Build target frame
         ePub = TestEpubEntities.buildEpubSubChap431();
-        object = Frame.builder()
+        target = Frame.builder()
             .id(ePub.getId())
             .name(ePub.getName())
             .isPartOf(ePub.getIsPartOf())
@@ -85,19 +88,8 @@ public class HighlightAnnotationEventTest {
             .index(1)
             .build();
 
-        // Build Highlight Annotation
-        generated = HighlightAnnotation.builder()
-            .id("https://example.edu/highlights/12345")
-            .annotated(object)
-            .selectionStart(Integer.toString(455))
-            .selectionEnd(Integer.toString(489))
-            .selectionText("Life, Liberty and the pursuit of Happiness")
-            .dateCreated(dateCreated)
-            .dateModified(dateModified)
-            .build();
-
         // Build event
-        event = buildEvent(Action.HIGHLIGHTED);
+        event = buildEvent(Action.VIEWED);
     }
 
     @Test
@@ -106,26 +98,26 @@ public class HighlightAnnotationEventTest {
         ObjectMapper mapper = JsonObjectMapper.create(JsonInclude.Include.NON_EMPTY, provider);
         String json = mapper.writeValueAsString(event);
 
-        String fixture = jsonFixture("fixtures/caliperEventAnnotationHighlighted.json");
+        String fixture = jsonFixture("fixtures/caliperEventViewViewed.json");
         JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void annotationEventRejectsSearchedAction() {
-        buildEvent(Action.SEARCHED);
+    public void viewEventRejectsNavigatedToAction() {
+        buildEvent(Action.NAVIGATED_TO);
     }
 
     /**
-     * Build Annotation event.
+     * Build View event
      * @param action
      * @return event
      */
-    private AnnotationEvent buildEvent(Action action) {
-        return AnnotationEvent.builder()
+    private ViewEvent buildEvent(Action action) {
+        return ViewEvent.builder()
             .actor(actor)
             .action(action)
             .object(object)
-            .generated(generated)
+            .target(target)
             .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())

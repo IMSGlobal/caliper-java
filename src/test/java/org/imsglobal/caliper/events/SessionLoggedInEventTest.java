@@ -31,9 +31,10 @@ import org.imsglobal.caliper.databind.JsonObjectMapper;
 import org.imsglobal.caliper.databind.JsonSimpleFilterProvider;
 import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
+import org.imsglobal.caliper.entities.agent.SoftwareApplication;
 import org.imsglobal.caliper.entities.reading.EpubSubChapter;
-import org.imsglobal.caliper.entities.reading.EpubVolume;
 import org.imsglobal.caliper.entities.reading.Frame;
+import org.imsglobal.caliper.entities.session.Session;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,18 +45,20 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class ViewEventTest {
+public class SessionLoggedInEventTest {
 
     private LearningContext learningContext;
     private Person actor;
-    private EpubVolume object;
+    private SoftwareApplication object;
     private EpubSubChapter ePub;
     private Frame target;
-    private ViewEvent event;
+    private Session generated;
+    private SessionEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
+    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
     private DateTime eventTime = TestDates.getDefaultEventTime();
-    // private static final Logger log = LoggerFactory.getLogger(ViewEventTest.class);
+    // private static final Logger log = LoggerFactory.getLogger(SessionLoginEventTest.class);
 
     /**
      * @throws java.lang.Exception
@@ -74,9 +77,9 @@ public class ViewEventTest {
         actor = TestAgentEntities.buildStudent554433();
 
         // Build object
-        object = TestEpubEntities.buildEpubVolume43();
+        object = learningContext.getEdApp();
 
-        // Build target frame
+        // Build target
         ePub = TestEpubEntities.buildEpubSubChap431();
         target = Frame.builder()
             .id(ePub.getId())
@@ -88,8 +91,18 @@ public class ViewEventTest {
             .index(1)
             .build();
 
+        // Build generated
+        generated = Session.builder()
+            .id("https://example.com/viewer/session-123456789")
+            .name("session-123456789")
+            .actor(actor)
+            .dateCreated(dateCreated)
+            .dateModified(dateModified)
+            .startedAtTime(dateStarted)
+            .build();
+
         // Build event
-        event = buildEvent(Action.VIEWED);
+        event = buildEvent(Action.LOGGED_IN);
     }
 
     @Test
@@ -98,26 +111,27 @@ public class ViewEventTest {
         ObjectMapper mapper = JsonObjectMapper.create(JsonInclude.Include.NON_EMPTY, provider);
         String json = mapper.writeValueAsString(event);
 
-        String fixture = jsonFixture("fixtures/caliperEventViewViewed.json");
+        String fixture = jsonFixture("fixtures/caliperEventSessionLoggedIn.json");
         JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void viewEventRejectsNavigatedToAction() {
-        buildEvent(Action.NAVIGATED_TO);
+    public void sessionEventRejectsSearchedAction() {
+        buildEvent(Action.SEARCHED);
     }
 
     /**
-     * Build View event
+     * Build Session login event.
      * @param action
      * @return event
      */
-    private ViewEvent buildEvent(Action action) {
-        return ViewEvent.builder()
+    private SessionEvent buildEvent(Action action) {
+        return SessionEvent.builder()
             .actor(actor)
             .action(action)
-            .object(object)
+            .object(learningContext.getEdApp())
             .target(target)
+            .generated(generated)
             .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())

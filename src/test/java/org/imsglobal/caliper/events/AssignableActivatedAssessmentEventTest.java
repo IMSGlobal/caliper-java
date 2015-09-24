@@ -21,10 +21,9 @@ package org.imsglobal.caliper.events;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.google.common.collect.Lists;
 import org.imsglobal.caliper.TestAgentEntities;
+import org.imsglobal.caliper.TestAssessmentEntities;
 import org.imsglobal.caliper.TestDates;
-import org.imsglobal.caliper.TestEpubEntities;
 import org.imsglobal.caliper.TestLisEntities;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.databind.JsonFilters;
@@ -32,10 +31,8 @@ import org.imsglobal.caliper.databind.JsonObjectMapper;
 import org.imsglobal.caliper.databind.JsonSimpleFilterProvider;
 import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
-import org.imsglobal.caliper.entities.annotation.SharedAnnotation;
-import org.imsglobal.caliper.entities.foaf.Agent;
-import org.imsglobal.caliper.entities.reading.EpubSubChapter;
-import org.imsglobal.caliper.entities.reading.Frame;
+import org.imsglobal.caliper.entities.assessment.Assessment;
+import org.imsglobal.caliper.entities.assignable.Attempt;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,23 +40,19 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.util.List;
-
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class SharedAnnotationEventTest {
-
+public class AssignableActivatedAssessmentEventTest {
     private LearningContext learningContext;
     private Person actor;
-    private EpubSubChapter ePub;
-    private Frame object;
-    private SharedAnnotation generated;
-    private AnnotationEvent event;
+    private Assessment object;
+    private Attempt generated;
+    private AssignableEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
-    private DateTime dateModified = TestDates.getDefaultDateModified();
+    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
     private DateTime eventTime = TestDates.getDefaultEventTime();
-    // private static final Logger log = LoggerFactory.getLogger(SharedAnnotationEventTest.class);
+    // private static final Logger log = LoggerFactory.getLogger(AssignableEventTest.class);
 
     /**
      * @throws java.lang.Exception
@@ -69,7 +62,7 @@ public class SharedAnnotationEventTest {
 
         // Build the Learning Context
         learningContext = LearningContext.builder()
-            .edApp(TestAgentEntities.buildEpubViewerApp())
+            .edApp(TestAgentEntities.buildAssessmentApp())
             .group(TestLisEntities.buildGroup())
             .membership(TestLisEntities.buildMembership())
             .build();
@@ -77,42 +70,21 @@ public class SharedAnnotationEventTest {
         // Build actor
         actor = TestAgentEntities.buildStudent554433();
 
-        // Build object frame
-        ePub = TestEpubEntities.buildEpubSubChap433();
-        object = Frame.builder()
-            .id(ePub.getId())
-            .name(ePub.getName())
-            .isPartOf(ePub.getIsPartOf())
-            .dateCreated(dateCreated)
-            .dateModified(dateModified)
-            .version(ePub.getVersion())
-            .index(3)
-            .build();
+        // Build assessment
+        object = TestAssessmentEntities.buildAssessment();
 
-        // Add shared with agents
-        List<Agent> shared = Lists.newArrayList();
-        shared.add(Person.builder()
-            .id("https://example.edu/user/657585")
+        // Build generated attempt
+        generated = Attempt.builder()
+            .id(object.getId() + "/attempt/5678")
+            .assignable(object)
+            .actor(actor)
+            .count(1)
             .dateCreated(dateCreated)
-            .dateModified(dateModified)
-            .build());
-        shared.add(Person.builder()
-            .id("https://example.edu/user/667788")
-            .dateCreated(dateCreated)
-            .dateModified(dateModified)
-            .build());
-
-        // Build Shared Annotation
-        generated = SharedAnnotation.builder()
-            .id("https://example.edu/shared/9999")
-            .annotated(object)
-            .withAgents(shared)
-            .dateCreated(dateCreated)
-            .dateModified(dateModified)
+            .startedAtTime(dateStarted)
             .build();
 
         // Build event
-        event = buildEvent(Action.SHARED);
+        event = buildEvent(Action.ACTIVATED);
     }
 
     @Test
@@ -121,22 +93,22 @@ public class SharedAnnotationEventTest {
         ObjectMapper mapper = JsonObjectMapper.create(JsonInclude.Include.NON_EMPTY, provider);
         String json = mapper.writeValueAsString(event);
 
-        String fixture = jsonFixture("fixtures/caliperEventAnnotationShared.json");
+        String fixture = jsonFixture("fixtures/caliperEventAssignableActivated.json");
         JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void annotationEventRejectsGradedAction() {
-        buildEvent(Action.GRADED);
+    public void assignableEventRejectsSearchedAction() {
+        buildEvent(Action.SEARCHED);
     }
 
     /**
-     * Build Annotation event.
+     * Build Assignable event.
      * @param action
      * @return event
      */
-    private AnnotationEvent buildEvent(Action action) {
-        return AnnotationEvent.builder()
+    private AssignableEvent buildEvent(Action action) {
+        return AssignableEvent.builder()
             .actor(actor)
             .action(action)
             .object(object)

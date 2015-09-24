@@ -21,10 +21,9 @@ package org.imsglobal.caliper.events;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.google.common.collect.Lists;
 import org.imsglobal.caliper.TestAgentEntities;
+import org.imsglobal.caliper.TestAssessmentEntities;
 import org.imsglobal.caliper.TestDates;
-import org.imsglobal.caliper.TestEpubEntities;
 import org.imsglobal.caliper.TestLisEntities;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.databind.JsonFilters;
@@ -32,9 +31,10 @@ import org.imsglobal.caliper.databind.JsonObjectMapper;
 import org.imsglobal.caliper.databind.JsonSimpleFilterProvider;
 import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
-import org.imsglobal.caliper.entities.annotation.TagAnnotation;
-import org.imsglobal.caliper.entities.reading.EpubSubChapter;
-import org.imsglobal.caliper.entities.reading.Frame;
+import org.imsglobal.caliper.entities.agent.SoftwareApplication;
+import org.imsglobal.caliper.entities.assessment.Assessment;
+import org.imsglobal.caliper.entities.assignable.Attempt;
+import org.imsglobal.caliper.entities.outcome.Result;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,23 +42,21 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.util.List;
-
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class TagAnnotationEventTest {
+public class OutcomeGradedEventTest {
 
     private LearningContext learningContext;
     private Person actor;
-    private EpubSubChapter ePub;
-    private Frame object;
-    private TagAnnotation generated;
-    private AnnotationEvent event;
+    private Assessment assessment;
+    private Attempt object;
+    private Result generated;
+    private OutcomeEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
-    private DateTime dateModified = TestDates.getDefaultDateModified();
+    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
     private DateTime eventTime = TestDates.getDefaultEventTime();
-    // private static final Logger log = LoggerFactory.getLogger(TagAnnotationEventTest.class);
+    // private static final Logger log = LoggerFactory.getLogger(AssessmentOutcomeEventTest.class);
 
     /**
      * @throws java.lang.Exception
@@ -68,7 +66,7 @@ public class TagAnnotationEventTest {
 
         // Build the Learning Context
         learningContext = LearningContext.builder()
-            .edApp(TestAgentEntities.buildEpubViewerApp())
+            .edApp(TestAgentEntities.buildAssessmentApp())
             .group(TestLisEntities.buildGroup())
             .membership(TestLisEntities.buildMembership())
             .build();
@@ -76,37 +74,37 @@ public class TagAnnotationEventTest {
         // Build actor
         actor = TestAgentEntities.buildStudent554433();
 
-        //Build target reading
-        ePub = TestEpubEntities.buildEpubSubChap434();
+        // Build assessment
+        assessment = TestAssessmentEntities.buildAssessment();
 
-        // Build Frame
-        object = Frame.builder()
-            .id(ePub.getId())
-            .name(ePub.getName())
-            .isPartOf(ePub.getIsPartOf())
+        // Build attempt
+        object = Attempt.builder()
+            .id(assessment.getId() + "/attempt/5678")
+            .assignable(assessment)
+            .actor(actor)
+            .count(1)
             .dateCreated(dateCreated)
-            .dateModified(dateModified)
-            .version(ePub.getVersion())
-            .index(4)
+            .startedAtTime(dateStarted)
             .build();
 
-        // Add Tags
-        List<String> tags = Lists.newArrayList();
-        tags.add("to-read");
-        tags.add("1765");
-        tags.add("shared-with-project-team");
-
-        // Build Tag Annotation
-        generated = TagAnnotation.builder()
-            .id("https://example.edu/tags/7654")
-            .annotated(object)
-            .tags(tags)
+        // Build result
+        generated = Result.builder()
+            .id(object.getId() + "/result")
+            .assignable(assessment)
+            .actor(actor)
             .dateCreated(dateCreated)
-            .dateModified(dateModified)
+            .normalScore(3.0d)
+            .penaltyScore(0.0d)
+            .extraCreditScore(0.0d)
+            .totalScore(3.0d)
+            .curvedTotalScore(3.0d)
+            .curveFactor(0.0d)
+            .comment("Well done.")
+            .scoredBy((SoftwareApplication) learningContext.getEdApp())
             .build();
 
-        // Build event
-        event = buildEvent(Action.TAGGED);
+        // Build Outcome Event
+        event = buildEvent(Action.GRADED);
     }
 
     @Test
@@ -115,22 +113,22 @@ public class TagAnnotationEventTest {
         ObjectMapper mapper = JsonObjectMapper.create(JsonInclude.Include.NON_EMPTY, provider);
         String json = mapper.writeValueAsString(event);
 
-        String fixture = jsonFixture("fixtures/caliperEventAnnotationTagged.json");
+        String fixture = jsonFixture("fixtures/caliperEventOutcomeGraded.json");
         JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void annotationEventRejectsPausedAction() {
-        buildEvent(Action.PAUSED);
+    public void outcomeEventRejectsHidAction() {
+        buildEvent(Action.HID);
     }
 
     /**
-     * Build Annotation event.
+     * Build Outcome event.
      * @param action
      * @return event
      */
-    private AnnotationEvent buildEvent(Action action) {
-        return AnnotationEvent.builder()
+    private OutcomeEvent buildEvent(Action action) {
+        return OutcomeEvent.builder()
             .actor(actor)
             .action(action)
             .object(object)

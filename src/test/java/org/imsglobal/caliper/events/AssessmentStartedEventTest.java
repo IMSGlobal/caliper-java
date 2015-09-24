@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.imsglobal.caliper.TestAgentEntities;
+import org.imsglobal.caliper.TestAssessmentEntities;
 import org.imsglobal.caliper.TestDates;
-import org.imsglobal.caliper.TestEpubEntities;
 import org.imsglobal.caliper.TestLisEntities;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.databind.JsonFilters;
@@ -31,10 +31,8 @@ import org.imsglobal.caliper.databind.JsonObjectMapper;
 import org.imsglobal.caliper.databind.JsonSimpleFilterProvider;
 import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
-import org.imsglobal.caliper.entities.agent.SoftwareApplication;
-import org.imsglobal.caliper.entities.reading.EpubSubChapter;
-import org.imsglobal.caliper.entities.reading.Frame;
-import org.imsglobal.caliper.entities.session.Session;
+import org.imsglobal.caliper.entities.assessment.Assessment;
+import org.imsglobal.caliper.entities.assignable.Attempt;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,20 +43,17 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class SessionLoginEventTest {
+public class AssessmentStartedEventTest {
 
     private LearningContext learningContext;
     private Person actor;
-    private SoftwareApplication object;
-    private EpubSubChapter ePub;
-    private Frame target;
-    private Session generated;
-    private SessionEvent event;
+    private Assessment object;
+    private Attempt generated;
+    private AssessmentEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
-    private DateTime dateModified = TestDates.getDefaultDateModified();
     private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
     private DateTime eventTime = TestDates.getDefaultEventTime();
-    // private static final Logger log = LoggerFactory.getLogger(SessionLoginEventTest.class);
+    // private static final Logger log = LoggerFactory.getLogger(AssessmentEventTest.class);
 
     /**
      * @throws java.lang.Exception
@@ -68,7 +63,7 @@ public class SessionLoginEventTest {
 
         // Build the Learning Context
         learningContext = LearningContext.builder()
-            .edApp(TestAgentEntities.buildEpubViewerApp())
+            .edApp(TestAgentEntities.buildAssessmentApp())
             .group(TestLisEntities.buildGroup())
             .membership(TestLisEntities.buildMembership())
             .build();
@@ -76,33 +71,20 @@ public class SessionLoginEventTest {
         // Build actor
         actor = TestAgentEntities.buildStudent554433();
 
-        // Build object
-        object = learningContext.getEdApp();
+        // Build assessment
+        object = TestAssessmentEntities.buildAssessment();
 
-        // Build target
-        ePub = TestEpubEntities.buildEpubSubChap431();
-        target = Frame.builder()
-            .id(ePub.getId())
-            .name(ePub.getName())
-            .isPartOf(ePub.getIsPartOf())
-            .dateCreated(dateCreated)
-            .dateModified(dateModified)
-            .version(ePub.getVersion())
-            .index(1)
-            .build();
-
-        // Build generated
-        generated = Session.builder()
-            .id("https://example.com/viewer/session-123456789")
-            .name("session-123456789")
+        // Build generated attempt
+        generated = Attempt.builder()
+            .id(object.getId() + "/attempt/5678")
+            .assignable(object)
             .actor(actor)
+            .count(1)
             .dateCreated(dateCreated)
-            .dateModified(dateModified)
             .startedAtTime(dateStarted)
             .build();
 
-        // Build event
-        event = buildEvent(Action.LOGGED_IN);
+        event = buildEvent(Action.STARTED);
     }
 
     @Test
@@ -111,26 +93,25 @@ public class SessionLoginEventTest {
         ObjectMapper mapper = JsonObjectMapper.create(JsonInclude.Include.NON_EMPTY, provider);
         String json = mapper.writeValueAsString(event);
 
-        String fixture = jsonFixture("fixtures/caliperEventSessionLoggedIn.json");
+        String fixture = jsonFixture("fixtures/caliperEventAssessmentStarted.json");
         JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void sessionEventRejectsSearchedAction() {
+    public void assessmentEventRejectsSearchedAction() {
         buildEvent(Action.SEARCHED);
     }
 
     /**
-     * Build Session login event.
+     * Build Assessment event
      * @param action
      * @return event
      */
-    private SessionEvent buildEvent(Action action) {
-        return SessionEvent.builder()
+    private AssessmentEvent buildEvent(Action action) {
+        return AssessmentEvent.builder()
             .actor(actor)
             .action(action)
-            .object(learningContext.getEdApp())
-            .target(target)
+            .object(object)
             .generated(generated)
             .eventTime(eventTime)
             .edApp(learningContext.getEdApp())

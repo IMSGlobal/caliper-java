@@ -21,9 +21,10 @@ package org.imsglobal.caliper.events;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.google.common.collect.Lists;
 import org.imsglobal.caliper.TestAgentEntities;
-import org.imsglobal.caliper.TestAssessmentEntities;
 import org.imsglobal.caliper.TestDates;
+import org.imsglobal.caliper.TestEpubEntities;
 import org.imsglobal.caliper.TestLisEntities;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.databind.JsonFilters;
@@ -31,10 +32,10 @@ import org.imsglobal.caliper.databind.JsonObjectMapper;
 import org.imsglobal.caliper.databind.JsonSimpleFilterProvider;
 import org.imsglobal.caliper.entities.LearningContext;
 import org.imsglobal.caliper.entities.agent.Person;
-import org.imsglobal.caliper.entities.agent.SoftwareApplication;
-import org.imsglobal.caliper.entities.assessment.Assessment;
-import org.imsglobal.caliper.entities.assignable.Attempt;
-import org.imsglobal.caliper.entities.outcome.Result;
+import org.imsglobal.caliper.entities.annotation.SharedAnnotation;
+import org.imsglobal.caliper.entities.foaf.Agent;
+import org.imsglobal.caliper.entities.reading.EpubSubChapter;
+import org.imsglobal.caliper.entities.reading.Frame;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,21 +43,23 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
+import java.util.List;
+
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class AssessmentOutcomeEventTest {
+public class AnnotationSharedEventTest {
 
     private LearningContext learningContext;
     private Person actor;
-    private Assessment assessment;
-    private Attempt object;
-    private Result generated;
-    private OutcomeEvent event;
+    private EpubSubChapter ePub;
+    private Frame object;
+    private SharedAnnotation generated;
+    private AnnotationEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
-    private DateTime dateStarted = TestDates.getDefaultStartedAtTime();
+    private DateTime dateModified = TestDates.getDefaultDateModified();
     private DateTime eventTime = TestDates.getDefaultEventTime();
-    // private static final Logger log = LoggerFactory.getLogger(AssessmentOutcomeEventTest.class);
+    // private static final Logger log = LoggerFactory.getLogger(SharedAnnotationEventTest.class);
 
     /**
      * @throws java.lang.Exception
@@ -66,7 +69,7 @@ public class AssessmentOutcomeEventTest {
 
         // Build the Learning Context
         learningContext = LearningContext.builder()
-            .edApp(TestAgentEntities.buildAssessmentApp())
+            .edApp(TestAgentEntities.buildEpubViewerApp())
             .group(TestLisEntities.buildGroup())
             .membership(TestLisEntities.buildMembership())
             .build();
@@ -74,37 +77,42 @@ public class AssessmentOutcomeEventTest {
         // Build actor
         actor = TestAgentEntities.buildStudent554433();
 
-        // Build assessment
-        assessment = TestAssessmentEntities.buildAssessment();
-
-        // Build attempt
-        object = Attempt.builder()
-            .id(assessment.getId() + "/attempt/5678")
-            .assignable(assessment)
-            .actor(actor)
-            .count(1)
+        // Build object frame
+        ePub = TestEpubEntities.buildEpubSubChap433();
+        object = Frame.builder()
+            .id(ePub.getId())
+            .name(ePub.getName())
+            .isPartOf(ePub.getIsPartOf())
             .dateCreated(dateCreated)
-            .startedAtTime(dateStarted)
+            .dateModified(dateModified)
+            .version(ePub.getVersion())
+            .index(3)
             .build();
 
-        // Build result
-        generated = Result.builder()
-            .id(object.getId() + "/result")
-            .assignable(assessment)
-            .actor(actor)
+        // Add shared with agents
+        List<Agent> shared = Lists.newArrayList();
+        shared.add(Person.builder()
+            .id("https://example.edu/user/657585")
             .dateCreated(dateCreated)
-            .normalScore(3.0d)
-            .penaltyScore(0.0d)
-            .extraCreditScore(0.0d)
-            .totalScore(3.0d)
-            .curvedTotalScore(3.0d)
-            .curveFactor(0.0d)
-            .comment("Well done.")
-            .scoredBy((SoftwareApplication) learningContext.getEdApp())
+            .dateModified(dateModified)
+            .build());
+        shared.add(Person.builder()
+            .id("https://example.edu/user/667788")
+            .dateCreated(dateCreated)
+            .dateModified(dateModified)
+            .build());
+
+        // Build Shared Annotation
+        generated = SharedAnnotation.builder()
+            .id("https://example.edu/shared/9999")
+            .annotated(object)
+            .withAgents(shared)
+            .dateCreated(dateCreated)
+            .dateModified(dateModified)
             .build();
 
-        // Build Outcome Event
-        event = buildEvent(Action.GRADED);
+        // Build event
+        event = buildEvent(Action.SHARED);
     }
 
     @Test
@@ -113,22 +121,22 @@ public class AssessmentOutcomeEventTest {
         ObjectMapper mapper = JsonObjectMapper.create(JsonInclude.Include.NON_EMPTY, provider);
         String json = mapper.writeValueAsString(event);
 
-        String fixture = jsonFixture("fixtures/caliperEventOutcomeGraded.json");
+        String fixture = jsonFixture("fixtures/caliperEventAnnotationShared.json");
         JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void outcomeEventRejectsHidAction() {
-        buildEvent(Action.HID);
+    public void annotationEventRejectsGradedAction() {
+        buildEvent(Action.GRADED);
     }
 
     /**
-     * Build Outcome event.
+     * Build Annotation event.
      * @param action
      * @return event
      */
-    private OutcomeEvent buildEvent(Action action) {
-        return OutcomeEvent.builder()
+    private AnnotationEvent buildEvent(Action action) {
+        return AnnotationEvent.builder()
             .actor(actor)
             .action(action)
             .object(object)

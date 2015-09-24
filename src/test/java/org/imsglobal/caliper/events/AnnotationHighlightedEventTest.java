@@ -23,16 +23,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.imsglobal.caliper.TestAgentEntities;
 import org.imsglobal.caliper.TestDates;
+import org.imsglobal.caliper.TestEpubEntities;
 import org.imsglobal.caliper.TestLisEntities;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.databind.JsonFilters;
 import org.imsglobal.caliper.databind.JsonObjectMapper;
 import org.imsglobal.caliper.databind.JsonSimpleFilterProvider;
 import org.imsglobal.caliper.entities.LearningContext;
-import org.imsglobal.caliper.entities.LearningObjective;
 import org.imsglobal.caliper.entities.agent.Person;
-import org.imsglobal.caliper.entities.media.MediaLocation;
-import org.imsglobal.caliper.entities.media.VideoObject;
+import org.imsglobal.caliper.entities.annotation.HighlightAnnotation;
+import org.imsglobal.caliper.entities.reading.EpubSubChapter;
+import org.imsglobal.caliper.entities.reading.Frame;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,17 +44,18 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class MediaEventTest {
+public class AnnotationHighlightedEventTest {
 
     private LearningContext learningContext;
     private Person actor;
-    private VideoObject object;
-    private MediaEvent event;
-    private MediaLocation target;
+    private EpubSubChapter ePub;
+    private Frame object;
+    private HighlightAnnotation generated;
+    private AnnotationEvent event;
     private DateTime dateCreated = TestDates.getDefaultDateCreated();
     private DateTime dateModified = TestDates.getDefaultDateModified();
     private DateTime eventTime = TestDates.getDefaultEventTime();
-    // private static final Logger log = LoggerFactory.getLogger(MediaEventTest.class);
+    // private static final Logger log = LoggerFactory.getLogger(HighlightAnnotationEventTest.class);
 
     /**
      * @throws java.lang.Exception
@@ -63,7 +65,7 @@ public class MediaEventTest {
 
         // Build the Learning Context
         learningContext = LearningContext.builder()
-            .edApp(TestAgentEntities.buildMediaPlayerApp())
+            .edApp(TestAgentEntities.buildEpubViewerApp())
             .group(TestLisEntities.buildGroup())
             .membership(TestLisEntities.buildMembership())
             .build();
@@ -71,30 +73,31 @@ public class MediaEventTest {
         // Build actor
         actor = TestAgentEntities.buildStudent554433();
 
-        // Build video
-        object = VideoObject.builder()
-            .id("https://example.com/super-media-tool/video/1225")
-            .name("American Revolution - Key Figures Video")
-            .learningObjective(LearningObjective.builder()
-                .id("https://example.edu/american-revolution-101/personalities/learn")
-                .dateCreated(dateCreated)
-                .build())
+        // Build object frame
+        ePub = TestEpubEntities.buildEpubSubChap431();
+        object = Frame.builder()
+            .id(ePub.getId())
+            .name(ePub.getName())
+            .isPartOf(ePub.getIsPartOf())
             .dateCreated(dateCreated)
             .dateModified(dateModified)
-            .version("1.0")
-            .duration(1420)
+            .version(ePub.getVersion())
+            .index(1)
             .build();
 
-        // Build media location
-        target = MediaLocation.builder()
-            .id(object.getId())
+        // Build Highlight Annotation
+        generated = HighlightAnnotation.builder()
+            .id("https://example.edu/highlights/12345")
+            .annotated(object)
+            .selectionStart(Integer.toString(455))
+            .selectionEnd(Integer.toString(489))
+            .selectionText("Life, Liberty and the pursuit of Happiness")
             .dateCreated(dateCreated)
-            .version(object.getVersion())
-            .currentTime(710)
+            .dateModified(dateModified)
             .build();
 
         // Build event
-        event = buildEvent(Action.PAUSED);
+        event = buildEvent(Action.HIGHLIGHTED);
     }
 
     @Test
@@ -103,26 +106,26 @@ public class MediaEventTest {
         ObjectMapper mapper = JsonObjectMapper.create(JsonInclude.Include.NON_EMPTY, provider);
         String json = mapper.writeValueAsString(event);
 
-        String fixture = jsonFixture("fixtures/caliperEventMediaPausedVideo.json");
+        String fixture = jsonFixture("fixtures/caliperEventAnnotationHighlighted.json");
         JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void mediaEventRejectsSubmittedAction() {
-        buildEvent(Action.SUBMITTED);
+    public void annotationEventRejectsSearchedAction() {
+        buildEvent(Action.SEARCHED);
     }
 
     /**
-     * Build Media event.
+     * Build Annotation event.
      * @param action
      * @return event
      */
-    private MediaEvent buildEvent(Action action) {
-        return MediaEvent.builder()
+    private AnnotationEvent buildEvent(Action action) {
+        return AnnotationEvent.builder()
             .actor(actor)
             .action(action)
             .object(object)
-            .target(target)
+            .generated(generated)
             .eventTime(eventTime)
             .edApp(learningContext.getEdApp())
             .group(learningContext.getGroup())

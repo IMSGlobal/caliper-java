@@ -63,7 +63,7 @@ import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 import static org.junit.Assert.assertEquals;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class HttpRequestorTest {
+public class HttpRequestorSingleEventTest {
 
     private Sensor<String> sensor ;
     private HttpRequestor<Event> httpRequestor = new HttpRequestor<>(TestUtils.getTestingOptions());

@@ -42,7 +42,7 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
-public class SessionLogoutEventTest {
+public class SessionLoggedOutEventTest {
     private LearningContext learningContext;
     private Person actor;
     private SoftwareApplication object;
@@ -59,7 +59,7 @@ public class SessionLogoutEventTest {
     /**
      * Constructor
      */
-    public SessionLogoutEventTest() {
+    public SessionLoggedOutEventTest() {
 
     }
 
