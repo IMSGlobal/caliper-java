@@ -20,6 +20,8 @@ package org.imsglobal.caliper.entities.assignable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.imsglobal.caliper.databind.JsonDoubleSerializer;
 import org.imsglobal.caliper.entities.DigitalResource;
 import org.imsglobal.caliper.entities.DigitalResourceType;
 import org.imsglobal.caliper.entities.Type;
@@ -137,6 +139,7 @@ public class AssignableDigitalResource extends DigitalResource implements org.im
      * @return the maxScore
      */
     @Nullable
+    @JsonSerialize(using=JsonDoubleSerializer.class)
     public double getMaxScore() {
         return maxScore;
     }

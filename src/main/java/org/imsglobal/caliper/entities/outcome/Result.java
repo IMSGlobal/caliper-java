@@ -22,6 +22,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.imsglobal.caliper.databind.JsonDoubleSerializer;
 import org.imsglobal.caliper.entities.DigitalResource;
 import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
@@ -131,6 +133,7 @@ public class Result extends Entity implements Generatable {
      * @return the normalScore
      */
     @Nullable
+    @JsonSerialize(using=JsonDoubleSerializer.class)
     public double getNormalScore() {
         return normalScore;
     }
@@ -139,6 +142,7 @@ public class Result extends Entity implements Generatable {
      * @return the penaltyScore
      */
     @Nullable
+    @JsonSerialize(using=JsonDoubleSerializer.class)
     public double getPenaltyScore() {
         return penaltyScore;
     }
@@ -147,6 +151,7 @@ public class Result extends Entity implements Generatable {
      * @return the extraCreditScore
      */
     @Nullable
+    @JsonSerialize(using=JsonDoubleSerializer.class)
     public double getExtraCreditScore() {
         return extraCreditScore;
     }
@@ -155,6 +160,7 @@ public class Result extends Entity implements Generatable {
      * @return the totalScore
      */
     @Nullable
+    @JsonSerialize(using=JsonDoubleSerializer.class)
     public double getTotalScore() {
         return totalScore;
     }
@@ -163,6 +169,7 @@ public class Result extends Entity implements Generatable {
      * @return the curvedTotalScore
      */
     @Nullable
+    @JsonSerialize(using=JsonDoubleSerializer.class)
     public double getCurvedTotalScore() {
         return curvedTotalScore;
     }
@@ -171,6 +178,7 @@ public class Result extends Entity implements Generatable {
      * @return the curveFactor
      */
     @Nullable
+    @JsonSerialize(using=JsonDoubleSerializer.class)
     public double getCurveFactor() {
         return curveFactor;
     }
