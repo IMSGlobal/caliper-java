@@ -31,12 +31,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HttpCustomHeaderClient extends AbstractClient {
     private static CloseableHttpClient httpClient;
     private static CloseableHttpResponse response = null;
-    private static HashMap<String, String> customHeaders = null;
+    private List<HttpCustomHeader> customHeaders;
 
     private static final Logger log = LoggerFactory.getLogger(HttpClient.class);
 
@@ -49,7 +50,7 @@ public class HttpCustomHeaderClient extends AbstractClient {
         initialize();
 
         if (customHeaders == null) {
-            customHeaders = new HashMap<>(0);
+            customHeaders = new ArrayList<>();
         }
     }
 
@@ -67,40 +68,93 @@ public class HttpCustomHeaderClient extends AbstractClient {
      */
     private static void checkInitialized() {
         if (httpClient == null) {
-            throw new IllegalStateException("HttpClient is not initialized.");
+            throw new IllegalStateException("HttpCustomHeaderClient is not initialized.");
         }
     }
 
     /**
-     * Set custom header. (Except 'Content-Type' and 'Authorization')
+     * Set a custom header. (Cannot set prohibited header declared in HttpCustomHeader class)
      * @param field: HTTP Header field
      * @param value: HTTP Header value for the name
      */
     public void setCustomHeader(String field, String value) {
+        HttpCustomHeader header;
+        int index = findCustomHeader(field.toLowerCase());
 
-        /* Because HTTP header fields are case-insensitive. (From RFC 7230 Section 3.2 "Header Fields") */
-        String lowerCaseField = field.toLowerCase();
+        if (index >= 0) {
+            header = customHeaders.get(index);
+            header.setValue(value);
+        } else {
+            header = new HttpCustomHeader(field, value);
+            customHeaders.add(header);
+        }
+    }
 
-        if (lowerCaseField.equals("content-type") || lowerCaseField.equals("authorization")) {
-            return;
+    /**
+     * Set custom header from list.
+     * @param headers: List of custom headers
+     */
+    public void setCustomHeaders(List<HttpCustomHeader> headers) {
+        customHeaders = headers;
+    }
+
+    /**
+     * Getter function of custom header list.
+     * @return custom header list
+     */
+    public List<HttpCustomHeader> getCustomHeaders() {
+        return customHeaders;
+    }
+
+    /**
+     * Find specific custom header from custom headers list
+     * @param field: HTTP Header field
+     * @return index of field from custom headers list
+     */
+    public int findCustomHeader(String field) {
+        int index = -1;
+        for (HttpCustomHeader header: customHeaders) {
+            if (header.getField().equals(field.toLowerCase())) {
+                index = customHeaders.indexOf(header);
+                break;
+            }
         }
 
-        customHeaders.put(field, value);
+        return index;
+    }
+
+    /**
+     * Remove custom header from the list of custom headers.
+     * @param field: HTTP Header field
+     */
+    public void removeCustomHeader(String field) {
+        int index = findCustomHeader(field);
+
+        if (index >= 0) {
+            customHeaders.remove(index);
+        }
+    }
+
+    /**
+     * Remove all custom headers from the list of custom headers.
+     */
+    public void removeAllCustomHeaders() {
+        customHeaders.clear();
     }
 
     /**
      * Get custom header and add to HTTP header
      * @param post: HttpPost object to send Envelope
      */
-    private void getCustomHeader(HttpPost post) {
-        for (String name : customHeaders.keySet()) {
-            post.setHeader(name, customHeaders.get(name));
+    private void applyCustomHeaders(HttpPost post) {
+        for (HttpCustomHeader header : customHeaders) {
+            post.setHeader(header.getField(), header.getValue());
         }
     }
 
     /**
      * Post envelope.
-     * @param envelope
+     * @param envelope Caliper envelope to be sent
      */
     @Override
     public void send(Envelope envelope) {
@@ -124,7 +178,7 @@ public class HttpCustomHeaderClient extends AbstractClient {
             post.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
 
             // Get custom header and set header to HttpPost object
-            getCustomHeader(post);
+            applyCustomHeaders(post);
 
             // Execute POST
             response = httpClient.execute(post);
@@ -135,7 +189,7 @@ public class HttpCustomHeaderClient extends AbstractClient {
                 response.close();
 
                 // Update statistics
-                updateStatistics(Boolean.TRUE);
+                updateStatistics(Boolean.FALSE);
 
                 throw new RuntimeException("WARN: HTTP POST failed; status code=" + statusCode);
             } else {
@@ -146,7 +200,7 @@ public class HttpCustomHeaderClient extends AbstractClient {
                 response.close();
 
                 // Update statistics
-                updateStatistics(Boolean.FALSE);
+                updateStatistics(Boolean.TRUE);
 
                 if (log.isDebugEnabled()) {
                     log.debug("Exiting send()...");
