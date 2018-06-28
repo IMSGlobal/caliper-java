@@ -98,7 +98,6 @@ public class Attempt extends AbstractEntity implements CaliperGeneratable {
      * @return the count
      */
     @Nullable
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public int getCount() {
         return count;
     }

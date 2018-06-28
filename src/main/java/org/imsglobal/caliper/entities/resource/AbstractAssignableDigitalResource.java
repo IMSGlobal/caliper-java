@@ -85,7 +85,6 @@ public abstract class AbstractAssignableDigitalResource extends AbstractDigitalR
      * @return the maxAttempts
      */
     @Nullable
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public int getMaxAttempts() {
         return assign.getMaxAttempts();
     }
@@ -94,7 +93,6 @@ public abstract class AbstractAssignableDigitalResource extends AbstractDigitalR
      * @return the maxSubmits
      */
     @Nullable
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public int getMaxSubmits() {
         return assign.getMaxSubmits();
     }
@@ -104,7 +102,6 @@ public abstract class AbstractAssignableDigitalResource extends AbstractDigitalR
      */
     @Nullable
     // @JsonSerialize(using=DoubleSerializer.class)
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public double getMaxScore() {
         return assign.getMaxScore();
     }

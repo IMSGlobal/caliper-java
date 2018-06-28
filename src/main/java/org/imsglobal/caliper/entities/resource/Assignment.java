@@ -125,7 +125,6 @@ public class Assignment {
      * @return the maxAttempts
      */
     @Nullable
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public int getMaxAttempts() {
         return maxAttempts;
     }
@@ -142,7 +141,6 @@ public class Assignment {
      * @return the maxSubmits
      */
     @Nullable
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public int getMaxSubmits() {
         return maxSubmits;
     }
@@ -160,7 +158,6 @@ public class Assignment {
      */
     @Nullable
     // @JsonSerialize(using=DoubleSerializer.class)
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public double getMaxScore() {
         return maxScore;
     }
