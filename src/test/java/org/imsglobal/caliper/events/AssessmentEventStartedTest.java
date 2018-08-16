@@ -16,22 +16,21 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.imsglobal.caliper.events;
+package org.imsglobal.caliper.events.rimi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.imsglobal.caliper.TestUtils;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.context.JsonldContext;
 import org.imsglobal.caliper.context.JsonldStringContext;
-import org.imsglobal.caliper.entities.agent.CourseSection;
-import org.imsglobal.caliper.entities.agent.Membership;
-import org.imsglobal.caliper.entities.agent.Person;
-import org.imsglobal.caliper.entities.agent.Role;
-import org.imsglobal.caliper.entities.agent.SoftwareApplication;
-import org.imsglobal.caliper.entities.agent.Status;
+import org.imsglobal.caliper.entities.CaliperEntityType;
+import org.imsglobal.caliper.entities.EntityType;
+import org.imsglobal.caliper.entities.agent.*;
 import org.imsglobal.caliper.entities.resource.Assessment;
 import org.imsglobal.caliper.entities.resource.Attempt;
+import org.imsglobal.caliper.entities.resource.MediaLocation;
 import org.imsglobal.caliper.entities.session.Session;
+import org.imsglobal.caliper.events.AssessmentEvent;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.After;
@@ -41,10 +40,19 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
+import java.lang.annotation.Target;
+import java.util.UUID;
+
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class AssessmentEventStartedTest {
+
+    private final String userRefId = "0f4fedbe-2227-415f-8553-40731a627171";
+    private final String sectionRefId = "128dedbe-9927-415f-8553-40731a627f893";
+    private final String districtRefId = "7f7b4763-8b91-45ce-b7a4-e051fd79953c";
+    private final String schoolRefId = "fbb79fa9-ce24-4979-beba-66c57395b0a1";
+
     private JsonldContext context;
     private String id;
     private Person actor;
@@ -55,60 +63,69 @@ public class AssessmentEventStartedTest {
     private Membership membership;
     private Session session;
     private AssessmentEvent event;
+    private Target target;
 
-    private static final String BASE_IRI = "https://example.edu";
-    private static final String SECTION_IRI = BASE_IRI.concat("/terms/201601/courses/7/sections/1");
+    private static final String BASE_IRI = "https://https://www.hmhco.com/ed";
+    private static final String SECTION_IRI = BASE_IRI.concat("/sections/");
+    private static final String ORGANIZATION_IRI = BASE_IRI.concat("/organizations/");
 
     @Before
     public void setUp() throws Exception {
         context = JsonldStringContext.getDefault();
 
-        id = "urn:uuid:27734504-068d-4596-861c-2315be33a2a2";
+        id = "urn:uuid:" + UUID.randomUUID();;  // random uuid generated per event I assume
 
-        actor = Person.builder().id(BASE_IRI.concat("/users/554433")).build();
-        Person assignee = Person.builder().id(actor.getId()).coercedToId(true).build();
+        actor = Person.builder().id(BASE_IRI.concat("/users/" + userRefId)).build();
+        //Person assignee = Person.builder().id(actor.getId()).coercedToId(true).build();
 
         object = Assessment.builder()
-            .id(SECTION_IRI.concat("/assess/1"))
-            .name("Quiz One")
-            .dateToStartOn(new DateTime(2016, 11, 14, 5, 0, 0, 0, DateTimeZone.UTC))
-            .dateToSubmit(new DateTime(2016, 11, 18, 11, 59, 59, 0, DateTimeZone.UTC))
-            .maxAttempts(2)
-            .maxSubmits(2)
-            .maxScore(25)
-            .version("1.0")
+            .id("RI\\/HMH-RI") // TODO: This is identifer of RI/MI not of an Assessment
+            .name("HMH-RI")
+            .type(EntityType.ASSESSMENT) // TODO: This is a proposed correction from RIMI proposed SOFTWARE APPLICTION. Spec: "The string value MUST be set to the Term Assessment."
+//            .dateToStartOn(new DateTime(2016, 11, 14, 5, 0, 0, 0, DateTimeZone.UTC))
+//            .dateToSubmit(new DateTime(2016, 11, 18, 11, 59, 59, 0, DateTimeZone.UTC))
+//            .maxAttempts(2)
+//            .maxSubmits(2)
+//            .maxScore(25)
+//            .version("1.0")
+
             .build();
 
-        generated = Attempt.builder()
-            .id(SECTION_IRI.concat("/assess/1/users/554433/attempts/1"))
-            .assignable(Assessment.builder().id(object.getId()).coercedToId(true).build())
-            .assignee(assignee)
-            .count(1)
-            .dateCreated(new DateTime(2016, 11, 15, 10, 15, 0, 0, DateTimeZone.UTC))
-            .startedAtTime(new DateTime(2016, 11, 15, 10, 15, 0, 0, DateTimeZone.UTC))
-            .build();
+        // SPEC: A Caliper Attempt provides a count of the number of times an actor has interacted with an AssignableDigitalResource along with start time, end time and duration information. An Attempt is generated as the result of an action such as starting an Assessment.
+//        generated = Attempt.builder()
+//            .id(SECTION_IRI.concat("/assess/1/users/554433/attempts/1"))
+//            .assignable(Assessment.builder().id(object.getId()).coercedToId(true).build())
+//            .assignee(assignee)
+//            .count(1)
+//            .dateCreated(new DateTime(2016, 11, 15, 10, 15, 0, 0, DateTimeZone.UTC))
+//            .startedAtTime(new DateTime(2016, 11, 15, 10, 15, 0, 0, DateTimeZone.UTC))
+//            .build();
 
         edApp = SoftwareApplication.builder().id(BASE_IRI).version("v2").build();
 
-        group = CourseSection.builder()
-            .id(SECTION_IRI)
-            .courseNumber("CPS 435-01")
-            .academicSession("Fall 2016")
-            .build();
+        // Target SPEC: An Entity that represents a particular segment or location within the object.
+
+//        group = CourseSection.builder()
+//            .id(SECTION_IRI)
+//            .courseNumber("CPS 435-01")
+//            .academicSession("Fall 2016")
+//            .build();
+
+        Organization parentOrganization = Organization.builder().id(ORGANIZATION_IRI.concat(districtRefId)).type(EntityType.ORGANIZATION).build();
 
         membership = Membership.builder()
-            .id(SECTION_IRI.concat("/rosters/1"))
-            .member(assignee)
-            .organization(CourseSection.builder().id(group.getId()).coercedToId(true).build())
-            .status(Status.ACTIVE)
+            .id(SECTION_IRI.concat(sectionRefId))
+            //.organization(CourseSection.builder().id(group.getId()).coercedToId(true).build())
+            .organization(Organization.builder().id(ORGANIZATION_IRI.concat(schoolRefId)).type(EntityType.ORGANIZATION)
+                    .subOrganizationOf(Organization.builder().id(ORGANIZATION_IRI.concat(districtRefId)).type(EntityType.ORGANIZATION).build())
+                    .build())
             .role(Role.LEARNER)
-            .dateCreated(new DateTime(2016, 8, 1, 6, 0, 0, 0, DateTimeZone.UTC))
             .build();
 
-        session = Session.builder()
-            .id(BASE_IRI.concat("/sessions/1f6442a482de72ea6ad134943812bff564a76259"))
-            .startedAtTime(new DateTime(2016, 11, 15, 10, 0, 0, 0, DateTimeZone.UTC))
-            .build();
+//        session = Session.builder()
+//            .id(BASE_IRI.concat("/sessions/1f6442a482de72ea6ad134943812bff564a76259"))
+//            .startedAtTime(new DateTime(2016, 11, 15, 10, 0, 0, 0, DateTimeZone.UTC))
+//            .build();
 
         event = buildEvent(Action.STARTED);
     }

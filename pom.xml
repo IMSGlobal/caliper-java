@@ -26,7 +26,7 @@
         <system>Github</system>
     </issueManagement>
 
-    <licenses>
+    <licenses> 
         <license>
             <name>IMS GLobal</name>
             <url> http://imsglobal.org/license</url>
@@ -53,11 +53,11 @@
         </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:https://github.com/IMSGlobal/caliper-java.git</connection>
-        <developerConnection>scm:git:https://github.com/IMSGlobal/caliper-java.git</developerConnection>
-        <url>https://github.com/IMSGlobal/caliper-java.git</url>
-    </scm>
+	<scm>
+	  <connection>scm:git:git@github.com:hmhco/caliper-java.git</connection>
+	  <developerConnection>scm:git:git@github.com:hmhco/caliper-java.git</developerConnection>
+	</scm>
+
 
     <prerequisites>
         <maven>3.0</maven>
@@ -71,18 +71,18 @@
         <arguments />
     </properties>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>${sonatypeOssDistMgmtSnapshotsUrl}</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+	<distributionManagement>
+	  <repository>
+	    <id>hmheng-io-libs-release-local</id>
+	    <name>repo.hmheng.io-release</name>
+	    <url>https://repo.br.hmheng.io/artifactory/libs-release-local</url>
+	  </repository>
+	  <snapshotRepository>
+	    <id>hmheng-io-snapshots-local</id>
+	    <name>repo.hmheng.io-snapshots</name>
+	    <url>https://repo.br.hmheng.io/artifactory/libs-snapshot-local</url>
+	  </snapshotRepository>
+	</distributionManagement>
 
     <repositories>
         <repository>
