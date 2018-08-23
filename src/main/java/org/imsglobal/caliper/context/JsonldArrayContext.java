@@ -36,6 +36,14 @@ public class JsonldArrayContext implements JsonldContext {
     }
 
     /**
+     * Accessor
+     * @return contexts
+     */
+    public ImmutableList<Object> getContexts(){
+        return contexts;
+    }
+
+    /**
      * Factory method
      * @param contexts
      * @return JsonldArrayContext
