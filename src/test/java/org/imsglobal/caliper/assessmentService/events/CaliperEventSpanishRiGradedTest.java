@@ -19,14 +19,14 @@
 package org.imsglobal.caliper.assessmentService.events;
 
 import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
-import static org.imsglobal.caliper.ri.events.HMHConstants.ACTIVITY_REF_ID;
-import static org.imsglobal.caliper.ri.events.HMHConstants.BASE_IRI;
-import static org.imsglobal.caliper.ri.events.HMHConstants.BASE_URN;
-import static org.imsglobal.caliper.ri.events.HMHConstants.DISTRICT_REF_ID;
-import static org.imsglobal.caliper.ri.events.HMHConstants.OBJECT_ID;
-import static org.imsglobal.caliper.ri.events.HMHConstants.SCHOOL_REF_ID;
-import static org.imsglobal.caliper.ri.events.HMHConstants.STUDENT_USER_REF_ID;
-import static org.imsglobal.caliper.ri.events.HMHConstants.LAST_ATTEMPT_ID;
+import static org.imsglobal.caliper.events.HMHConstants.ACTIVITY_REF_ID;
+import static org.imsglobal.caliper.events.HMHConstants.BASE_IRI;
+import static org.imsglobal.caliper.events.HMHConstants.BASE_URN;
+import static org.imsglobal.caliper.events.HMHConstants.DISTRICT_REF_ID;
+import static org.imsglobal.caliper.events.HMHConstants.OBJECT_ID;
+import static org.imsglobal.caliper.events.HMHConstants.SCHOOL_REF_ID;
+import static org.imsglobal.caliper.events.HMHConstants.STUDENT_USER_REF_ID;
+import static org.imsglobal.caliper.events.HMHConstants.LAST_ATTEMPT_ID;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
