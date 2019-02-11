@@ -123,9 +123,6 @@ public class CaliperEventSpanishRiGradedTest {
         String json = mapper.writeValueAsString(event);
         System.out.println("Current dir:" + new java.io.File( "." ).getCanonicalPath());
         String fixture = jsonFixture("fixtures/hmh-assessment-service/caliperEventSpanishRiGraded.json");
-        // pwd : /Users/mattihallim/repos2/caliper-java
-        // /caliper-java/src/test/resources/fixtures/hmh-assessment-service/caliperEventSpanishRiGraded.json
-        // String fixture = jsonFixture("/Users/mattihallim/repos2/caliper-common-fixtures/src/test/resources/fixtures/hmh-assessment-service/caliperEventSpanishRiGraded.json");
         JSONAssert.assertEquals(fixture, json, JSONCompareMode.NON_EXTENSIBLE);
     }
 
