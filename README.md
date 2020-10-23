@@ -37,12 +37,17 @@ local development machine.
 documentation and reporting.
 
 ### Building
-First, clone the *caliper-common-fixtures* project to your development machine and add a symbolic 
-link: 
+1. First, clone the [caliper-common-fixtures](https://github.com/IMSGlobal/caliper-common-fixtures) repository to your development machine.
 
+2. Then, create the `resources` directory with this following command 
+```bash
+mkdir src/test/resources
 ```
-ln -s /Path/to/caliper-common-fixtures/src/test/resources/fixtures/ src/test/resources/fixtures
-``` 
+
+3. Finally copy the fixtures directory into your resources for the tests 
+```bash
+cp -r /path-to/caliper-common-fixtures/src/test/resources/fixtures/ src/test/resources/
+```
 
 Then from your local *caliper-java* directory run:
 
