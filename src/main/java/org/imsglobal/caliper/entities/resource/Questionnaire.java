@@ -35,7 +35,7 @@ public class Questionnaire extends AbstractDigitalResource implements CaliperCol
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Questionnaire(Builder<?> builder) {
+    private Questionnaire(Builder<?> builder) {
         super(builder);
 
         this.items = ImmutableList.copyOf(builder.items);

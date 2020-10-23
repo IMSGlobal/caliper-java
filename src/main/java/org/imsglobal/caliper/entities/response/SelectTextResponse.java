@@ -37,7 +37,7 @@ public class SelectTextResponse extends AbstractResponse {
     /**
      * @param builder apply builder object properties to the Response object.
      */
-    protected SelectTextResponse(Builder<?> builder) {
+    private SelectTextResponse(Builder<?> builder) {
         super(builder);
         this.values = ImmutableList.copyOf(builder.values);
     }

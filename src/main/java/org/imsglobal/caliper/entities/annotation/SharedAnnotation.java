@@ -35,7 +35,7 @@ public class SharedAnnotation extends AbstractAnnotation {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected SharedAnnotation(Builder<?> builder) {
+    private SharedAnnotation(Builder<?> builder) {
         super(builder);
         this.withAgents = ImmutableList.copyOf(builder.withAgents);
     }

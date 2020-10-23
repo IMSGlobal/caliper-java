@@ -46,7 +46,7 @@ public class NumericScale extends AbstractEntity implements CaliperScale {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected NumericScale(Builder<?> builder) {
+    private NumericScale(Builder<?> builder) {
         super(builder);
         this.maxLabel = builder.maxLabel;
         this.minLabel = builder.minLabel;

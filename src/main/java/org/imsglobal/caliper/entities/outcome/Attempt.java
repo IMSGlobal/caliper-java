@@ -56,7 +56,7 @@ public class Attempt extends AbstractEntity implements CaliperGeneratable {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Attempt(Builder<?> builder) {
+    private Attempt(Builder<?> builder) {
         super(builder);
 
         EntityValidator.checkStartTime(builder.timePeriod.getStartedAtTime(), builder.timePeriod.getEndedAtTime());

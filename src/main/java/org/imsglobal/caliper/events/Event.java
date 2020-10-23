@@ -55,7 +55,7 @@ public class Event extends AbstractEvent {
      *
      * @param builder
      */
-    protected Event(Builder<?> builder) {
+    private Event(Builder<?> builder) {
         super(builder);
     }
 

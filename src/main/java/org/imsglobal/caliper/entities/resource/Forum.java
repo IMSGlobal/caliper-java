@@ -35,7 +35,7 @@ public class Forum extends AbstractDigitalResource implements CaliperCollection<
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Forum(Builder<?> builder) {
+    private Forum(Builder<?> builder) {
         super(builder);
 
         this.items = ImmutableList.copyOf(builder.items);

@@ -45,7 +45,7 @@ public class NavigationEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected NavigationEvent(Builder<?> builder) {
+    private NavigationEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.NAVIGATION);

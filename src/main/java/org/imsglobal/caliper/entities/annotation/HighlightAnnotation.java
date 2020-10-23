@@ -35,7 +35,7 @@ public class HighlightAnnotation extends AbstractAnnotation {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected HighlightAnnotation(Builder<?> builder) {
+    private HighlightAnnotation(Builder<?> builder) {
         super(builder);
         this.selection = builder.selection;
         this.selectionText = builder.selectionText;

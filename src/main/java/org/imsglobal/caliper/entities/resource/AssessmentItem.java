@@ -34,7 +34,7 @@ public class AssessmentItem extends AbstractAssignableDigitalResource implements
     /**
      * @param builder apply builder object properties to the AssessmentItem object.
      */
-    protected AssessmentItem(Builder<?> builder) {
+    private AssessmentItem(Builder<?> builder) {
         super(builder);
         this.isTimeDependent = builder.isTimeDependent;
     }

@@ -50,7 +50,7 @@ public class AggregateMeasure extends AbstractEntity {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected AggregateMeasure(Builder<?> builder) {
+    private AggregateMeasure(Builder<?> builder) {
         super(builder);
         this.metric = builder.metric;
         this.metricValue = builder.metricValue;

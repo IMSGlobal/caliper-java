@@ -26,7 +26,7 @@ public class Entity extends AbstractEntity {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Entity(Builder<?> builder) {
+    private Entity(Builder<?> builder) {
         super(builder);
     }
 

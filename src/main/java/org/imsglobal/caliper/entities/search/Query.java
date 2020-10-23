@@ -38,7 +38,7 @@ public class Query extends AbstractEntity {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Query(Builder<?> builder) {
+    private Query(Builder<?> builder) {
         super(builder);
         this.creator = builder.creator;
         this.searchTarget = builder.searchTarget;

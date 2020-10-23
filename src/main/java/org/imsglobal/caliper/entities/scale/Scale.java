@@ -27,7 +27,7 @@ public class Scale extends AbstractEntity implements CaliperScale {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Scale(Builder<?> builder) {
+    private Scale(Builder<?> builder) {
         super(builder);
     }
 

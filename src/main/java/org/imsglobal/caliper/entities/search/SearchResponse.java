@@ -41,7 +41,7 @@ public class SearchResponse extends AbstractEntity implements CaliperGeneratable
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected SearchResponse(Builder<?> builder) {
+    private SearchResponse(Builder<?> builder) {
         super(builder);
         this.searchProvider = builder.searchProvider;
         this.searchTarget = builder.searchTarget;

@@ -35,7 +35,7 @@ public class DigitalResourceCollection extends AbstractDigitalResource implement
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected DigitalResourceCollection(Builder<?> builder) {
+    private DigitalResourceCollection(Builder<?> builder) {
         super(builder);
 
         this.items = ImmutableList.copyOf(builder.items);

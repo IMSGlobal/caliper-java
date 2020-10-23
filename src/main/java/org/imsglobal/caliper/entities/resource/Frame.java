@@ -29,7 +29,7 @@ public class Frame extends AbstractDigitalResource {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Frame(Builder<?> builder) {
+    private Frame(Builder<?> builder) {
         super(builder);
 
         this.index = builder.index;

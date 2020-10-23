@@ -49,7 +49,7 @@ public class Rating extends AbstractEntity implements CaliperGeneratable {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Rating(Builder<?> builder) {
+    private Rating(Builder<?> builder) {
         super(builder);
         this.question = builder.question;
         this.rater = builder.rater;

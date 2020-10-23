@@ -31,7 +31,7 @@ public class BookmarkAnnotation extends AbstractAnnotation {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected BookmarkAnnotation(Builder<?> builder) {
+    private BookmarkAnnotation(Builder<?> builder) {
         super(builder);
         this.bookmarkNotes = builder.bookmarkNotes;
     }

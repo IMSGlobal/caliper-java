@@ -65,7 +65,7 @@ public abstract class AbstractEvent implements CaliperEvent {
     private final CaliperAgent actor;
 
     @JsonProperty("action")
-    protected final CaliperAction action;
+    private final CaliperAction action;
 
     @JsonProperty("object")
     private final CaliperEntity object;

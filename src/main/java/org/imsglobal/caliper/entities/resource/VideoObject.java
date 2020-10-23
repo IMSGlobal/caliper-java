@@ -30,7 +30,7 @@ public class VideoObject extends AbstractMediaObject implements CaliperMediaObje
     /**
      * @param builder apply builder object properties to the VideoObject object.
      */
-    protected VideoObject(Builder<?> builder) {
+    private VideoObject(Builder<?> builder) {
         super(builder);
     }
 

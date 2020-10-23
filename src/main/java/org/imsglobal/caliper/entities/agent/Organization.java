@@ -28,7 +28,7 @@ public class Organization extends AbstractOrganization implements CaliperOrganiz
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Organization(Builder<?> builder) {
+    private Organization(Builder<?> builder) {
         super(builder);
     }
 

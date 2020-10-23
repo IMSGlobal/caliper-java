@@ -34,7 +34,7 @@ public class TagAnnotation extends AbstractAnnotation {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected TagAnnotation(Builder<?> builder) {
+    private TagAnnotation(Builder<?> builder) {
         super(builder);
         this.tags = ImmutableList.copyOf(builder.tags);
     }

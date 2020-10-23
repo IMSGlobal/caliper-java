@@ -41,7 +41,7 @@ public class CourseSection extends AbstractCourse {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected CourseSection(Builder<?> builder) {
+    private CourseSection(Builder<?> builder) {
         super(builder);
         this.category = builder.category;
     }

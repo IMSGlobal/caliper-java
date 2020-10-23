@@ -33,7 +33,7 @@ public class MultipleChoiceResponse extends AbstractResponse {
     /**
      * @param builder apply builder object properties to the Response object.
      */
-    protected MultipleChoiceResponse(Builder<?> builder) {
+    private MultipleChoiceResponse(Builder<?> builder) {
         super(builder);
         this.value = builder.value;
     }

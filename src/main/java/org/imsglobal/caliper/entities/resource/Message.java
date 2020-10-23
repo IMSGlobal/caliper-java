@@ -40,7 +40,7 @@ public class Message extends AbstractDigitalResource {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Message(Builder<?> builder) {
+    private Message(Builder<?> builder) {
         super(builder);
 
         this.replyTo = builder.replyTo;

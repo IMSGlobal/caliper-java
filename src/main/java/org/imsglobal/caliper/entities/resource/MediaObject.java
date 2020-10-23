@@ -31,7 +31,7 @@ public class MediaObject extends AbstractMediaObject implements CaliperMediaObje
     /**
      * @param builder apply builder object properties to the MediaObject object.
      */
-    protected MediaObject(Builder<?> builder) {
+    private MediaObject(Builder<?> builder) {
         super(builder);
     }
 

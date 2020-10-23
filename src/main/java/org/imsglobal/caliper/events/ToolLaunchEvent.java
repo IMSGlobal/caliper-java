@@ -54,7 +54,7 @@ public class ToolLaunchEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected ToolLaunchEvent(Builder<?> builder) {
+    private ToolLaunchEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.TOOL_LAUNCH);

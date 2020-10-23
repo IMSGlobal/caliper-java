@@ -60,7 +60,7 @@ public class AssessmentEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected AssessmentEvent(Builder<?> builder) {
+    private AssessmentEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.ASSESSMENT);

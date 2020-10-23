@@ -67,7 +67,7 @@ public class ResourceManagementEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected ResourceManagementEvent(Builder<?> builder) {
+    private ResourceManagementEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.RESOURCE_MANAGEMENT);

@@ -59,7 +59,7 @@ public class AnnotationEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected AnnotationEvent(Builder<?> builder) {
+    private AnnotationEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.ANNOTATION);

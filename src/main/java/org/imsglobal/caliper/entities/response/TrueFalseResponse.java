@@ -34,7 +34,7 @@ public class TrueFalseResponse extends AbstractResponse {
     /**
      * @param builder apply builder object properties to the Response object.
      */
-    protected TrueFalseResponse(Builder<?> builder) {
+    private TrueFalseResponse(Builder<?> builder) {
         super(builder);
         this.value = builder.value;
     }

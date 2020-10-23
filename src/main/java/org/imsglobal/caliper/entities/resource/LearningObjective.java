@@ -27,7 +27,7 @@ public class LearningObjective extends AbstractEntity {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected LearningObjective(Builder<?> builder) {
+    private LearningObjective(Builder<?> builder) {
         super(builder);
     }
 

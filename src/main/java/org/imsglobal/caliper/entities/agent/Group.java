@@ -28,7 +28,7 @@ public class Group extends AbstractOrganization {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Group(Builder<?> builder) {
+    private Group(Builder<?> builder) {
         super(builder);
     }
 

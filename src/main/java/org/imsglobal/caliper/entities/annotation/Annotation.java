@@ -28,7 +28,7 @@ public class Annotation extends AbstractAnnotation {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Annotation(Builder<?> builder) {
+    private Annotation(Builder<?> builder) {
         super(builder);
     }
 

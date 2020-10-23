@@ -52,7 +52,7 @@ public class ThreadEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected ThreadEvent(Builder<?> builder) {
+    private ThreadEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.THREAD);

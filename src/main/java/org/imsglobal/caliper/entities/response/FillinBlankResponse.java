@@ -37,7 +37,7 @@ public class FillinBlankResponse extends AbstractResponse {
     /**
      * @param builder apply builder object properties to the Response object.
      */
-    protected FillinBlankResponse(Builder<?> builder) {
+    private FillinBlankResponse(Builder<?> builder) {
         super(builder);
         this.values = ImmutableList.copyOf(builder.values);
     }

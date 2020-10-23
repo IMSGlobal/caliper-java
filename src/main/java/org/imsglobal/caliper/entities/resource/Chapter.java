@@ -25,7 +25,7 @@ public class Chapter extends AbstractDigitalResource {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Chapter(Builder<?> builder) {
+    private Chapter(Builder<?> builder) {
         super(builder);
     }
 

@@ -28,7 +28,7 @@ public class DigitalResource extends AbstractDigitalResource {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected DigitalResource(Builder<?> builder) {
+    private DigitalResource(Builder<?> builder) {
         super(builder);
     }
 

@@ -51,7 +51,7 @@ public class MultiselectScale extends AbstractEntity implements CaliperScale {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected MultiselectScale(Builder<?> builder) {
+    private MultiselectScale(Builder<?> builder) {
         super(builder);
         this.isOrderedSelection = builder.isOrderedSelection;
         this.itemLabels = ImmutableList.copyOf(builder.itemLabels);

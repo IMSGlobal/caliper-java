@@ -42,7 +42,7 @@ public class LikertScale extends AbstractEntity implements CaliperScale {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected LikertScale(Builder<?> builder) {
+    private LikertScale(Builder<?> builder) {
         super(builder);
         this.itemLabels = ImmutableList.copyOf(builder.itemLabels);
         this.itemValues = ImmutableList.copyOf(builder.itemValues);

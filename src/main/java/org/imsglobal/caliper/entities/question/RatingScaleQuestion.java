@@ -33,7 +33,7 @@ public class RatingScaleQuestion extends AbstractQuestion {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected RatingScaleQuestion(Builder<?> builder) {
+    private RatingScaleQuestion(Builder<?> builder) {
         super(builder);
         this.scale = builder.scale;
     }

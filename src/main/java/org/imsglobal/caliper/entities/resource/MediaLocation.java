@@ -33,7 +33,7 @@ public class MediaLocation extends AbstractDigitalResource implements CaliperTar
     /**
      * @param builder apply builder object properties to the MediaLocation object.
      */
-    protected MediaLocation(Builder<?> builder) {
+    private MediaLocation(Builder<?> builder) {
         super(builder);
 
         this.currentTime = builder.currentTime;

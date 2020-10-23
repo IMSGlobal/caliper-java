@@ -25,7 +25,7 @@ public class Response extends AbstractResponse {
     /**
      * @param builder apply builder object properties to the Response object.
      */
-    protected Response(Builder<?> builder) { super(builder); }
+    private Response(Builder<?> builder) { super(builder); }
 
     /**
      * Builder class provides a fluid interface for setting object properties.

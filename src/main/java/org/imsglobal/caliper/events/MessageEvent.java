@@ -53,7 +53,7 @@ public class MessageEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected MessageEvent(Builder<?> builder) {
+    private MessageEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.MESSAGE);

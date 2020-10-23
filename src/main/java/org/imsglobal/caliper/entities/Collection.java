@@ -36,7 +36,7 @@ public class Collection extends AbstractEntity implements CaliperCollection<Cali
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Collection(Builder<?> builder) {
+    private Collection(Builder<?> builder) {
         super(builder);
         this.items = ImmutableList.copyOf(builder.items);
     }

@@ -25,7 +25,7 @@ public class Document extends AbstractDigitalResource {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Document(Builder<?> builder) {
+    private Document(Builder<?> builder) {
         super(builder);
     }
 

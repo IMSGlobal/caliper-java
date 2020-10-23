@@ -47,7 +47,7 @@ public class Score extends AbstractEntity implements CaliperGeneratable {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Score(Builder<?> builder) {
+    private Score(Builder<?> builder) {
         super(builder);
 
         this.attempt = builder.attempt;

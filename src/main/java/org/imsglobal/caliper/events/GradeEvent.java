@@ -50,7 +50,7 @@ public class GradeEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected GradeEvent(Builder<?> builder) {
+    private GradeEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.GRADE);

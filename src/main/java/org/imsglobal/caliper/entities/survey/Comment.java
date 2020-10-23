@@ -39,7 +39,7 @@ public class Comment extends AbstractEntity implements CaliperGeneratable {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Comment(Builder<?> builder) {
+    private Comment(Builder<?> builder) {
         super(builder);
         this.commenter = builder.commenter;
         this.commentedOn = builder.commentedOn;

@@ -39,7 +39,7 @@ public class MultipleResponseResponse extends AbstractResponse {
     /**
      * @param builder apply builder object properties to the Response object.
      */
-    protected MultipleResponseResponse(Builder<?> builder) {
+    private MultipleResponseResponse(Builder<?> builder) {
         super(builder);
         this.values = ImmutableList.copyOf(builder.values);
     }

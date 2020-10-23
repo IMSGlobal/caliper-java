@@ -70,7 +70,7 @@ public class MediaEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected MediaEvent(Builder<?> builder) {
+    private MediaEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.MEDIA);

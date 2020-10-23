@@ -52,7 +52,7 @@ public class ForumEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected ForumEvent(Builder<?> builder) {
+    private ForumEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.FORUM);

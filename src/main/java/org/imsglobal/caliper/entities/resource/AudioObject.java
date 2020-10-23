@@ -43,7 +43,7 @@ public class AudioObject extends AbstractMediaObject implements CaliperMediaObje
     /**
      * @param builder apply builder object properties to the AudioObject object.
      */
-    protected AudioObject(Builder<?> builder) {
+    private AudioObject(Builder<?> builder) {
         super(builder);
         this.volumeMin = builder.volumeMin;
         this.volumeMax = builder.volumeMax;

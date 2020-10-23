@@ -38,7 +38,7 @@ public class Assessment extends AssignableDigitalResource implements CaliperAsse
     /**
      * @param builder apply builder object properties to the CaliperAssessment object.
      */
-    protected Assessment(Builder<?> builder) {
+    private Assessment(Builder<?> builder) {
         super(builder);
         this.items = ImmutableList.copyOf(builder.items);
     }

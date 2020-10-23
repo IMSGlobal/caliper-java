@@ -38,7 +38,7 @@ public class Survey extends AbstractEntity implements CaliperCollection<Question
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Survey(Builder<?> builder) {
+    private Survey(Builder<?> builder) {
         super(builder);
         this.items = ImmutableList.copyOf(builder.items);
     }

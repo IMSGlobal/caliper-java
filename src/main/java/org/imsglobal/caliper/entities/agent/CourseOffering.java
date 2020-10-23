@@ -33,7 +33,7 @@ public class CourseOffering extends AbstractCourse {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected CourseOffering(Builder<?> builder) {
+    private CourseOffering(Builder<?> builder) {
         super(builder);
     }
 

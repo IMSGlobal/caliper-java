@@ -35,7 +35,7 @@ public class Thread extends AbstractDigitalResource implements CaliperCollection
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Thread(Builder<?> builder) {
+    private Thread(Builder<?> builder) {
         super(builder);
 
         this.items = ImmutableList.copyOf(builder.items);

@@ -34,7 +34,7 @@ public class AggregateMeasureCollection extends AbstractEntity implements Calipe
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected AggregateMeasureCollection(Builder<?> builder) {
+    private AggregateMeasureCollection(Builder<?> builder) {
         super(builder);
         this.items = ImmutableList.copyOf(builder.items);
     }

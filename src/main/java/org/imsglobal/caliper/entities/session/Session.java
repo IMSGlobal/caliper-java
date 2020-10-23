@@ -25,7 +25,7 @@ public class Session extends AbstractSession {
     /**
      * @param builder apply builder object properties to the Session object.
      */
-    protected Session(Builder<?> builder) { super(builder); }
+    private Session(Builder<?> builder) { super(builder); }
 
     /**
      * Builder class provides a fluid interface for setting object properties.

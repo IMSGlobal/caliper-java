@@ -56,7 +56,7 @@ public class ToolUseEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected ToolUseEvent(Builder<?> builder) {
+    private ToolUseEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.TOOL_USE);

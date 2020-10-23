@@ -50,7 +50,7 @@ public class SearchEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected SearchEvent(Builder<?> builder) {
+    private SearchEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.SEARCH);

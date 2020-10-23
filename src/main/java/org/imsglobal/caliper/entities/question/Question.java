@@ -29,7 +29,7 @@ public class Question extends AbstractQuestion {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Question(Builder<?> builder) {
+    private Question(Builder<?> builder) {
         super(builder);
     }
 

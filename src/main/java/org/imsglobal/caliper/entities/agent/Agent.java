@@ -26,7 +26,7 @@ public class Agent extends AbstractEntity implements CaliperAgent {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Agent(Builder<?> builder) {
+    private Agent(Builder<?> builder) {
         super(builder);
     }
 

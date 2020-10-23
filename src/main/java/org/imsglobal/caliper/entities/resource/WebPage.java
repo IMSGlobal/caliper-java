@@ -25,7 +25,7 @@ public class WebPage extends AbstractDigitalResource {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected WebPage(Builder<?> builder) {
+    private WebPage(Builder<?> builder) {
         super(builder);
     }
 

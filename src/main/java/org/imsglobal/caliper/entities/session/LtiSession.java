@@ -31,7 +31,7 @@ public class LtiSession extends AbstractSession {
     /**
      * @param builder apply builder object properties to the LtiSession object.
      */
-    protected LtiSession(Builder<?> builder) {
+    private LtiSession(Builder<?> builder) {
         super(builder);
         this.messageParameters = builder.messageParameters;
     }

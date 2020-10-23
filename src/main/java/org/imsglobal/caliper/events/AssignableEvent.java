@@ -52,7 +52,7 @@ public class AssignableEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected AssignableEvent(Builder<?> builder) {
+    private AssignableEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.ASSIGNABLE);

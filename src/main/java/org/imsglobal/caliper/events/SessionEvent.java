@@ -45,7 +45,7 @@ public class SessionEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected SessionEvent(Builder<?> builder) {
+    private SessionEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.SESSION);

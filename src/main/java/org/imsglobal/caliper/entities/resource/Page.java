@@ -25,7 +25,7 @@ public class Page extends AbstractDigitalResource {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Page(Builder<?> builder) {
+    private Page(Builder<?> builder) {
         super(builder);
     }
 

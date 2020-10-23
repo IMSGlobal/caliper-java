@@ -49,7 +49,7 @@ public class ViewEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected ViewEvent(Builder<?> builder) {
+    private ViewEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.VIEW);

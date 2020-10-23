@@ -51,7 +51,7 @@ public class Membership extends AbstractEntity {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Membership(Builder<?> builder) {
+    private Membership(Builder<?> builder) {
         super(builder);
 
         this.member = builder.member;

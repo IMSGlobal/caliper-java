@@ -47,7 +47,7 @@ public class Result extends AbstractEntity implements CaliperGeneratable {
     /**
      * @param builder apply builder object properties to the object.
      */
-    protected Result(Builder<?> builder) {
+    private Result(Builder<?> builder) {
         super(builder);
 
         this.attempt = builder.attempt;

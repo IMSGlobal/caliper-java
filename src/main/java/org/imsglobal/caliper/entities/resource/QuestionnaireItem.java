@@ -45,7 +45,7 @@ public class QuestionnaireItem extends AbstractDigitalResource {
     /**
      * @param builder apply builder object properties to the QuestionnaireItem object.
      */
-    protected QuestionnaireItem(Builder<?> builder) {
+    private QuestionnaireItem(Builder<?> builder) {
         super(builder);
         this.categories = ImmutableList.copyOf(builder.categories);
         this.question = builder.question;

@@ -48,7 +48,7 @@ public class FeedbackEvent extends AbstractEvent {
      *
      * @param builder
      */
-    protected FeedbackEvent(Builder<?> builder) {
+    private FeedbackEvent(Builder<?> builder) {
         super(builder);
 
         EventValidator.checkType(this.getType(), EventType.FEEDBACK);
