@@ -131,7 +131,7 @@ public class MultiselectScale extends AbstractEntity implements CaliperScale {
          * Constructor
          */
         public Builder() {
-            super.type(EntityType.LIKERT_SCALE);
+            super.type(EntityType.MULTISELECT_SCALE);
         }
 
         /**
