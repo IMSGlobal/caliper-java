@@ -36,7 +36,7 @@ public class Config {
     /**
      * Default version
      */
-    public static final String DATA_VERSION = "http://purl.imsglobal.org/ctx/caliper/v1p1";
+    public static final String DATA_VERSION = "http://purl.imsglobal.org/ctx/caliper/v1p2";
 
     /**
      * Default UUID version to use when minting Event UUIDs.

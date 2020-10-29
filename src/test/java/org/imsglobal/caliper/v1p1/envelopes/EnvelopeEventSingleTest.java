@@ -145,7 +145,7 @@ public class EnvelopeEventSingleTest {
         sensor.registerClient(client);
 
         // Create envelope
-        envelope = sensor.create(sensor.getId(), sendTime, Config.DATA_VERSION, data);
+        envelope = sensor.create(sensor.getId(), sendTime, CaliperJsonldContextIRI.V1P1.value(), data);
 
         // Don't send
         // sensor.send(client, envelope);
