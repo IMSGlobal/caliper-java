@@ -18,17 +18,17 @@
 
 package org.imsglobal.caliper.entities.use;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Nullable;
+
 import org.imsglobal.caliper.entities.AbstractEntity;
-import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.entities.TimePeriod;
 import org.imsglobal.caliper.validators.EntityValidator;
 import org.joda.time.DateTime;
 
-import javax.annotation.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Representation of an AggregateMeasure.

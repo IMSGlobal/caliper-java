@@ -18,10 +18,11 @@
 
 package org.imsglobal.caliper.entities.session;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.imsglobal.caliper.entities.AbstractEntity;
-import org.imsglobal.caliper.entities.EntityType;
 import javax.annotation.Nullable;
+
+import org.imsglobal.caliper.entities.EntityType;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LtiSession extends AbstractSession {
 

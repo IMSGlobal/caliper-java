@@ -18,14 +18,12 @@
 
 package org.imsglobal.caliper.entities.question;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
+import javax.annotation.Nullable;
+
 import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.entities.resource.AbstractDigitalResource;
-import org.joda.time.DateTime;
 
-import javax.annotation.Nullable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This class provides a skeletal implementation of the Question interface

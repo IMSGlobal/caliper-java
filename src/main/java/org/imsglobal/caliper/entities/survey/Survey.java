@@ -18,17 +18,18 @@
 
 package org.imsglobal.caliper.entities.survey;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import org.imsglobal.caliper.entities.AbstractEntity;
+import org.imsglobal.caliper.entities.CaliperCollection;
+import org.imsglobal.caliper.entities.EntityType;
+import org.imsglobal.caliper.entities.resource.Questionnaire;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.imsglobal.caliper.entities.AbstractEntity;
-import org.imsglobal.caliper.entities.EntityType;
-import org.imsglobal.caliper.entities.CaliperCollection;
-import org.imsglobal.caliper.entities.resource.Questionnaire;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class Survey extends AbstractEntity implements CaliperCollection<Questionnaire> {
 

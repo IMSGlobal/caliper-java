@@ -18,12 +18,15 @@
 
 package org.imsglobal.caliper.entities.survey;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.imsglobal.caliper.entities.*;
+import javax.annotation.Nullable;
+
+import org.imsglobal.caliper.entities.AbstractEntity;
+import org.imsglobal.caliper.entities.CaliperEntity;
+import org.imsglobal.caliper.entities.CaliperGeneratable;
+import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.entities.agent.Person;
 
-import javax.annotation.Nullable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Comment extends AbstractEntity implements CaliperGeneratable {
 

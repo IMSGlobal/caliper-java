@@ -18,7 +18,6 @@
 
 package org.imsglobal.caliper.entities.question;
 
-import org.imsglobal.caliper.entities.CaliperEntity;
 import org.imsglobal.caliper.entities.resource.CaliperDigitalResource;
 
 /**

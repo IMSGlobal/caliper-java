@@ -18,7 +18,14 @@
 
 package org.imsglobal.caliper.v1p1.envelopes;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.imsglobal.caliper.CaliperSendable;
@@ -28,7 +35,6 @@ import org.imsglobal.caliper.TestUtils;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.clients.HttpClient;
 import org.imsglobal.caliper.clients.HttpClientOptions;
-import org.imsglobal.caliper.config.Config;
 import org.imsglobal.caliper.context.CaliperJsonldContextIRI;
 import org.imsglobal.caliper.context.JsonldContext;
 import org.imsglobal.caliper.context.JsonldStringContext;
@@ -38,8 +44,8 @@ import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.agent.Role;
 import org.imsglobal.caliper.entities.agent.SoftwareApplication;
 import org.imsglobal.caliper.entities.agent.Status;
-import org.imsglobal.caliper.entities.resource.Assessment;
 import org.imsglobal.caliper.entities.outcome.Attempt;
+import org.imsglobal.caliper.entities.resource.Assessment;
 import org.imsglobal.caliper.entities.session.Session;
 import org.imsglobal.caliper.events.AssessmentEvent;
 import org.joda.time.DateTime;
@@ -51,13 +57,7 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
-import static org.junit.Assert.assertEquals;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class EnvelopeEventSingleTest {

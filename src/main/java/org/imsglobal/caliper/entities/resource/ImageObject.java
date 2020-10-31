@@ -20,8 +20,6 @@ package org.imsglobal.caliper.entities.resource;
 
 import org.imsglobal.caliper.entities.EntityType;
 
-import javax.annotation.Nullable;
-
 /**
  * An image object embedded in a web page.
  */

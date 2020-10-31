@@ -18,20 +18,19 @@
 
 package org.imsglobal.caliper.events;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import org.imsglobal.caliper.actions.Action;
-import org.imsglobal.caliper.entities.CaliperGeneratable;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.agent.SoftwareApplication;
-import org.imsglobal.caliper.entities.outcome.Attempt;
 import org.imsglobal.caliper.entities.use.AggregateMeasureCollection;
 import org.imsglobal.caliper.validators.EventValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SupportedActions({Action.USED})
 public class ToolUseEvent extends AbstractEvent {

@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.lti;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.imsglobal.caliper.v1p1.events.ViewEventViewedDocumentFedSessionTest;
 
 public class ResourceLinkClaim {
     @JsonProperty("id")

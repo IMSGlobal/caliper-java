@@ -18,12 +18,12 @@
 
 package org.imsglobal.caliper.entities.question;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Nullable;
+
 import org.imsglobal.caliper.entities.EntityType;
 import org.joda.time.DateTime;
 
-import javax.annotation.Nullable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DateTimeQuestion extends AbstractQuestion {
 

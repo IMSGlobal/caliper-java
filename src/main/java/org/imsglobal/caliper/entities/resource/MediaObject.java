@@ -18,10 +18,7 @@
 
 package org.imsglobal.caliper.entities.resource;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.entities.EntityType;
-
-import javax.annotation.Nullable;
 
 /**
  * Concrete implementation of a generic MediaObject.
