@@ -28,27 +28,10 @@ import org.imsglobal.caliper.Envelope;
 import org.imsglobal.caliper.Sensor;
 import org.imsglobal.caliper.TestUtils;
 import org.imsglobal.caliper.actions.Action;
-import org.imsglobal.caliper.context.CaliperJsonldContextIRI;
-import org.imsglobal.caliper.context.JsonldArrayContext;
-import org.imsglobal.caliper.context.JsonldObjectContext;
 import org.imsglobal.caliper.context.JsonldStringContext;
 import org.imsglobal.caliper.entities.Entity;
-import org.imsglobal.caliper.entities.agent.CourseSection;
-import org.imsglobal.caliper.entities.agent.Membership;
 import org.imsglobal.caliper.entities.agent.Person;
-import org.imsglobal.caliper.entities.agent.Role;
-import org.imsglobal.caliper.entities.agent.SoftwareApplication;
-import org.imsglobal.caliper.entities.agent.Status;
-import org.imsglobal.caliper.entities.annotation.BookmarkAnnotation;
-import org.imsglobal.caliper.entities.resource.DigitalResource;
-import org.imsglobal.caliper.entities.resource.Document;
-import org.imsglobal.caliper.entities.resource.WebPage;
-import org.imsglobal.caliper.entities.session.Session;
-import org.imsglobal.caliper.events.AnnotationEvent;
 import org.imsglobal.caliper.events.Event;
-import org.imsglobal.caliper.events.NavigationEvent;
-import org.imsglobal.caliper.events.ViewEvent;
-import org.imsglobal.caliper.profiles.Profile;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Before;
@@ -56,13 +39,9 @@ import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 public class EnvelopeTermActionTest {
 	
