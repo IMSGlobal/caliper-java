@@ -19,10 +19,17 @@
 package org.imsglobal.caliper.context;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.google.common.collect.ImmutableList;
+import org.imsglobal.caliper.context.JsonldArrayContext.ArrayContextSerializer;
 
+import java.io.IOException;
 import java.util.List;
 
+@JsonSerialize (using = ArrayContextSerializer.class)
 public class JsonldArrayContext implements JsonldContext {
 
     @JsonProperty("@context")
@@ -42,5 +49,30 @@ public class JsonldArrayContext implements JsonldContext {
      */
     public static JsonldArrayContext create(List<Object> contexts) {
         return new JsonldArrayContext(contexts);
+    }
+    
+    public static final class ArrayContextSerializer extends StdSerializer<JsonldArrayContext> {
+
+    	public ArrayContextSerializer() {
+			this(null);
+		}
+    	
+		protected ArrayContextSerializer(Class<JsonldArrayContext> t) {
+			super(t);
+		}
+		
+		@Override
+		public void serialize(JsonldArrayContext value, JsonGenerator gen, SerializerProvider provider)
+				throws IOException {
+			
+			gen.writeStartArray();
+			for(Object ctx : value.contexts) {
+				gen.writeObject(ctx);
+			}
+			gen.writeEndArray();
+						
+		}
+		private static final long serialVersionUID = -9083233562305314477L;
+		    	
     }
 }
