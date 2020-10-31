@@ -18,7 +18,8 @@
 
 package org.imsglobal.caliper.v1p1.events;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+
 import org.imsglobal.caliper.TestUtils;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.actions.CaliperAction;
@@ -33,7 +34,6 @@ import org.imsglobal.caliper.entities.agent.SoftwareApplication;
 import org.imsglobal.caliper.entities.agent.Status;
 import org.imsglobal.caliper.entities.resource.Assessment;
 import org.imsglobal.caliper.entities.resource.AssessmentItem;
-import org.imsglobal.caliper.entities.outcome.Attempt;
 import org.imsglobal.caliper.entities.session.Session;
 import org.imsglobal.caliper.events.AssessmentItemEvent;
 import org.joda.time.DateTime;
@@ -45,7 +45,7 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class AssessmentItemEventSkippedTest {
@@ -53,7 +53,6 @@ public class AssessmentItemEventSkippedTest {
     private String id;
     private Person actor;
     private AssessmentItem object;
-    private Attempt generated;
     private SoftwareApplication edApp;
     private CourseSection group;
     private Membership membership;

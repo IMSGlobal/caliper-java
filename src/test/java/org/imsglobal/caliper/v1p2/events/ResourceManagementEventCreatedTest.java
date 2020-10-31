@@ -53,7 +53,6 @@ public class ResourceManagementEventCreatedTest {
     private JsonldContext context;
     private String id;
     private Person actor;
-    private CourseSection section;
     private DigitalResource object;
     private DigitalResourceCollection collection;
     private CourseSection group;

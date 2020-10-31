@@ -18,9 +18,11 @@
 
 package org.imsglobal.caliper.v1p1.events;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+
+import java.util.List;
+import java.util.Map;
+
 import org.imsglobal.caliper.TestUtils;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.actions.CaliperAction;
@@ -35,7 +37,6 @@ import org.imsglobal.caliper.entities.agent.SoftwareApplication;
 import org.imsglobal.caliper.entities.agent.Status;
 import org.imsglobal.caliper.entities.resource.Document;
 import org.imsglobal.caliper.entities.resource.LtiMessageType;
-import org.imsglobal.caliper.entities.resource.WebPage;
 import org.imsglobal.caliper.entities.session.LtiSession;
 import org.imsglobal.caliper.entities.session.Session;
 import org.imsglobal.caliper.events.ViewEvent;
@@ -55,10 +56,9 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.util.List;
-import java.util.Map;
-
-import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class ViewEventViewedDocumentFedSessionTest {
@@ -69,7 +69,6 @@ public class ViewEventViewedDocumentFedSessionTest {
     private SoftwareApplication edApp;
     private CourseSection group;
     private Membership membership;
-    private WebPage referrer;
     private LtiSession federatedSession;
     private Session session;
     private ViewEvent event;

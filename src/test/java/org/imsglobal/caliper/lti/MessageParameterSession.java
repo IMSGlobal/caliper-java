@@ -37,7 +37,6 @@ public class MessageParameterSession {
      */
     public static class Builder {
         private String id;
-        private String requestURL;
 
         public Builder id(String id) {
             this.id = id;

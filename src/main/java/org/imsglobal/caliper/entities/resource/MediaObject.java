@@ -37,8 +37,7 @@ public class MediaObject extends AbstractMediaObject implements CaliperMediaObje
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends AbstractMediaObject.Builder<T>  {
-        private String duration;
-
+        
         /**
          * Initialize type with default value.  Required if builder().type() is not set by user.
          */

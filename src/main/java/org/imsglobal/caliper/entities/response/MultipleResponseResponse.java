@@ -18,14 +18,15 @@
 
 package org.imsglobal.caliper.entities.response;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import org.imsglobal.caliper.entities.EntityType;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.imsglobal.caliper.entities.EntityType;
-import org.imsglobal.caliper.entities.TimePeriod;
-import javax.annotation.Nullable;
-
-import java.util.List;
 
 /**
  * Representation of a response to a multiple choice question that permits one or more
@@ -58,7 +59,6 @@ public class MultipleResponseResponse extends AbstractResponse {
      */
     public static abstract class Builder<T extends Builder<T>> extends AbstractResponse.Builder<T>  {
         private List<String> values = Lists.newArrayList();
-        private TimePeriod timePeriod = new TimePeriod();
 
         /**
          * Initialize type with default value.

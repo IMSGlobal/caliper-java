@@ -53,7 +53,6 @@ public class ResourceManagementEventCopiedTest {
     private JsonldContext context;
     private String id;
     private Person actor;
-    private CourseSection section;
     private DigitalResource object;
     private DigitalResource generated;
     private DigitalResourceCollection collection;
