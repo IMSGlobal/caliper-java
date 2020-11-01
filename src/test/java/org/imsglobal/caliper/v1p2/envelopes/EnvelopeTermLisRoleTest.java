@@ -60,7 +60,7 @@ public class EnvelopeTermLisRoleTest {
 		for (Role role : Role.values()) {			
 			List<Role> roles = Lists.newArrayList();
 			String value = role.value();
-			if(role.value().contains("#")) {
+			if(value.contains("#")) {
 				roles.add(Role.fromValue(value.substring(0, value.indexOf('#'))));			
 			} 
 			roles.add(role);
