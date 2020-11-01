@@ -36,12 +36,14 @@ import org.imsglobal.caliper.entities.agent.Status;
 import org.imsglobal.caliper.entities.resource.WebPage;
 import org.imsglobal.caliper.entities.session.Session;
 import org.imsglobal.caliper.events.NavigationEvent;
+import org.imsglobal.caliper.statistics.Statistics;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
@@ -129,7 +131,7 @@ public class SensorSendEventsTest {
 
         // There should be two caliperEvents queued
         assertEquals("Expect fifty Caliper events to be sent", 50,
-                sensor.getStatistics().get("default").getMeasures().getCount());
+                sensor.getStatistics().get(sensor.getId()).getMeasures().getCount());
 
         //Statistic statistics = client.getStatistics().get("default");
 
@@ -139,11 +141,11 @@ public class SensorSendEventsTest {
         // Caliper.getStatistics().getDescribes().getCount());
 
         // There should be two message successfully sent
-        int successes = sensor.getStatistics().get("default").getSuccessful().getCount();
+        int successes = sensor.getStatistics().get(sensor.getId()).getSuccessful().getCount();
         assertEquals("Expect fifty messages to be sent successfully", 50, successes);
 
         // There should be zero failures
-        int failures = sensor.getStatistics().get("default").getFailed().getCount();
+        int failures = sensor.getStatistics().get(sensor.getId()).getFailed().getCount();
         assertEquals("Expect zero message failures to be sent", 0, failures);
     }
 }

@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.resource.Thread;
@@ -34,12 +33,6 @@ import javax.annotation.Nonnull;
     Action.MARKED_AS_UNREAD
 })
 public class ThreadEvent extends AbstractEvent {
-
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final Thread object;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(ThreadEvent.class);
@@ -57,9 +50,6 @@ public class ThreadEvent extends AbstractEvent {
 
         EventValidator.checkType(this.getType(), EventType.THREAD);
         EventValidator.checkAction(this.getAction(), ThreadEvent.class);
-
-        this.actor = builder.actor;
-        this.object = builder.object;
     }
 
     /**
@@ -69,7 +59,7 @@ public class ThreadEvent extends AbstractEvent {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	return (Person) super.getActor();
     }
 
     /**
@@ -79,7 +69,7 @@ public class ThreadEvent extends AbstractEvent {
     @Override
     @Nonnull
     public Thread getObject() {
-        return object;
+        return (Thread) super.getObject();
     }
 
     /**
@@ -87,8 +77,6 @@ public class ThreadEvent extends AbstractEvent {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends AbstractEvent.Builder<T>  {
-        private Person actor;
-        private Thread object;
 
         /*
          * Constructor
@@ -102,7 +90,7 @@ public class ThreadEvent extends AbstractEvent {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 
@@ -111,7 +99,7 @@ public class ThreadEvent extends AbstractEvent {
          * @return builder.
          */
         public T object(Thread object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 

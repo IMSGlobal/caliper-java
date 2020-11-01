@@ -18,6 +18,7 @@
 
 package org.imsglobal.caliper.clients;
 
+import org.apache.http.HttpHeaders;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -90,10 +91,14 @@ public class HttpClient extends AbstractClient {
             String json = this.serializeEnvelope(envelope);
 
             // Prep the post
+ 
             HttpPost post = new HttpPost(super.getOptions().getHost());
-            post.setHeader("Authorization", this.getOptions().getApiKey());
-            post.setHeader("Content-Type", this.getOptions().getContentType());
-            post.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
+            post.setHeader(HttpHeaders.AUTHORIZATION, this.getOptions().getApiKey());
+            post.setHeader(HttpHeaders.CONTENT_TYPE, this.getOptions().getContentType());
+            post.setHeader(HttpHeaders.ACCEPT, HttpHeaders.ACCEPT);
+            
+            
+            post.setEntity(new StringEntity(json));
 
             // Execute POST
             response = httpClient.execute(post);

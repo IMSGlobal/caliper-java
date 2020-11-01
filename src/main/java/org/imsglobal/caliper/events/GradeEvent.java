@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.outcome.Score;
 import org.imsglobal.caliper.entities.outcome.Attempt;
@@ -32,12 +31,6 @@ import javax.annotation.Nullable;
 
 @SupportedActions({ Action.GRADED })
 public class GradeEvent extends AbstractEvent {
-
-    @JsonProperty("object")
-    private final Attempt object;
-
-    @JsonProperty("generated")
-    private final Score generated;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(GradeEvent.class);
@@ -56,8 +49,6 @@ public class GradeEvent extends AbstractEvent {
         EventValidator.checkType(this.getType(), EventType.GRADE);
         EventValidator.checkAction(this.getAction(), GradeEvent.class);
 
-        this.object = builder.object;
-        this.generated = builder.generated;
     }
 
     /**
@@ -67,7 +58,7 @@ public class GradeEvent extends AbstractEvent {
     @Override
     @Nonnull
     public Attempt getObject() {
-        return object;
+        return (Attempt) super.getObject();
     }
 
     /**
@@ -77,7 +68,7 @@ public class GradeEvent extends AbstractEvent {
     @Override
     @Nullable
     public Score getGenerated() {
-        return generated;
+        return (Score) super.getGenerated();
     }
 
     /**
@@ -85,8 +76,6 @@ public class GradeEvent extends AbstractEvent {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends AbstractEvent.Builder<T>  {
-        private Attempt object;
-        private Score generated;
 
         /*
          * Constructor
@@ -100,7 +89,7 @@ public class GradeEvent extends AbstractEvent {
          * @return builder.
          */
         public T object(Attempt object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 
@@ -109,7 +98,7 @@ public class GradeEvent extends AbstractEvent {
          * @return builder.
          */
         public T generated(Score generated) {
-            this.generated = generated;
+            super.generated(generated);
             return self();
         }
 

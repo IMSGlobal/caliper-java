@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.resource.Message;
@@ -35,12 +34,6 @@ import javax.annotation.Nonnull;
     Action.POSTED
 })
 public class MessageEvent extends AbstractEvent {
-
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final Message object;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(MessageEvent.class);
@@ -58,9 +51,6 @@ public class MessageEvent extends AbstractEvent {
 
         EventValidator.checkType(this.getType(), EventType.MESSAGE);
         EventValidator.checkAction(this.getAction(), MessageEvent.class);
-
-        this.actor = builder.actor;
-        this.object = builder.object;
     }
 
     /**
@@ -70,7 +60,7 @@ public class MessageEvent extends AbstractEvent {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	 return (Person) super.getActor();
     }
 
     /**
@@ -80,7 +70,7 @@ public class MessageEvent extends AbstractEvent {
     @Override
     @Nonnull
     public Message getObject() {
-        return object;
+        return (Message) super.getObject();
     }
 
     /**
@@ -88,8 +78,6 @@ public class MessageEvent extends AbstractEvent {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends AbstractEvent.Builder<T>  {
-        private Person actor;
-        private Message object;
 
         /*
          * Constructor
@@ -103,7 +91,7 @@ public class MessageEvent extends AbstractEvent {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 
@@ -112,7 +100,7 @@ public class MessageEvent extends AbstractEvent {
          * @return builder.
          */
         public T object(Message object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 

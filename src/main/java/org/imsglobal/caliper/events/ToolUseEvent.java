@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.CaliperGeneratable;
 import org.imsglobal.caliper.entities.agent.Person;
@@ -35,15 +34,6 @@ import javax.annotation.Nullable;
 
 @SupportedActions({Action.USED})
 public class ToolUseEvent extends AbstractEvent {
-
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final SoftwareApplication object;
-
-    @JsonProperty("generated")
-    private final AggregateMeasureCollection generated;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(ToolUseEvent.class);
@@ -63,9 +53,6 @@ public class ToolUseEvent extends AbstractEvent {
         EventValidator.checkAction(this.getAction(), ToolUseEvent.class);
         //EventValidator.checkGeneratedType(this.getGenerated(), AggregateMeasureCollection.class);
 
-        this.actor = builder.actor;
-        this.object = builder.object;
-        this.generated = builder.generated;
     }
 
     /**
@@ -75,7 +62,7 @@ public class ToolUseEvent extends AbstractEvent {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	return (Person) super.getActor();
     }
 
     /**
@@ -85,7 +72,7 @@ public class ToolUseEvent extends AbstractEvent {
     @Override
     @Nonnull
     public SoftwareApplication getObject() {
-        return object;
+        return (SoftwareApplication) super.getObject();
     }
 
     /**
@@ -95,7 +82,7 @@ public class ToolUseEvent extends AbstractEvent {
     @Override
     @Nullable
     public AggregateMeasureCollection getGenerated() {
-        return generated;
+        return (AggregateMeasureCollection) super.getGenerated();
     }
 
     /**
@@ -103,9 +90,6 @@ public class ToolUseEvent extends AbstractEvent {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends AbstractEvent.Builder<T>  {
-        private Person actor;
-        private SoftwareApplication object;
-        private AggregateMeasureCollection generated;
 
         /*
          * Constructor
@@ -119,7 +103,7 @@ public class ToolUseEvent extends AbstractEvent {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 
@@ -128,7 +112,7 @@ public class ToolUseEvent extends AbstractEvent {
          * @return builder.
          */
         public T object(SoftwareApplication object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 
@@ -137,7 +121,7 @@ public class ToolUseEvent extends AbstractEvent {
          * @return builder.
          */
         public T generated(AggregateMeasureCollection generated) {
-            this.generated = generated;
+        	super.generated(generated);
             return self();
         }
 
