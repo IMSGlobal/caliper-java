@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.scale;
 
 import org.imsglobal.caliper.entities.AbstractEntity;
-import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
 
 public class Scale extends AbstractEntity implements CaliperScale {

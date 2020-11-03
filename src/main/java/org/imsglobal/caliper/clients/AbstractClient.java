@@ -18,18 +18,19 @@
 
 package org.imsglobal.caliper.clients;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
+import javax.annotation.Nonnull;
+
 import org.imsglobal.caliper.Envelope;
 import org.imsglobal.caliper.databind.JxnCoercibleSimpleModule;
 import org.imsglobal.caliper.statistics.Statistics;
 import org.imsglobal.caliper.validators.SensorValidator;
 
-import javax.annotation.Nonnull;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.util.StdDateFormat;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 /**
  * This class provides a skeletal implementation of the Sensor Client interface
@@ -91,7 +92,7 @@ public abstract class AbstractClient implements CaliperClient {
             .setFailOnUnknownId(true);
 
         ObjectMapper mapper = new ObjectMapper()
-            .setDateFormat(new ISO8601DateFormat())
+            .setDateFormat(new StdDateFormat())
             .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
             .setFilterProvider(provider)
             .registerModules(new JodaModule(), new JxnCoercibleSimpleModule());

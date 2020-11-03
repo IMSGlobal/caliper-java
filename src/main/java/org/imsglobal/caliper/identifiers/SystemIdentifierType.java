@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum SystemIdentifierType {
     ACCOUNT_USER_NAME("AccountUserName"),
+    CASE_ITEM_URI("CaseItemUri"),
     EMAIL_ADDRESS("EmailAddress"),
     LIS_SOURCED_ID("LisSourcedId"),
     LTI_CONTEXT_ID("LtiContextId"),

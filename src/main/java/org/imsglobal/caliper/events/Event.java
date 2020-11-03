@@ -18,11 +18,11 @@
 
 package org.imsglobal.caliper.events;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.imsglobal.caliper.actions.Action;
-import org.imsglobal.caliper.validators.EventValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Concrete implementation of a generic Event.

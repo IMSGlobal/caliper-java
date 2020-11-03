@@ -18,15 +18,15 @@
 
 package org.imsglobal.caliper.v1p1.entities;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
+import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+
+import java.util.List;
+
 import org.imsglobal.caliper.TestUtils;
 import org.imsglobal.caliper.context.CaliperJsonldContextIRI;
 import org.imsglobal.caliper.context.JsonldStringContext;
-import org.imsglobal.caliper.entities.agent.CaliperAgent;
 import org.imsglobal.caliper.entities.agent.CourseOffering;
 import org.imsglobal.caliper.entities.agent.CourseSection;
-import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.resource.CaliperDigitalResource;
 import org.imsglobal.caliper.entities.resource.DigitalResourceCollection;
 import org.imsglobal.caliper.entities.resource.VideoObject;
@@ -39,17 +39,13 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.util.List;
-
-import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class DigitalResourceCollectionTest {
-    private DigitalResourceCollection collection;
     private CourseOffering course;
     private CourseSection section;
-    private Person actor;
-    private List<CaliperAgent> creators;
     private List<CaliperDigitalResource> resources;
     private List<String> keywords;
     private DigitalResourceCollection entity;

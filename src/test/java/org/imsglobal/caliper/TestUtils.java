@@ -18,12 +18,13 @@
 
 package org.imsglobal.caliper;
 
+import org.imsglobal.caliper.databind.JxnCoercibleSimpleModule;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
-import org.imsglobal.caliper.databind.JxnCoercibleSimpleModule;
 
 public class TestUtils {
 
@@ -36,7 +37,7 @@ public class TestUtils {
             .setFailOnUnknownId(true);
 
         ObjectMapper mapper = new ObjectMapper()
-            .setDateFormat(new ISO8601DateFormat())
+            .setDateFormat(new StdDateFormat())
             .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
             .setFilterProvider(provider)
             .registerModules(new JodaModule(), new JxnCoercibleSimpleModule());

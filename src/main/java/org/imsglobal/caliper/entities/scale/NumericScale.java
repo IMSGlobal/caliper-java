@@ -18,13 +18,13 @@
 
 package org.imsglobal.caliper.entities.scale;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Nullable;
+
 import org.imsglobal.caliper.entities.AbstractEntity;
-import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
 
-import javax.annotation.Nullable;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class NumericScale extends AbstractEntity implements CaliperScale {
 
@@ -56,8 +56,7 @@ public class NumericScale extends AbstractEntity implements CaliperScale {
     }
 
     /**
-     * Return the maximum label.
-     * @return the items
+     * @return the label for the maximum value.
      */
     @Nullable
     public String getMaxLabel() {
@@ -65,17 +64,16 @@ public class NumericScale extends AbstractEntity implements CaliperScale {
     }
 
     /**
-     * @return the maximum number of values allowed.
+     * @return the maximum value allowed.
      */
-    @Nullable
+    @Nullable    
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    public double getMaxSelections() {
+    public double getMaxValue() {
         return maxValue;
     }
 
     /**
-     * Return the minimum label.
-     * @return the items
+     * @return the label for the minimum value.
      */
     @Nullable
     public String getMinLabel() {
@@ -83,20 +81,19 @@ public class NumericScale extends AbstractEntity implements CaliperScale {
     }
 
     /**
-     * @return the minimum number of values allowed.
+     * @return the minimum value allowed.
      */
-    @Nullable
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    public double getMinSelections() {
+    @Nullable        
+    public double getMinValue() {
         return minValue;
     }
 
     /**
-     * @return the scale points
+     * @return the decimal step value
      */
-    @Nullable
+    @Nullable    
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    public double getScalePoints() {
+    public double getStep() {
         return step;
     }
 
@@ -115,7 +112,7 @@ public class NumericScale extends AbstractEntity implements CaliperScale {
          * Constructor
          */
         public Builder() {
-            super.type(EntityType.LIKERT_SCALE);
+            super.type(EntityType.NUMERIC_SCALE);
         }
 
         /**

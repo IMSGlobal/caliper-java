@@ -18,9 +18,11 @@
 
 package org.imsglobal.caliper.v1p2.events;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+
+import java.util.List;
+import java.util.Map;
+
 import org.imsglobal.caliper.TestUtils;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.actions.CaliperAction;
@@ -35,11 +37,16 @@ import org.imsglobal.caliper.entities.agent.SoftwareApplication;
 import org.imsglobal.caliper.entities.agent.Status;
 import org.imsglobal.caliper.entities.resource.Document;
 import org.imsglobal.caliper.entities.resource.LtiMessageType;
-import org.imsglobal.caliper.entities.resource.WebPage;
 import org.imsglobal.caliper.entities.session.LtiSession;
 import org.imsglobal.caliper.entities.session.Session;
 import org.imsglobal.caliper.events.ViewEvent;
-import org.imsglobal.caliper.lti.*;
+import org.imsglobal.caliper.lti.ContextClaim;
+import org.imsglobal.caliper.lti.CustomClaim;
+import org.imsglobal.caliper.lti.LaunchPresentationClaim;
+import org.imsglobal.caliper.lti.LisClaim;
+import org.imsglobal.caliper.lti.MessageParameterSession;
+import org.imsglobal.caliper.lti.ResourceLinkClaim;
+import org.imsglobal.caliper.lti.ToolPlatformClaim;
 import org.imsglobal.caliper.profiles.CaliperProfile;
 import org.imsglobal.caliper.profiles.Profile;
 import org.joda.time.DateTime;
@@ -51,10 +58,9 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.util.List;
-import java.util.Map;
-
-import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class ViewEventViewedDocumentFedSessionTest {
@@ -64,8 +70,7 @@ public class ViewEventViewedDocumentFedSessionTest {
     private Document object;
     private SoftwareApplication edApp;
     private CourseSection group;
-    private Membership membership;
-    private WebPage referrer;
+    private Membership membership;    
     private LtiSession federatedSession;
     private Session session;
     private ViewEvent event;

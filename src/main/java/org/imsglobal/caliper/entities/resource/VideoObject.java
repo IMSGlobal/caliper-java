@@ -20,8 +20,6 @@ package org.imsglobal.caliper.entities.resource;
 
 import org.imsglobal.caliper.entities.EntityType;
 
-import javax.annotation.Nullable;
-
 /**
  * A Video object embedded in a web page.
  */

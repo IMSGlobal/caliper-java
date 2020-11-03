@@ -18,7 +18,8 @@
 
 package org.imsglobal.caliper.v1p2.entities;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+
 import org.imsglobal.caliper.TestUtils;
 import org.imsglobal.caliper.context.CaliperJsonldContextIRI;
 import org.imsglobal.caliper.context.JsonldStringContext;
@@ -32,9 +33,7 @@ import org.junit.experimental.categories.Category;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.util.Date;
-
-import static com.yammer.dropwizard.testing.JsonHelpers.jsonFixture;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Category(org.imsglobal.caliper.UnitTest.class)
 public class DateTimeResponseTest {

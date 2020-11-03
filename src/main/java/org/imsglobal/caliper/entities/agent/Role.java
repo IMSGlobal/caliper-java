@@ -28,60 +28,72 @@ import java.util.Map;
  * IMS LTI/LIS roles.
  */
 public enum Role {
-    LEARNER("Learner"),
-    EXTERNAL_LEARNER("Learner#ExternalLearner"),
-    GUEST_LEARNER("Learner#GuestLearner"),
-    LEARNER_INSTRUCTOR("Learner#Instructor"),
-    LEARNER_LEARNER("Learner#Learner"),
-    NONCREDIT_LEARNER("Learner#NonCreditLearner"),
-
-    INSTRUCTOR("Instructor"),
-    EXTERNAL_INSTRUCTOR("Instructor#ExternalInstructor"),
-    GUEST_INSTRUCTOR("Instructor#GuestInstructor"),
-    LECTURER("Instructor#Lecturer"),
-    PRIMARY_INSTRUCTOR("Instructor#PrimaryInstructor"),
-
-    ADMINISTRATOR("Administrator"),
+	ADMINISTRATOR("Administrator"),
     ADMINISTRATOR_ADMINISTRATOR("Administrator#Administrator"),
     ADMINISTRATOR_DEVELOPER("Administrator#Developer"),
-    ADMINISTRATOR_SUPPORT("Administrator#Support"),
-    ADMINISTRATOR_SYSTEM_ADMINISTRATOR("Administrator#SystemAdministrator"),
-
     ADMINISTRATOR_EXTERNAL_DEVELOPER("Administrator#ExternalDeveloper"),
     ADMINISTRATOR_EXTERNAL_SUPPORT("Administrator#ExternalSupport"),
     ADMINISTRATOR_EXTERNAL_SYSTEM_ADMINISTRATOR("Administrator#ExternalSystemAdministrator"),
+    ADMINISTRATOR_SUPPORT("Administrator#Support"),
+    ADMINISTRATOR_SYSTEM_ADMINISTRATOR("Administrator#SystemAdministrator"),
 
     CONTENT_DEVELOPER("ContentDeveloper"),
     CONTENT_DEVELOPER_CONTENT_DEVELOPER("ContentDeveloper#ContentDeveloper"),
-    CONTENT_DEVELOPER_LIBRARIAN("ContentDeveloper#Librarian"),
     CONTENT_DEVELOPER_CONTENT_EXPERT("ContentDeveloper#ContentExpert"),
     CONTENT_DEVELOPER_EXTERNAL_CONTENT_EXPERT("ContentDeveloper#ExternalContentExpert"),
+    CONTENT_DEVELOPER_LIBRARIAN("ContentDeveloper#Librarian"),
 
+    INSTRUCTOR("Instructor"),
+    INSTRUCTOR_EXTERNAL_INSTRUCTOR("Instructor#ExternalInstructor"),
+    INSTRUCTOR_GRADER("Instructor#Grader"),
+    INSTRUCTOR_GUEST_INSTRUCTOR("Instructor#GuestInstructor"),
+    INSTRUCTOR_INSTRUCTOR("Instructor#Instructor"),
+    INSTRUCTOR_LECTURER("Instructor#Lecturer"),
+    INSTRUCTOR_PRIMARY_INSTRUCTOR("Instructor#PrimaryInstructor"),
+    INSTRUCTOR_SECONDARY_INSTRUCTOR("Instructor#SecondaryInstructor"),
+    INSTRUCTOR_TEACHING_ASSISTANT("Instructor#TeachingAssistant"),
+    INSTRUCTOR_TEACHING_ASSISTANT_GROUP("Instructor#TeachingAssistantGroup"),
+    INSTRUCTOR_TEACHING_ASSISTANT_SECTION("Instructor#TeachingAssistantSection"),
+    INSTRUCTOR_TEACHING_ASSISTANT_OFFERING("Instructor#TeachingAssistantOffering"),
+    INSTRUCTOR_TEACHING_ASSISTANT_TEMPLATE("Instructor#TeachingAssistantTemplate"),
+    
+    LEARNER("Learner"),
+    LEARNER_EXTERNAL_LEARNER("Learner#ExternalLearner"),
+    LEARNER_GUEST_LEARNER("Learner#GuestLearner"),
+    LEARNER_NONCREDIT_LEARNER("Learner#NonCreditLearner"),
+    LEARNER_LEARNER("Learner#Learner"),
+    
     MANAGER("Manager"),
     MANAGER_AREA_MANAGER("Manager#AreaManager"),
     MANAGER_COURSE_COORDINATOR("Manager#CourseCoordinator"),
-    MANAGER_OBSERVER("Manager#Observer"),
     MANAGER_EXTERNAL_OBSERVER("Manager#ExternalObserver"),
-
+    MANAGER_MANAGER("Manager#Manager"),
+    MANAGER_OBSERVER("Manager#Observer"),
+    
     MEMBER("Member"),
     MEMBER_MEMBER("Member#Member"),
 
     MENTOR("Mentor"),
-    MENTOR_MENTOR("Mentor#Mentor"),
     MENTOR_ADVISOR("Mentor#Advisor"),
-    MENTOR_AUDITOR("Mentor#Auditor"),
-    MENTOR_REVIEWER("Mentor#Reviewer"),
-    MENTOR_TUTOR("Mentor#Tutor"),
-    MENTOR_LEARNING_FACILITATOR("Mentor#LearningFacilitator"),
-
-    MENTOR_EXTERNAL_MENTOR("Mentor#ExternalMentor"),
     MENTOR_EXTERNAL_ADVISOR("Mentor#ExternalAdvisor"),
     MENTOR_EXTERNAL_AUDITOR("Mentor#ExternalAuditor"),
-    MENTOR_EXTERNAL_REVIEWER("Mentor#ExternalReviewer"),
-    MENTOR_EXTERNAL_TUTOR("Mentor#ExternalTutor"),
     MENTOR_EXTERNAL_LEARNING_FACILITATOR("Mentor#ExternalLearningFacilitator"),
+    MENTOR_EXTERNAL_MENTOR("Mentor#ExternalMentor"),
+    MENTOR_EXTERNAL_REVIEWER("Mentor#ExternalReviewer"),
+    MENTOR_EXTERNAL_TUTOR("Mentor#ExternalTutor"),    
+    MENTOR_LEARNING_FACILITATOR("Mentor#LearningFacilitator"),    
+    MENTOR_MENTOR("Mentor#Mentor"),
+    MENTOR_REVIEWER("Mentor#Reviewer"),    
+    MENTOR_TUTOR("Mentor#Tutor"),
 
-    TEACHING_ASSISTANT("TeachingAssistant"),
+    OFFICER("Officer"),
+    OFFICER_CHAIR("Officer#Chair"),
+    OFFICER_SECRETARY("Officer#Secretary"),
+    OFFICER_TREASURER("Officer#Treasurer"),
+    OFFICER_VICECHAIR("Officer#Vice-Chair");	
+    		
+	/* 1.1 values: 
+	TEACHING_ASSISTANT("TeachingAssistant"),
     TEACHING_ASSISTANT_TEACHING_ASSISTANT("TeachingAssistant#TeachingAssistant"),
     TEACHING_ASSISTANT_GRADER("TeachingAssistant#Grader"),
     TEACHING_ASSISTANT_TEACHING_ASSISTANT_SECTION("TeachingAssistant#TeachingAssistantSection"),
@@ -89,7 +101,8 @@ public enum Role {
     TEACHING_ASSISTANT_TEACHING_ASSISTANT_OFFERING("TeachingAssistant#TeachingAssistantOffering"),
     TEACHING_ASSISTANT_TEACHING_ASSISTANT_TEMPLATE("TeachingAssistant#TeachingAssistantTemplate"),
     TEACHING_ASSISTANT_TEACHING_ASSISTANT_GROUP("TeachingAssistant#TeachingAssistantGroup");
-
+	*/
+	
     private final String value;
     private static Map<String, Role> lookup;
 
@@ -120,6 +133,14 @@ public enum Role {
         return lookup.containsKey(key);
     }
 
+    /**
+     * @param value
+     * @return a Role if one exists with the supplied value, else null.
+     */
+    public static Role fromValue(String value) {
+    	return lookup.get(value);
+    }
+    
     /**
      * @return the URI value
      */

@@ -38,8 +38,8 @@ public class AudioObject extends AbstractMediaObject implements CaliperMediaObje
     private String volumeLevel;
 
     @JsonProperty("muted")
-    private boolean muted;
-
+    private Boolean muted;
+    
     /**
      * @param builder apply builder object properties to the AudioObject object.
      */

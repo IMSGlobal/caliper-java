@@ -89,6 +89,17 @@ public class Sensor {
     }
 
     /**
+     * Create the Envelope. The sendTime of the envelope will be set using DateTime.now().
+     * @param id
+     * @param dataVersion
+     * @param data
+     * @return envelope
+     */
+    public Envelope create(String id, String dataVersion, List<CaliperSendable> data) {
+        return new Envelope(id, DateTime.now(), dataVersion, data);
+    }
+
+    /**
      * Create the Envelope.
      * @param id
      * @param sendTime
@@ -97,9 +108,9 @@ public class Sensor {
      * @return envelope
      */
     public Envelope create(String id, DateTime sendTime, String dataVersion, List<CaliperSendable> data) {
-        return new Envelope(id, DateTime.now(), dataVersion, data);
+        return new Envelope(id, sendTime, dataVersion, data);
     }
-
+    
     /**
      * Delegate serialization and transmission of the Envelope to a particular registered Client.
      * @param envelope

@@ -18,12 +18,12 @@
 
 package org.imsglobal.caliper.context;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.imsglobal.caliper.config.Config;
+import javax.annotation.Nonnull;
+
 import org.imsglobal.caliper.entities.CaliperCoercible;
 
-import javax.annotation.Nonnull;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class JsonldStringContext implements JsonldContext, CaliperCoercible {
 

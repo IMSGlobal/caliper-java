@@ -46,7 +46,7 @@ public class Frame extends AbstractDigitalResource {
          * Constructor
          */
         public Builder() {
-            super.type(EntityType.CHAPTER);
+            super.type(EntityType.FRAME);
         }
 
         /**

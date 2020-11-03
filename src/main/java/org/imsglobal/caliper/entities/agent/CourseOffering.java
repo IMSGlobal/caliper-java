@@ -18,10 +18,7 @@
 
 package org.imsglobal.caliper.entities.agent;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.entities.EntityType;
-
-import javax.annotation.Nullable;
 
 /**
  * A CourseOffering is the occurrence of a course in a specific term, semester, etc.  A Caliper

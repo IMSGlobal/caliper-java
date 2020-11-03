@@ -18,9 +18,9 @@
 
 package org.imsglobal.caliper.entities.resource;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.imsglobal.caliper.entities.resource.LtiMessageType;
 import org.imsglobal.caliper.entities.EntityType;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LtiLink extends AbstractDigitalResource {
 

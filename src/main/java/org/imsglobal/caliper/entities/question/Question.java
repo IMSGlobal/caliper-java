@@ -18,11 +18,7 @@
 
 package org.imsglobal.caliper.entities.question;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.entities.EntityType;
-
-import javax.annotation.Nullable;
 
 public class Question extends AbstractQuestion {
 

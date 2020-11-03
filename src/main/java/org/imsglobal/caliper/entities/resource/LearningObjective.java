@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.entities.resource;
 
 import org.imsglobal.caliper.entities.AbstractEntity;
-import org.imsglobal.caliper.entities.Entity;
 import org.imsglobal.caliper.entities.EntityType;
 
 public class LearningObjective extends AbstractEntity {

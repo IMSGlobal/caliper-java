@@ -18,16 +18,20 @@
 
 package org.imsglobal.caliper.entities.survey;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-import org.imsglobal.caliper.entities.*;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import org.imsglobal.caliper.entities.AbstractEntity;
+import org.imsglobal.caliper.entities.CaliperEntity;
+import org.imsglobal.caliper.entities.CaliperGeneratable;
+import org.imsglobal.caliper.entities.EntityType;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.question.CaliperQuestion;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
 public class Rating extends AbstractEntity implements CaliperGeneratable {
 

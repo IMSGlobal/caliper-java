@@ -56,7 +56,11 @@
             <name>Prashant Nayak</name>
             <email>prashant@intellifylearning.com</email>
         </developer>
-
+		<developer>
+            <id>mgylling</id>
+            <name>Markus Gylling</name>
+            <email>mgylling@imsglobal.org</email>
+        </developer>
     </developers>
 
     <scm>
