@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.annotation.CaliperAnnotation;
@@ -39,15 +38,6 @@ import javax.annotation.Nullable;
 })
 public class AnnotationEvent extends Event {
 
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final CaliperDigitalResource object;
-
-    @JsonProperty("generated")
-    private final CaliperAnnotation generated;
-
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(AnnotationEvent.class);
 
@@ -64,10 +54,6 @@ public class AnnotationEvent extends Event {
 
         EventValidator.checkType(this.getType(), EventType.ANNOTATION);
         EventValidator.checkAction(this.getAction(), AnnotationEvent.class);
-
-        this.actor = builder.actor;
-        this.object = builder.object;
-        this.generated = builder.generated;
     }
 
     /**
@@ -77,7 +63,7 @@ public class AnnotationEvent extends Event {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+        return (Person) super.getActor();
     }
 
     /**
@@ -87,7 +73,7 @@ public class AnnotationEvent extends Event {
     @Override
     @Nonnull
     public CaliperDigitalResource getObject() {
-        return object;
+        return (CaliperDigitalResource) super.getObject();
     }
 
     /**
@@ -97,7 +83,7 @@ public class AnnotationEvent extends Event {
     @Override
     @Nullable
     public CaliperAnnotation getGenerated() {
-        return generated;
+        return (CaliperAnnotation) super.getGenerated();
     }
 
     /**
@@ -105,10 +91,7 @@ public class AnnotationEvent extends Event {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends Event.Builder<T>  {
-        private Person actor;
-        private CaliperDigitalResource object;
-        private CaliperAnnotation generated;
-
+        
         /*
          * Constructor
          */
@@ -121,7 +104,7 @@ public class AnnotationEvent extends Event {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+            super.actor(actor);
             return self();
         }
 
@@ -130,7 +113,7 @@ public class AnnotationEvent extends Event {
          * @return builder.
          */
         public T object(CaliperDigitalResource object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 
@@ -139,7 +122,7 @@ public class AnnotationEvent extends Event {
          * @return builder.
          */
         public T generated(CaliperAnnotation generated) {
-            this.generated = generated;
+        	super.generated(generated);
             return self();
         }
 

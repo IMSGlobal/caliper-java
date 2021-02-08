@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.resource.Assessment;
@@ -40,15 +39,6 @@ import javax.annotation.Nullable;
 })
 public class AssessmentEvent extends Event {
 
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final Assessment object;
-
-    @JsonProperty("generated")
-    private final Attempt generated;
-
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(AssessmentEvent.class);
 
@@ -65,10 +55,6 @@ public class AssessmentEvent extends Event {
 
         EventValidator.checkType(this.getType(), EventType.ASSESSMENT);
         EventValidator.checkAction(this.getAction(), AssessmentEvent.class);
-
-        this.actor = builder.actor;
-        this.object = builder.object;
-        this.generated = builder.generated;
     }
 
     /**
@@ -78,7 +64,7 @@ public class AssessmentEvent extends Event {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	return (Person) super.getActor();
     }
 
     /**
@@ -88,7 +74,7 @@ public class AssessmentEvent extends Event {
     @Override
     @Nonnull
     public Assessment getObject() {
-        return object;
+        return (Assessment) super.getObject();
     }
 
     /**
@@ -98,7 +84,7 @@ public class AssessmentEvent extends Event {
     @Override
     @Nullable
     public Attempt getGenerated() {
-        return generated;
+        return (Attempt) super.getGenerated();
     }
 
     /**
@@ -106,9 +92,6 @@ public class AssessmentEvent extends Event {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends Event.Builder<T>  {
-        private Person actor;
-        private Assessment object;
-        private Attempt generated;
 
         /*
          * Constructor
@@ -122,7 +105,7 @@ public class AssessmentEvent extends Event {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+            super.actor(actor);
             return self();
         }
 
@@ -131,7 +114,7 @@ public class AssessmentEvent extends Event {
          * @return builder.
          */
         public T object(Assessment object) {
-            this.object = object;
+            super.object(object);
             return self();
         }
 
@@ -140,7 +123,7 @@ public class AssessmentEvent extends Event {
          * @return builder.
          */
         public T generated(Attempt generated) {
-            this.generated = generated;
+            super.generated(generated);
             return self();
         }
 

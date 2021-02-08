@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.agent.SoftwareApplication;
@@ -31,12 +30,6 @@ import javax.annotation.Nonnull;
 
 @SupportedActions({Action.USED})
 public class ToolUseEvent extends Event {
-
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final SoftwareApplication object;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(ToolUseEvent.class);
@@ -54,9 +47,6 @@ public class ToolUseEvent extends Event {
 
         EventValidator.checkType(this.getType(), EventType.TOOL_USE);
         EventValidator.checkAction(this.getAction(), ToolUseEvent.class);
-
-        this.actor = builder.actor;
-        this.object = builder.object;
     }
 
     /**
@@ -66,7 +56,7 @@ public class ToolUseEvent extends Event {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	return (Person) super.getActor();
     }
 
     /**
@@ -76,7 +66,7 @@ public class ToolUseEvent extends Event {
     @Override
     @Nonnull
     public SoftwareApplication getObject() {
-        return object;
+        return (SoftwareApplication) super.getObject();
     }
 
     /**
@@ -84,8 +74,6 @@ public class ToolUseEvent extends Event {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends Event.Builder<T>  {
-        private Person actor;
-        private SoftwareApplication object;
 
         /*
          * Constructor
@@ -99,7 +87,7 @@ public class ToolUseEvent extends Event {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 
@@ -108,7 +96,7 @@ public class ToolUseEvent extends Event {
          * @return builder.
          */
         public T object(SoftwareApplication object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 

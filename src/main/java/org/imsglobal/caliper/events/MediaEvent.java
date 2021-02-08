@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.resource.CaliperMediaObject;
@@ -53,12 +52,6 @@ import javax.annotation.Nonnull;
 })
 public class MediaEvent extends Event {
 
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final CaliperMediaObject object;
-
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(MediaEvent.class);
 
@@ -76,9 +69,6 @@ public class MediaEvent extends Event {
         EventValidator.checkType(this.getType(), EventType.MEDIA);
         EventValidator.checkAction(this.getAction(), MediaEvent.class);
 
-        this.actor = builder.actor;
-        this.object = builder.object;
-
     }
 
     /**
@@ -88,7 +78,7 @@ public class MediaEvent extends Event {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+        return (Person) super.getActor();
     }
 
     /**
@@ -98,7 +88,7 @@ public class MediaEvent extends Event {
     @Override
     @Nonnull
     public CaliperMediaObject getObject() {
-        return object;
+        return (CaliperMediaObject) super.getObject();
     }
 
     /**
@@ -106,8 +96,6 @@ public class MediaEvent extends Event {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends Event.Builder<T>  {
-        private Person actor;
-        private CaliperMediaObject object;
 
         /*
          * Constructor
@@ -121,7 +109,7 @@ public class MediaEvent extends Event {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 
@@ -130,7 +118,7 @@ public class MediaEvent extends Event {
          * @return builder.
          */
         public T object(CaliperMediaObject object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 

@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.resource.Forum;
@@ -34,12 +33,6 @@ import javax.annotation.Nonnull;
     Action.UNSUBSCRIBED
 })
 public class ForumEvent extends Event {
-
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final Forum object;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(ForumEvent.class);
@@ -58,8 +51,6 @@ public class ForumEvent extends Event {
         EventValidator.checkType(this.getType(), EventType.FORUM);
         EventValidator.checkAction(this.getAction(), ForumEvent.class);
 
-        this.actor = builder.actor;
-        this.object = builder.object;
     }
 
     /**
@@ -69,7 +60,7 @@ public class ForumEvent extends Event {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	return (Person) super.getActor();
     }
 
     /**
@@ -79,7 +70,7 @@ public class ForumEvent extends Event {
     @Override
     @Nonnull
     public Forum getObject() {
-        return object;
+        return (Forum) super.getObject();
     }
 
     /**
@@ -87,8 +78,6 @@ public class ForumEvent extends Event {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends Event.Builder<T>  {
-        private Person actor;
-        private Forum object;
 
         /*
          * Constructor
@@ -102,7 +91,7 @@ public class ForumEvent extends Event {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 
@@ -111,7 +100,7 @@ public class ForumEvent extends Event {
          * @return builder.
          */
         public T object(Forum object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 

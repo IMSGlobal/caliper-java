@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.resource.CaliperDigitalResource;
@@ -31,12 +30,6 @@ import javax.annotation.Nonnull;
 
 @SupportedActions({ Action.VIEWED })
 public class ViewEvent extends Event {
-
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final CaliperDigitalResource object;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(ViewEvent.class);
@@ -54,9 +47,6 @@ public class ViewEvent extends Event {
 
         EventValidator.checkType(this.getType(), EventType.VIEW);
         EventValidator.checkAction(this.getAction(), ViewEvent.class);
-
-        this.actor = builder.actor;
-        this.object = builder.object;
     }
 
     /**
@@ -66,7 +56,7 @@ public class ViewEvent extends Event {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	return (Person) super.getActor();
     }
 
     /**
@@ -76,7 +66,7 @@ public class ViewEvent extends Event {
     @Override
     @Nonnull
     public CaliperDigitalResource getObject() {
-        return object;
+        return (CaliperDigitalResource) super.getObject();
     }
 
     /**
@@ -84,8 +74,6 @@ public class ViewEvent extends Event {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends Event.Builder<T>  {
-        private Person actor;
-        private CaliperDigitalResource object;
 
         /*
          * Constructor
@@ -99,7 +87,7 @@ public class ViewEvent extends Event {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 
@@ -108,7 +96,7 @@ public class ViewEvent extends Event {
          * @return builder.
          */
         public T object(CaliperDigitalResource object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 

@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.validators.EventValidator;
@@ -30,9 +29,6 @@ import javax.annotation.Nonnull;
 
 @SupportedActions({ Action.NAVIGATED_TO })
 public class NavigationEvent extends Event {
-
-    @JsonProperty("actor")
-    private final Person actor;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(NavigationEvent.class);
@@ -51,7 +47,6 @@ public class NavigationEvent extends Event {
         EventValidator.checkType(this.getType(), EventType.NAVIGATION);
         EventValidator.checkAction(this.getAction(), NavigationEvent.class);
 
-        this.actor = builder.actor;
     }
 
     /**
@@ -61,7 +56,7 @@ public class NavigationEvent extends Event {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	return (Person) super.getActor();
     }
 
     /**
@@ -69,7 +64,6 @@ public class NavigationEvent extends Event {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends Event.Builder<T>  {
-        private Person actor;
 
         /*
          * Constructor
@@ -83,7 +77,7 @@ public class NavigationEvent extends Event {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 

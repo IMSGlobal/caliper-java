@@ -19,7 +19,6 @@
 package org.imsglobal.caliper.events;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.imsglobal.caliper.actions.Action;
 import org.imsglobal.caliper.entities.agent.Person;
 import org.imsglobal.caliper.entities.resource.AssessmentItem;
@@ -37,12 +36,6 @@ import javax.annotation.Nonnull;
     Action.SKIPPED
 })
 public class AssessmentItemEvent extends Event {
-
-    @JsonProperty("actor")
-    private final Person actor;
-
-    @JsonProperty("object")
-    private final AssessmentItem object;
 
     @JsonIgnore
     private static final Logger log = LoggerFactory.getLogger(AssessmentItemEvent.class);
@@ -69,8 +62,6 @@ public class AssessmentItemEvent extends Event {
             EventValidator.checkGeneratedType(this.getGenerated(), CaliperResponse.class);
         }
 
-        this.actor = builder.actor;
-        this.object = builder.object;
     }
 
     /**
@@ -80,7 +71,7 @@ public class AssessmentItemEvent extends Event {
     @Override
     @Nonnull
     public Person getActor() {
-        return actor;
+    	return (Person) super.getActor();
     }
 
     /**
@@ -90,7 +81,7 @@ public class AssessmentItemEvent extends Event {
     @Override
     @Nonnull
     public AssessmentItem getObject() {
-        return object;
+        return (AssessmentItem) super.getObject();
     }
 
     /**
@@ -98,8 +89,6 @@ public class AssessmentItemEvent extends Event {
      * @param <T> builder
      */
     public static abstract class Builder<T extends Builder<T>> extends Event.Builder<T>  {
-        private Person actor;
-        private AssessmentItem object;
 
         /*
          * Constructor
@@ -113,7 +102,7 @@ public class AssessmentItemEvent extends Event {
          * @return builder.
          */
         public T actor(Person actor) {
-            this.actor = actor;
+        	super.actor(actor);
             return self();
         }
 
@@ -122,7 +111,7 @@ public class AssessmentItemEvent extends Event {
          * @return builder.
          */
         public T object(AssessmentItem object) {
-            this.object = object;
+        	super.object(object);
             return self();
         }
 
